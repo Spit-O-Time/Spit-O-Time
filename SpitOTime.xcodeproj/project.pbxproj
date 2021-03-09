@@ -16,13 +16,6 @@
 		5B8AD0A125F2717A00B64371 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B8AD0A025F2717A00B64371 /* Assets.xcassets */; };
 		5B8AD0AC25F2717B00B64371 /* SpitOTimeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8AD0AB25F2717B00B64371 /* SpitOTimeTests.swift */; };
 		5B8AD0B725F2717B00B64371 /* SpitOTimeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8AD0B625F2717B00B64371 /* SpitOTimeUITests.swift */; };
-		A4A0362B25F7C29F0036CCCB /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = A4A0361E25F7C29F0036CCCB /* .gitkeep */; };
-		A4A0362C25F7C29F0036CCCB /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = A4A0362025F7C29F0036CCCB /* .gitkeep */; };
-		A4A0362D25F7C29F0036CCCB /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = A4A0362225F7C29F0036CCCB /* .gitkeep */; };
-		A4A0362E25F7C29F0036CCCB /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = A4A0362425F7C29F0036CCCB /* .gitkeep */; };
-		A4A0362F25F7C29F0036CCCB /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = A4A0362625F7C29F0036CCCB /* .gitkeep */; };
-		A4A0363025F7C29F0036CCCB /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = A4A0362825F7C29F0036CCCB /* .gitkeep */; };
-		A4A0363125F7C29F0036CCCB /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = A4A0362A25F7C29F0036CCCB /* .gitkeep */; };
 		A4A0363625F7C2C60036CCCB /* MoveComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A0363525F7C2C60036CCCB /* MoveComponent.swift */; };
 		A4A0363B25F7C2E10036CCCB /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A0363A25F7C2E10036CCCB /* GameViewController.swift */; };
 		A4A0364025F7C2F90036CCCB /* Llama.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A0363F25F7C2F90036CCCB /* Llama.swift */; };
@@ -65,13 +58,6 @@
 		5B8AD0B225F2717B00B64371 /* SpitOTimeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpitOTimeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B8AD0B625F2717B00B64371 /* SpitOTimeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpitOTimeUITests.swift; sourceTree = "<group>"; };
 		5B8AD0B825F2717B00B64371 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A4A0361E25F7C29F0036CCCB /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
-		A4A0362025F7C29F0036CCCB /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
-		A4A0362225F7C29F0036CCCB /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
-		A4A0362425F7C29F0036CCCB /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
-		A4A0362625F7C29F0036CCCB /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
-		A4A0362825F7C29F0036CCCB /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
-		A4A0362A25F7C29F0036CCCB /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
 		A4A0363525F7C2C60036CCCB /* MoveComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveComponent.swift; sourceTree = "<group>"; };
 		A4A0363A25F7C2E10036CCCB /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		A4A0363F25F7C2F90036CCCB /* Llama.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Llama.swift; sourceTree = "<group>"; };
@@ -169,7 +155,6 @@
 		A4A0361D25F7C29F0036CCCB /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				A4A0361E25F7C29F0036CCCB /* .gitkeep */,
 				A4A0364E25F7C3280036CCCB /* Menu.swift */,
 			);
 			path = Scenes;
@@ -178,7 +163,6 @@
 		A4A0361F25F7C29F0036CCCB /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				A4A0362025F7C29F0036CCCB /* .gitkeep */,
 				A4A0363525F7C2C60036CCCB /* MoveComponent.swift */,
 			);
 			path = Components;
@@ -187,7 +171,6 @@
 		A4A0362125F7C29F0036CCCB /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				A4A0362225F7C29F0036CCCB /* .gitkeep */,
 				A4A0363F25F7C2F90036CCCB /* Llama.swift */,
 			);
 			path = Entities;
@@ -196,7 +179,6 @@
 		A4A0362325F7C29F0036CCCB /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				A4A0362425F7C29F0036CCCB /* .gitkeep */,
 				A4A0364925F7C31A0036CCCB /* teste.swift */,
 			);
 			path = Helper;
@@ -205,7 +187,6 @@
 		A4A0362525F7C29F0036CCCB /* SystemComponents */ = {
 			isa = PBXGroup;
 			children = (
-				A4A0362625F7C29F0036CCCB /* .gitkeep */,
 				A4A0365325F7C3340036CCCB /* teste.swift */,
 			);
 			path = SystemComponents;
@@ -214,7 +195,6 @@
 		A4A0362725F7C29F0036CCCB /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				A4A0362825F7C29F0036CCCB /* .gitkeep */,
 				A4A0363A25F7C2E10036CCCB /* GameViewController.swift */,
 			);
 			path = Controllers;
@@ -223,7 +203,6 @@
 		A4A0362925F7C29F0036CCCB /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				A4A0362A25F7C29F0036CCCB /* .gitkeep */,
 				A4A0364425F7C3070036CCCB /* UIColorExtension.swift */,
 			);
 			path = Extensions;
@@ -334,15 +313,8 @@
 			files = (
 				5B8AD09F25F2717800B64371 /* Main.storyboard in Resources */,
 				5B8AD09625F2717800B64371 /* GameScene.sks in Resources */,
-				A4A0363125F7C29F0036CCCB /* .gitkeep in Resources */,
-				A4A0362B25F7C29F0036CCCB /* .gitkeep in Resources */,
-				A4A0362F25F7C29F0036CCCB /* .gitkeep in Resources */,
-				A4A0362C25F7C29F0036CCCB /* .gitkeep in Resources */,
 				5B8AD0A125F2717A00B64371 /* Assets.xcassets in Resources */,
 				5B8AD09825F2717800B64371 /* Actions.sks in Resources */,
-				A4A0363025F7C29F0036CCCB /* .gitkeep in Resources */,
-				A4A0362D25F7C29F0036CCCB /* .gitkeep in Resources */,
-				A4A0362E25F7C29F0036CCCB /* .gitkeep in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
