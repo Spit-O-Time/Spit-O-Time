@@ -51,6 +51,13 @@
 		5B8AD0B225F2717B00B64371 /* SpitOTimeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpitOTimeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B8AD0B625F2717B00B64371 /* SpitOTimeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpitOTimeUITests.swift; sourceTree = "<group>"; };
 		5B8AD0B825F2717B00B64371 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A4A035F925F7B9040036CCCB /* Helper */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Helper; path = "/Users/paulouchoa/Desktop/Spit-O-Time/SpitOTime/Helper"; sourceTree = "<absolute>"; };
+		A4A035FA25F7B9040036CCCB /* Scenes */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Scenes; path = "/Users/paulouchoa/Desktop/Spit-O-Time/SpitOTime/Scenes"; sourceTree = "<absolute>"; };
+		A4A035FB25F7B9040036CCCB /* Entities */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Entities; path = "/Users/paulouchoa/Desktop/Spit-O-Time/SpitOTime/Entities"; sourceTree = "<absolute>"; };
+		A4A035FC25F7B9040036CCCB /* SystemComponents */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SystemComponents; path = "/Users/paulouchoa/Desktop/Spit-O-Time/SpitOTime/SystemComponents"; sourceTree = "<absolute>"; };
+		A4A035FD25F7B9040036CCCB /* Components */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Components; path = "/Users/paulouchoa/Desktop/Spit-O-Time/SpitOTime/Components"; sourceTree = "<absolute>"; };
+		A4A035FE25F7B9040036CCCB /* Controllers */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Controllers; path = "/Users/paulouchoa/Desktop/Spit-O-Time/SpitOTime/Controllers"; sourceTree = "<absolute>"; };
+		A4A035FF25F7B9040036CCCB /* Extensions */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Extensions; path = "/Users/paulouchoa/Desktop/Spit-O-Time/SpitOTime/Extensions"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +108,13 @@
 		5B8AD09225F2717800B64371 /* SpitOTime */ = {
 			isa = PBXGroup;
 			children = (
+				A4A035FD25F7B9040036CCCB /* Components */,
+				A4A035FE25F7B9040036CCCB /* Controllers */,
+				A4A035FB25F7B9040036CCCB /* Entities */,
+				A4A035FF25F7B9040036CCCB /* Extensions */,
+				A4A035F925F7B9040036CCCB /* Helper */,
+				A4A035FA25F7B9040036CCCB /* Scenes */,
+				A4A035FC25F7B9040036CCCB /* SystemComponents */,
 				5B8AD09325F2717800B64371 /* AppDelegate.swift */,
 				5B8AD09525F2717800B64371 /* GameScene.sks */,
 				5B8AD09725F2717800B64371 /* Actions.sks */,

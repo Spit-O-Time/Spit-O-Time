@@ -2,6 +2,27 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/paulouchoa/Desktop/Spit-O-Time/SpitOTime/Components">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/paulouchoa/Desktop/Spit-O-Time/SpitOTime/Controllers">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/paulouchoa/Desktop/Spit-O-Time/SpitOTime/Entities">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/paulouchoa/Desktop/Spit-O-Time/SpitOTime/Extensions">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/paulouchoa/Desktop/Spit-O-Time/SpitOTime/Helper">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/paulouchoa/Desktop/Spit-O-Time/SpitOTime/Scenes">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/paulouchoa/Desktop/Spit-O-Time/SpitOTime/SystemComponents">
+   </FileRef>
+   <FileRef
       location = "self:">
    </FileRef>
 </Workspace>
