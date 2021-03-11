@@ -2,7 +2,27 @@
 //  GameViewController.swift
 //  SpitOTime
 //
-//  Created by Paulo Uchôa on 09/03/21.
+//  Created by Rodrigo Silva Ribeiro on 05/03/21.
 //
 
-import Foundation
+import UIKit
+import SpriteKit
+import GameplayKit
+
+class GameViewController: UIViewController {
+
+    let skView = SKView(frame: UIScreen.main.bounds)
+
+    override func loadView() {
+        super.loadView()
+        self.view = skView
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let scene: SKScene = GameScene()
+        skView.presentScene(scene)
+    }
+
+}
