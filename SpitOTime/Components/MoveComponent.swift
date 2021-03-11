@@ -6,3 +6,11 @@
 //
 
 import Foundation
+import GameplayKit
+
+class MoveComponent: GKComponent {
+    
+    override func update(deltaTime seconds: TimeInterval) {
+        super.update(deltaTime: seconds)
+    }
+}
