@@ -22,6 +22,7 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         
         let scene: SKScene = GameScene()
+        scene.scaleMode = .aspectFill
         skView.presentScene(scene)
     }
 
