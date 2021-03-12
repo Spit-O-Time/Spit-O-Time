@@ -12,7 +12,7 @@ class Background: GKEntity {
     
     override init() {
         super.init()
-        self.addComponent(AnimatedSpriteComponent())
+        self.addComponent(AnimatedSpriteComponent(textureName: "cuspe"))
     }
     
     required init?(coder: NSCoder) {

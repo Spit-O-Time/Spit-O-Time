@@ -64,28 +64,15 @@ class AnimatedSpriteComponent: GKComponent {
     
     
     func updateBackground(cameraNode: SKCameraNode) {
-        if (cameraNode.position.y > grounds[0].position.y + grounds[0].size.height) {
-            grounds[0].position.y = grounds[1].position.y + grounds[1].size.height
-        }
-        
-        if (cameraNode.position.y > grounds[1].position.y + grounds[1].size.height) {
-            grounds[1].position.y = grounds[0].position.y + grounds[0].size.height
-        }
-        
-        if (cameraNode.position.y > wallLeft[0].position.y + wallLeft[0].size.height) {
-            wallLeft[0].position.y = wallLeft[1].position.y + wallLeft[1].size.height
-        }
-        
-        if (cameraNode.position.y > wallLeft[1].position.y + wallLeft[1].size.height) {
-            wallLeft[1].position.y = wallLeft[0].position.y + wallLeft[0].size.height
-        }
-        
-        if (cameraNode.position.y > wallRight[0].position.y + wallRight[0].size.height) {
-            wallRight[0].position.y = wallRight[1].position.y + wallRight[1].size.height
-        }
-        
-        if (cameraNode.position.y > wallRight[1].position.y + wallRight[1].size.height) {
-            wallRight[1].position.y = wallRight[0].position.y + wallRight[0].size.height
+        let spriteArrays = [grounds, wallRight, wallLeft]
+        spriteArrays.forEach { (spriteArray) in
+            if (cameraNode.position.y > spriteArray[0].position.y + spriteArray[0].size.height) {
+                spriteArray[0].position.y = spriteArray[1].position.y + spriteArray[1].size.height
+            }
+            
+            if (cameraNode.position.y > spriteArray[1].position.y + spriteArray[1].size.height) {
+                spriteArray[1].position.y = spriteArray[0].position.y + spriteArray[0].size.height
+            }
         }
     }
 
