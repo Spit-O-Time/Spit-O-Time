@@ -19,7 +19,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     lazy var sceneCamera: SKCameraNode = {
         let camera = SKCameraNode()
-        camera.setScale(800)
+        camera.setScale(1)
         return camera
     }()
     
@@ -34,6 +34,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func setupNodes() {
+        // Spit
         guard let spitSpriteNode = spit
                 .component(ofType: AnimatedSpriteComponent.self)?
                 .shape else { return }
@@ -42,11 +43,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         spitSpriteNode.physicsBody?.restitution = 0.5
         addChild(spitSpriteNode)
         
+        // Ground and Walls
+        addBackgroundsAndWalls()
+    }
+    
+    func addBackgroundsAndWalls() {
         guard let backgrounds = background
-                .component(ofType: AnimatedSpriteComponent.self)?
-                .backgrounds else { return }
-        addChild(backgrounds[0])
-        addChild(backgrounds[1])
+                .component(ofType: AnimatedSpriteComponent.self) else { return }
+              
+          let ground = backgrounds.grounds
+          let leftWall = backgrounds.wallLeft
+          let rightWall = backgrounds.wallRight
+        
+        ground.forEach { addChild($0) }
+        leftWall.forEach { addChild($0) }
+        rightWall.forEach { addChild($0) }
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -54,7 +65,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             physicsWorld.gravity = CGVector(dx: accelerometerData.acceleration.x * 9.8, dy: accelerometerData.acceleration.y * 9.8)
         }
         
-        background.component(ofType: AnimatedSpriteComponent.self)?.updateBackground(cameraNode: sceneCamera)
+        self.camera?.position.y += 5
+        background.component(ofType: AnimatedSpriteComponent.self)?
+                    .updateBackground(cameraNode: sceneCamera)
     }
     
 }

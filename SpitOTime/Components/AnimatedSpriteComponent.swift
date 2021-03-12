@@ -13,16 +13,31 @@ class AnimatedSpriteComponent: GKComponent {
 
     var spriteNode: SKSpriteNode! //spit
     var shape: SKShapeNode! //spit teste
-    var backgrounds: [SKSpriteNode] {
+    
+    var grounds: [SKSpriteNode] = {
         let firstBackground = SKSpriteNode(imageNamed: "ground")
+        firstBackground.position = .zero
+        firstBackground.zPosition = -1
         let secondBackground = SKSpriteNode(imageNamed: "ground")
-        
+        secondBackground.position.y = firstBackground.frame.height
+        secondBackground.zPosition = -1
         return [firstBackground, secondBackground]
-    }
-    
-    var wallLeft = SKSpriteNode(imageNamed: "wallLeft")
-    
-    var wallRight = SKSpriteNode(imageNamed: "wallRight")
+    }()
+    var wallLeft: [SKSpriteNode] = {
+        let wall1 = SKSpriteNode(imageNamed: "wallLeft")
+        wall1.position = .zero
+        let wall2 = SKSpriteNode(imageNamed: "wallLeft")
+        wall2.position.y = wall1.frame.height
+        return [wall1, wall2]
+    }()
+    var wallRight: [SKSpriteNode] = {
+        let wall1 = SKSpriteNode(imageNamed: "wallRight")
+        wall1.position = .zero
+        let wall2 = SKSpriteNode(imageNamed: "wallRight")
+        wall2.position.y = wall1.frame.height
+        
+        return [wall1, wall2]
+    }()
     
     
     var animationAtlas: SKTextureAtlas?
@@ -55,12 +70,28 @@ class AnimatedSpriteComponent: GKComponent {
     
     
     func updateBackground(cameraNode: SKCameraNode) {
-        if (cameraNode.position.y > backgrounds[0].position.y + backgrounds[0].size.height + 400) {
-            backgrounds[0].position = CGPoint(x: backgrounds[0].position.y , y: backgrounds[1].position.x + backgrounds[1].size.height)
+        if (cameraNode.position.y > grounds[0].position.y + grounds[0].size.height) {
+            grounds[0].position.y = grounds[1].position.y + grounds[1].size.height
         }
         
-        if (cameraNode.position.y > backgrounds[1].position.y + backgrounds[1].size.height + 400) {
-            backgrounds[1].position = CGPoint(x: backgrounds[1].position.y , y: backgrounds[0].position.x + backgrounds[0].size.height)
+        if (cameraNode.position.y > grounds[1].position.y + grounds[1].size.height) {
+            grounds[1].position.y = grounds[0].position.y + grounds[0].size.height
+        }
+        
+        if (cameraNode.position.y > wallLeft[0].position.y + wallLeft[0].size.height) {
+            wallLeft[0].position.y = wallLeft[1].position.y + wallLeft[1].size.height
+        }
+        
+        if (cameraNode.position.y > wallLeft[1].position.y + wallLeft[1].size.height) {
+            wallLeft[1].position.y = wallLeft[0].position.y + wallLeft[0].size.height
+        }
+        
+        if (cameraNode.position.y > wallRight[0].position.y + wallRight[0].size.height) {
+            wallRight[0].position.y = wallRight[1].position.y + wallRight[1].size.height
+        }
+        
+        if (cameraNode.position.y > wallRight[1].position.y + wallRight[1].size.height) {
+            wallRight[1].position.y = wallRight[0].position.y + wallRight[0].size.height
         }
     }
 

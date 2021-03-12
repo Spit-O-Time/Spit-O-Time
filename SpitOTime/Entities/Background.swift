@@ -12,7 +12,6 @@ class Background: GKEntity {
     
     override init() {
         super.init()
-        
         self.addComponent(AnimatedSpriteComponent())
     }
     

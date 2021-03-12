@@ -11,7 +11,7 @@ import GameplayKit
 
 class GameViewController: UIViewController {
 
-    let skView = SKView(frame: UIScreen.main.bounds)
+    let skView = SKView()
 
     override func loadView() {
         super.loadView()
@@ -20,8 +20,9 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let scene: SKScene = GameScene()
+        let size = CGSize(width: UIScreen.main.bounds.size.width,
+                          height: UIScreen.main.bounds.size.height)
+        let scene: SKScene = GameScene(size: size)
         scene.scaleMode = .aspectFill
         skView.presentScene(scene)
     }
