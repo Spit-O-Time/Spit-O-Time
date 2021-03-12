@@ -14,21 +14,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let spit = Spit()
     
     let motionManager = CMMotionManager()
+    
+    let background = Background()
 
     lazy var sceneCamera: SKCameraNode = {
         let camera = SKCameraNode()
-        camera.setScale(3500)
+        camera.setScale(800)
         return camera
     }()
     
     override func didMove(to view: SKView) {
         // Camera
         motionManager.startAccelerometerUpdates()
-        
         self.camera = sceneCamera
-        // let insets = UIEdgeInsets(top: 100, left: 0, bottom: 0, right: 0)
+        
         physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
-//        physicsWorld.contactDelegate = self
+
         self.setupNodes()
     }
     
@@ -40,12 +41,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         spitSpriteNode.physicsBody?.allowsRotation = true
         spitSpriteNode.physicsBody?.restitution = 0.5
         addChild(spitSpriteNode)
+        
+        guard let backgrounds = background
+                .component(ofType: AnimatedSpriteComponent.self)?
+                .backgrounds else { return }
+        addChild(backgrounds[0])
+        addChild(backgrounds[1])
     }
     
     override func update(_ currentTime: TimeInterval) {
         if let accelerometerData = motionManager.accelerometerData {
             physicsWorld.gravity = CGVector(dx: accelerometerData.acceleration.x * 9.8, dy: accelerometerData.acceleration.y * 9.8)
         }
+        
+        background.component(ofType: AnimatedSpriteComponent.self)?.updateBackground(cameraNode: sceneCamera)
     }
     
 }

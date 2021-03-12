@@ -9,19 +9,15 @@ import SpriteKit
 import GameplayKit
 
 class Background: GKEntity {
-    var backgrounds: [SKSpriteNode] {
-        let initialBackground = SKSpriteNode()
-        let firstBackground = SKSpriteNode()
-        let secondBackground = SKSpriteNode()
+    
+    override init() {
+        super.init()
         
-        return [initialBackground, firstBackground, secondBackground]
+        self.addComponent(AnimatedSpriteComponent())
     }
     
-    func animateBackground() {
-        
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
     }
     
-    override func update(deltaTime seconds: TimeInterval) {
-        animateBackground()
-    }
 }

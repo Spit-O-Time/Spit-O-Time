@@ -11,9 +11,20 @@ import SpriteKit
 
 class AnimatedSpriteComponent: GKComponent {
 
-    var spriteNode: SKSpriteNode!
-    var shape: SKShapeNode!
-
+    var spriteNode: SKSpriteNode! //spit
+    var shape: SKShapeNode! //spit teste
+    var backgrounds: [SKSpriteNode] {
+        let firstBackground = SKSpriteNode(imageNamed: "ground")
+        let secondBackground = SKSpriteNode(imageNamed: "ground")
+        
+        return [firstBackground, secondBackground]
+    }
+    
+    var wallLeft = SKSpriteNode(imageNamed: "wallLeft")
+    
+    var wallRight = SKSpriteNode(imageNamed: "wallRight")
+    
+    
     var animationAtlas: SKTextureAtlas?
     var animationTextures: [SKTexture] {
         animationAtlas?.textureNames.compactMap { textureName in animationAtlas?.textureNamed(textureName) } ?? []
@@ -42,6 +53,16 @@ class AnimatedSpriteComponent: GKComponent {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
+    func updateBackground(cameraNode: SKCameraNode) {
+        if (cameraNode.position.y > backgrounds[0].position.y + backgrounds[0].size.height + 400) {
+            backgrounds[0].position = CGPoint(x: backgrounds[0].position.y , y: backgrounds[1].position.x + backgrounds[1].size.height)
+        }
+        
+        if (cameraNode.position.y > backgrounds[1].position.y + backgrounds[1].size.height + 400) {
+            backgrounds[1].position = CGPoint(x: backgrounds[1].position.y , y: backgrounds[0].position.x + backgrounds[0].size.height)
+        }
+    }
 
     func setAnimation(atlasName: String) {
         spriteNode.removeAllActions()
