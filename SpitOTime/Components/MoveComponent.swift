@@ -6,9 +6,12 @@
 //
 
 import Foundation
+import CoreMotion
 import GameplayKit
 
 class MoveComponent: GKComponent {
+    
+    let motionManager = CMMotionManager()
     
     override func update(deltaTime seconds: TimeInterval) {
         super.update(deltaTime: seconds)
