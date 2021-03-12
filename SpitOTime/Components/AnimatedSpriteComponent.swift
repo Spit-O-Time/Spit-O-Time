@@ -44,12 +44,6 @@ class AnimatedSpriteComponent: GKComponent {
     var animationTextures: [SKTexture] {
         animationAtlas?.textureNames.compactMap { textureName in animationAtlas?.textureNamed(textureName) } ?? []
     }
-    
-    override init() {
-        super.init()
-        shape = SKShapeNode(circleOfRadius: 250)
-        shape.physicsBody = SKPhysicsBody(circleOfRadius: 250)
-    }
 
     init(textureName: String) {
         super.init()

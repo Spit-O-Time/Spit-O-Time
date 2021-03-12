@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>CuspeIncial</title>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#EBF3EE" offset="0%"></stop>
+            <stop stop-color="#D3E3D9" stop-opacity="0.595962631" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="100%" x2="50%" y2="1.24836101%" id="linearGradient-2">
+            <stop stop-color="#BECCC9" stop-opacity="0.304987981" offset="0%"></stop>
+            <stop stop-color="#8A9D98" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Cuspe" transform="translate(-451.000000, -61.000000)">
+            <g id="CuspeIncial" transform="translate(451.000000, 61.000000)">
+                <circle id="corpo" fill="url(#linearGradient-1)" cx="16" cy="16" r="16"></circle>
+                <circle id="reflexo" fill="#FFFFFF" cx="9.93103448" cy="13.2413793" r="5.51724138"></circle>
+                <circle id="sombra" fill="url(#linearGradient-2)" cx="23.1724138" cy="18.7586207" r="5.51724138"></circle>
+            </g>
+        </g>
+    </g>
+</svg>
