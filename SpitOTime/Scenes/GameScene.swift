@@ -17,34 +17,39 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     lazy var sceneCamera: SKCameraNode = {
         let camera = SKCameraNode()
-        camera.setScale(3500)
+        //camera.setScale(1)
         return camera
     }()
     
     override func didMove(to view: SKView) {
         // Camera
         motionManager.startAccelerometerUpdates()
-        
         self.camera = sceneCamera
-        // let insets = UIEdgeInsets(top: 100, left: 0, bottom: 0, right: 0)
-        physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
-//        physicsWorld.contactDelegate = self
+        self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
         self.setupNodes()
+
     }
     
     func setupNodes() {
         guard let spitSpriteNode = spit
                 .component(ofType: AnimatedSpriteComponent.self)?
-                .shape else { return }
-                
-        spitSpriteNode.physicsBody?.allowsRotation = true
-        spitSpriteNode.physicsBody?.restitution = 0.5
+                .spriteNode else { return }
+        spitSpriteNode.position = CGPoint(x: 50, y: 50)
+        spitSpriteNode.physicsBody = SKPhysicsBody(circleOfRadius: spitSpriteNode.size.width*2)
+        spitSpriteNode.size = CGSize(width: 120, height: 120)
+        spitSpriteNode.physicsBody?.allowsRotation = false
+        spitSpriteNode.physicsBody?.restitution = 0
+        spitSpriteNode.physicsBody?.density = 12
+
         addChild(spitSpriteNode)
     }
     
     override func update(_ currentTime: TimeInterval) {
+        let spitPosition =  spit.component(ofType: AnimatedSpriteComponent.self)!.spriteNode.position
+        self.sceneCamera.position = CGPoint(x: self.frame.midX, y: spitPosition.y)
+//        self.sceneCamera.position = spit.component(ofType: AnimatedSpriteComponent.self)!.spriteNode.position
         if let accelerometerData = motionManager.accelerometerData {
-            physicsWorld.gravity = CGVector(dx: accelerometerData.acceleration.x * 9.8, dy: accelerometerData.acceleration.y * 9.8)
+            physicsWorld.gravity = CGVector(dx: accelerometerData.acceleration.x * 9.8, dy: (accelerometerData.acceleration.y * 9.8) * -1)
         }
     }
     
