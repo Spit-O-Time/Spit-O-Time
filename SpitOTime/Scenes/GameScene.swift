@@ -55,6 +55,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         spitSpriteNode.position = CGPoint(x: ScreenSize.width/2, y: 0)
         spitSpriteNode.size = CGSize(width: 40, height: 40)
         spitSpriteNode.physicsBody = SKPhysicsBody(circleOfRadius: spitSpriteNode.size.width/2)
+        spitSpriteNode.physicsBody?.affectedByGravity = false
         spitSpriteNode.physicsBody?.allowsRotation = false
         spitSpriteNode.physicsBody?.restitution = 0
         spitSpriteNode.physicsBody?.density = 12
@@ -64,10 +65,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func update(_ currentTime: TimeInterval) {
         let spitPosition =  spit.component(ofType: AnimateSpriteComponent.self)!.spriteNode.position
         let backgroundPosition = background.component(ofType: AnimateBackgroundComponent.self)?.grounds.first!.position
-        self.sceneCamera.position = CGPoint(x: backgroundPosition!.x, y: spitPosition.y)
-    
+        self.sceneCamera.position = backgroundPosition!
+        
+        
         if let accelerometerData = motionManager.accelerometerData {
-            physicsWorld.gravity = CGVector(dx: accelerometerData.acceleration.x * 9.8, dy: (accelerometerData.acceleration.y * 9.8) * -1)
+            spit.component(ofType: AnimateSpriteComponent.self)!.spriteNode.position.x += CGFloat(accelerometerData.acceleration.x) * 9.8
+        }
+        
+        if spitPosition.y < sceneCamera.position.y {
+            spit.component(ofType: AnimateSpriteComponent.self)!.spriteNode.position.y += 10
         }
         
         background.component(ofType: AnimateBackgroundComponent.self)?
