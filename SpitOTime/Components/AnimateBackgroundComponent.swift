@@ -13,7 +13,7 @@ class AnimateBackgroundComponent: GKComponent {
     
     var grounds: [SKSpriteNode] = {
         let firstBackground = SKSpriteNode(imageNamed: "ground")
-        firstBackground.position = CGPoint(x: ScreenSize.width/2, y: ScreenSize.height/2)
+        firstBackground.position = CGPoint(x: ScreenSize.width/2, y: 0)
         firstBackground.zPosition = -1
         let secondBackground = SKSpriteNode(imageNamed: "ground")
         secondBackground.position = CGPoint(x: ScreenSize.width/2, y: firstBackground.frame.height)
@@ -38,6 +38,7 @@ class AnimateBackgroundComponent: GKComponent {
     func updateBackground(cameraNode: SKCameraNode) {
         let spriteArrays = [grounds, wallRight, wallLeft]
         spriteArrays.forEach { (spriteArray) in
+            
             if (cameraNode.position.y > spriteArray[0].position.y + spriteArray[0].size.height) {
                 spriteArray[0].position.y = spriteArray[1].position.y + spriteArray[1].size.height
             }
@@ -45,6 +46,9 @@ class AnimateBackgroundComponent: GKComponent {
             if (cameraNode.position.y > spriteArray[1].position.y + spriteArray[1].size.height) {
                 spriteArray[1].position.y = spriteArray[0].position.y + spriteArray[0].size.height
             }
+            
+            spriteArray[0].position.y -= 10
+            spriteArray[1].position.y -= 10
         }
     }
     

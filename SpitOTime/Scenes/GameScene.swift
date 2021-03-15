@@ -16,9 +16,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let motionManager = CMMotionManager()
     
     let background = Background()
+    
+    var startGame = false
 
     lazy var sceneCamera: SKCameraNode = {
         let camera = SKCameraNode()
+        camera.position = CGPoint(x: ScreenSize.width/2, y: ScreenSize.height/2)
         return camera
     }()
     
@@ -28,8 +31,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
         self.setupNodes()
 
+        Timer.scheduledTimer(timeInterval: 3,
+                             target: self,
+                             selector: #selector(timerTrigger),
+                             userInfo: nil,
+                             repeats:  false)
+        
     }
     
+    @objc func timerTrigger() {
+        startGame = true
+    }
+ 
     func setupNodes() {
         addSpit()
         addBackgroundsAndWalls()
@@ -63,9 +76,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func update(_ currentTime: TimeInterval) {
+        guard startGame else {return}
         let spitPosition =  spit.component(ofType: AnimateSpriteComponent.self)!.spriteNode.position
-        let backgroundPosition = background.component(ofType: AnimateBackgroundComponent.self)?.grounds.first!.position
-        self.sceneCamera.position = backgroundPosition!
         
         
         if let accelerometerData = motionManager.accelerometerData {
