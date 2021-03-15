@@ -9,10 +9,7 @@ import Foundation
 import GameplayKit
 import SpriteKit
 
-class AnimatedSpriteComponent: GKComponent {
-
-    var spriteNode: SKSpriteNode! //spit
-    var shape: SKShapeNode! //spit teste
+class AnimateBackgroundComponent: GKComponent {
     
     var grounds: [SKSpriteNode] = {
         let firstBackground = SKSpriteNode(imageNamed: "ground")
@@ -38,31 +35,7 @@ class AnimatedSpriteComponent: GKComponent {
         
         return [wall1, wall2]
     }()
-    
-    
-    var animationAtlas: SKTextureAtlas?
-    var animationTextures: [SKTexture] {
-        animationAtlas?.textureNames.compactMap { textureName in animationAtlas?.textureNamed(textureName) } ?? []
-    }
 
-    init(textureName: String) {
-        super.init()
-        self.spriteNode = SKSpriteNode(imageNamed: textureName)
-    }
-
-    init(atlasName: String) {
-        super.init()
-
-        self.animationAtlas = SKTextureAtlas(named: atlasName)
-        self.spriteNode = SKSpriteNode(imageNamed: animationAtlas!.textureNames.first!)
-        self.spriteNode.texture = animationTextures.first!
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
     func updateBackground(cameraNode: SKCameraNode) {
         let spriteArrays = [grounds, wallRight, wallLeft]
         spriteArrays.forEach { (spriteArray) in
@@ -75,23 +48,5 @@ class AnimatedSpriteComponent: GKComponent {
             }
         }
     }
-
-    func setAnimation(atlasName: String) {
-        spriteNode.removeAllActions()
-
-        self.animationAtlas = SKTextureAtlas(named: atlasName)
-        self.spriteNode.texture = animationTextures.first!
-
-        spriteNode.run(
-            SKAction.repeatForever(
-                SKAction.animate(
-                    with: animationTextures,
-                    timePerFrame: 0.1,
-                    resize: false,
-                    restore: true
-                )
-            ),
-            withKey: atlasName
-        )
-    }
+    
 }

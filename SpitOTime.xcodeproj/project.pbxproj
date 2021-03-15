@@ -14,7 +14,8 @@
 		5B8AD0AC25F2717B00B64371 /* SpitOTimeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8AD0AB25F2717B00B64371 /* SpitOTimeTests.swift */; };
 		5B8AD0B725F2717B00B64371 /* SpitOTimeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8AD0B625F2717B00B64371 /* SpitOTimeUITests.swift */; };
 		8118BD7125FA4E19002015E7 /* Spit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8118BD7025FA4E19002015E7 /* Spit.swift */; };
-		8118BD8025FA5873002015E7 /* AnimatedSpriteComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8118BD7F25FA5873002015E7 /* AnimatedSpriteComponent.swift */; };
+		8118BD8025FA5873002015E7 /* AnimateSpriteComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8118BD7F25FA5873002015E7 /* AnimateSpriteComponent.swift */; };
+		818A422825FF7E0F00454FAF /* AnimateBackgroundComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818A422725FF7E0F00454FAF /* AnimateBackgroundComponent.swift */; };
 		A4A0363625F7C2C60036CCCB /* MoveComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A0363525F7C2C60036CCCB /* MoveComponent.swift */; };
 		A4A0363B25F7C2E10036CCCB /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A0363A25F7C2E10036CCCB /* GameViewController.swift */; };
 		A4A0364025F7C2F90036CCCB /* Llama.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A0363F25F7C2F90036CCCB /* Llama.swift */; };
@@ -57,7 +58,8 @@
 		5B8AD0B625F2717B00B64371 /* SpitOTimeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpitOTimeUITests.swift; sourceTree = "<group>"; };
 		5B8AD0B825F2717B00B64371 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8118BD7025FA4E19002015E7 /* Spit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spit.swift; sourceTree = "<group>"; };
-		8118BD7F25FA5873002015E7 /* AnimatedSpriteComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedSpriteComponent.swift; sourceTree = "<group>"; };
+		8118BD7F25FA5873002015E7 /* AnimateSpriteComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimateSpriteComponent.swift; sourceTree = "<group>"; };
+		818A422725FF7E0F00454FAF /* AnimateBackgroundComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimateBackgroundComponent.swift; sourceTree = "<group>"; };
 		A4A0363525F7C2C60036CCCB /* MoveComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveComponent.swift; sourceTree = "<group>"; };
 		A4A0363A25F7C2E10036CCCB /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		A4A0363F25F7C2F90036CCCB /* Llama.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Llama.swift; sourceTree = "<group>"; };
@@ -164,7 +166,8 @@
 			isa = PBXGroup;
 			children = (
 				A4A0363525F7C2C60036CCCB /* MoveComponent.swift */,
-				8118BD7F25FA5873002015E7 /* AnimatedSpriteComponent.swift */,
+				8118BD7F25FA5873002015E7 /* AnimateSpriteComponent.swift */,
+				818A422725FF7E0F00454FAF /* AnimateBackgroundComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -342,10 +345,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				8118BD7125FA4E19002015E7 /* Spit.swift in Sources */,
-				8118BD8025FA5873002015E7 /* AnimatedSpriteComponent.swift in Sources */,
+				8118BD8025FA5873002015E7 /* AnimateSpriteComponent.swift in Sources */,
 				A4A0363B25F7C2E10036CCCB /* GameViewController.swift in Sources */,
 				AEC2BAAB25FA3B4400D4261A /* teste1.swift in Sources */,
 				A4A0364525F7C3070036CCCB /* UIColorExtension.swift in Sources */,
+				818A422825FF7E0F00454FAF /* AnimateBackgroundComponent.swift in Sources */,
 				A4A0363625F7C2C60036CCCB /* MoveComponent.swift in Sources */,
 				A4A0364A25F7C31A0036CCCB /* teste.swift in Sources */,
 				5B8AD09A25F2717800B64371 /* GameScene.swift in Sources */,
@@ -510,7 +514,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 795A25396T;
+				DEVELOPMENT_TEAM = 3A46XCK2VP;
 				INFOPLIST_FILE = SpitOTime/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -529,7 +533,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 795A25396T;
+				DEVELOPMENT_TEAM = 3A46XCK2VP;
 				INFOPLIST_FILE = SpitOTime/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
