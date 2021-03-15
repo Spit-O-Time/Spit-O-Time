@@ -12,7 +12,7 @@ class Spit: GKEntity {
 
     override init() {
         super.init()
-        self.addComponent(AnimatedSpriteComponent(atlasName: "SpitSprite"))
+        self.addComponent(AnimateSpriteComponent(atlasName: "SpitSprite"))
         self.addComponent(MoveComponent())
     }
 
