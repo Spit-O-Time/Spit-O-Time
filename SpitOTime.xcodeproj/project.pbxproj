@@ -20,7 +20,7 @@
 		A4A0363B25F7C2E10036CCCB /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A0363A25F7C2E10036CCCB /* GameViewController.swift */; };
 		A4A0364025F7C2F90036CCCB /* Llama.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A0363F25F7C2F90036CCCB /* Llama.swift */; };
 		A4A0364525F7C3070036CCCB /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A0364425F7C3070036CCCB /* UIColorExtension.swift */; };
-		A4A0364A25F7C31A0036CCCB /* teste.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A0364925F7C31A0036CCCB /* teste.swift */; };
+		A4A0364A25F7C31A0036CCCB /* ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A0364925F7C31A0036CCCB /* ScreenSize.swift */; };
 		A4A0364F25F7C3280036CCCB /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A0364E25F7C3280036CCCB /* Menu.swift */; };
 		AEC2BAAB25FA3B4400D4261A /* teste1.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC2BAAA25FA3B4400D4261A /* teste1.swift */; };
 		AEC2BAB925FA43FF00D4261A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEC2BAB825FA43FF00D4261A /* LaunchScreen.storyboard */; };
@@ -64,7 +64,7 @@
 		A4A0363A25F7C2E10036CCCB /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		A4A0363F25F7C2F90036CCCB /* Llama.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Llama.swift; sourceTree = "<group>"; };
 		A4A0364425F7C3070036CCCB /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
-		A4A0364925F7C31A0036CCCB /* teste.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = teste.swift; sourceTree = "<group>"; };
+		A4A0364925F7C31A0036CCCB /* ScreenSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSize.swift; sourceTree = "<group>"; };
 		A4A0364E25F7C3280036CCCB /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		AEC2BAAA25FA3B4400D4261A /* teste1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = teste1.swift; sourceTree = "<group>"; };
 		AEC2BAB825FA43FF00D4261A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -185,7 +185,7 @@
 		A4A0362325F7C29F0036CCCB /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				A4A0364925F7C31A0036CCCB /* teste.swift */,
+				A4A0364925F7C31A0036CCCB /* ScreenSize.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -351,7 +351,7 @@
 				A4A0364525F7C3070036CCCB /* UIColorExtension.swift in Sources */,
 				818A422825FF7E0F00454FAF /* AnimateBackgroundComponent.swift in Sources */,
 				A4A0363625F7C2C60036CCCB /* MoveComponent.swift in Sources */,
-				A4A0364A25F7C31A0036CCCB /* teste.swift in Sources */,
+				A4A0364A25F7C31A0036CCCB /* ScreenSize.swift in Sources */,
 				5B8AD09A25F2717800B64371 /* GameScene.swift in Sources */,
 				A4A0364025F7C2F90036CCCB /* Llama.swift in Sources */,
 				A4A0364F25F7C3280036CCCB /* Menu.swift in Sources */,

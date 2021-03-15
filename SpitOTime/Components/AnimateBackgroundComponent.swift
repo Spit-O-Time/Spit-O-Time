@@ -13,26 +13,25 @@ class AnimateBackgroundComponent: GKComponent {
     
     var grounds: [SKSpriteNode] = {
         let firstBackground = SKSpriteNode(imageNamed: "ground")
-        firstBackground.position = .zero
+        firstBackground.position = CGPoint(x: ScreenSize.width/2, y: ScreenSize.height/2)
         firstBackground.zPosition = -1
         let secondBackground = SKSpriteNode(imageNamed: "ground")
-        secondBackground.position.y = firstBackground.frame.height
+        secondBackground.position = CGPoint(x: ScreenSize.width/2, y: firstBackground.frame.height)
         secondBackground.zPosition = -1
         return [firstBackground, secondBackground]
     }()
     var wallLeft: [SKSpriteNode] = {
         let wall1 = SKSpriteNode(imageNamed: "wallLeft")
-        wall1.position = .zero
+        wall1.position = CGPoint(x: ScreenSize.width/2, y: ScreenSize.height/2)
         let wall2 = SKSpriteNode(imageNamed: "wallLeft")
-        wall2.position.y = wall1.frame.height
+        wall2.position = CGPoint(x: ScreenSize.width/2, y: wall1.frame.height)
         return [wall1, wall2]
     }()
     var wallRight: [SKSpriteNode] = {
         let wall1 = SKSpriteNode(imageNamed: "wallRight")
-        wall1.position = .zero
+        wall1.position = CGPoint(x: ScreenSize.width/2, y: ScreenSize.height/2)
         let wall2 = SKSpriteNode(imageNamed: "wallRight")
-        wall2.position.y = wall1.frame.height
-        
+        wall2.position = CGPoint(x: ScreenSize.width/2, y: wall1.frame.height)
         return [wall1, wall2]
     }()
 
