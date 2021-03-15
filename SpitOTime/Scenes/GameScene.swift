@@ -18,7 +18,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let background = Background()
     
     var startGame = false
-
+    
     lazy var sceneCamera: SKCameraNode = {
         let camera = SKCameraNode()
         camera.position = CGPoint(x: ScreenSize.width/2, y: ScreenSize.height/2)
@@ -30,7 +30,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.camera = sceneCamera
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
         self.setupNodes()
-
+        
         Timer.scheduledTimer(timeInterval: 3,
                              target: self,
                              selector: #selector(timerTrigger),
@@ -42,7 +42,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     @objc func timerTrigger() {
         startGame = true
     }
- 
+    
     func setupNodes() {
         addSpit()
         addBackgroundsAndWalls()
@@ -51,11 +51,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func addBackgroundsAndWalls() {
         guard let backgrounds = background
                 .component(ofType: AnimateBackgroundComponent.self) else { return }
-              
-          let ground = backgrounds.grounds
-          let leftWall = backgrounds.wallLeft
-          let rightWall = backgrounds.wallRight
         
+        let ground = backgrounds.grounds
+        let leftWall = backgrounds.wallLeft
+        let rightWall = backgrounds.wallRight
+        let llama = backgrounds.llama
+        
+        addChild(llama)
         ground.forEach { addChild($0) }
         leftWall.forEach { addChild($0) }
         rightWall.forEach { addChild($0) }
@@ -89,7 +91,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         background.component(ofType: AnimateBackgroundComponent.self)?
-                    .updateBackground(cameraNode: sceneCamera)
+            .updateBackground(cameraNode: sceneCamera)
     }
     
 }

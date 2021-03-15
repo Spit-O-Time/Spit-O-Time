@@ -34,6 +34,12 @@ class AnimateBackgroundComponent: GKComponent {
         wall2.position = CGPoint(x: ScreenSize.width/2, y: wall1.frame.height)
         return [wall1, wall2]
     }()
+    var llama: SKSpriteNode = {
+        let sprite = SKSpriteNode(imageNamed: "llama")
+        sprite.zPosition = 2
+        sprite.position = CGPoint(x: ScreenSize.width/2, y: sprite.frame.height/2)
+        return sprite
+    }()
 
     func updateBackground(cameraNode: SKCameraNode) {
         let spriteArrays = [grounds, wallRight, wallLeft]
@@ -47,8 +53,9 @@ class AnimateBackgroundComponent: GKComponent {
                 spriteArray[1].position.y = spriteArray[0].position.y + spriteArray[0].size.height
             }
             
-            spriteArray[0].position.y -= 10
-            spriteArray[1].position.y -= 10
+            llama.position.y -= 2
+            spriteArray[0].position.y -= 6
+            spriteArray[1].position.y -= 6
         }
     }
     
