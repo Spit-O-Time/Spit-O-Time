@@ -12,6 +12,7 @@ import CoreMotion
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     let spit = Spit()
+    var spitTail: SKEmitterNode?
     
     let motionManager = CMMotionManager()
     
@@ -87,17 +88,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 .spriteNode else { return }
         spitSpriteNode.position = CGPoint(x: ScreenSize.width/2, y: 0)
         spitSpriteNode.physicsBody = SKPhysicsBody(circleOfRadius: spitSpriteNode.size.width/2)
+        spitSpriteNode.anchorPoint = CGPoint(x: spitSpriteNode.size.width/2, y: spitSpriteNode.size.height)
         spitSpriteNode.physicsBody?.affectedByGravity = false
+        spitSpriteNode.zPosition = 1
         spitSpriteNode.physicsBody?.allowsRotation = false
         spitSpriteNode.physicsBody?.restitution = 0
         spitSpriteNode.physicsBody?.density = 12
+        
+        spitTail = SKEmitterNode(fileNamed: "SpitParticle.sks")!
+        spitTail?.position = spitSpriteNode.position
+        spitTail?.zPosition = -1
+        addChild(spitTail!)
+        
         addChild(spitSpriteNode)
     }
     
     override func update(_ currentTime: TimeInterval) {
         guard startGame else {return}
         let spitPosition =  spit.component(ofType: AnimateSpriteComponent.self)!.spriteNode.position
-        
+        spitTail?.position = spitPosition
         
         if let accelerometerData = motionManager.accelerometerData {
             spit.component(ofType: AnimateSpriteComponent.self)!.spriteNode.position.x += CGFloat(accelerometerData.acceleration.x) * 9.8

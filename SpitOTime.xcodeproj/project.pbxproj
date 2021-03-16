@@ -16,6 +16,8 @@
 		810BD58A2600D9D900853F6C /* SpawnComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810BD5892600D9D900853F6C /* SpawnComponent.swift */; };
 		810BD58F2600DE4600853F6C /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810BD58E2600DE4600853F6C /* Enemy.swift */; };
 		810BD5942600DE5000853F6C /* Obstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810BD5932600DE5000853F6C /* Obstacle.swift */; };
+		810BD5A12600FBCA00853F6C /* SpitParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 810BD59F2600FBCA00853F6C /* SpitParticle.sks */; };
+		810BD5A22600FBCA00853F6C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 810BD5A02600FBCA00853F6C /* Assets.xcassets */; };
 		8118BD7125FA4E19002015E7 /* Spit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8118BD7025FA4E19002015E7 /* Spit.swift */; };
 		8118BD8025FA5873002015E7 /* AnimateSpriteComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8118BD7F25FA5873002015E7 /* AnimateSpriteComponent.swift */; };
 		818A422825FF7E0F00454FAF /* AnimateBackgroundComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818A422725FF7E0F00454FAF /* AnimateBackgroundComponent.swift */; };
@@ -63,6 +65,8 @@
 		810BD5892600D9D900853F6C /* SpawnComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpawnComponent.swift; sourceTree = "<group>"; };
 		810BD58E2600DE4600853F6C /* Enemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 		810BD5932600DE5000853F6C /* Obstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Obstacle.swift; sourceTree = "<group>"; };
+		810BD59F2600FBCA00853F6C /* SpitParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SpitParticle.sks; sourceTree = "<group>"; };
+		810BD5A02600FBCA00853F6C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8118BD7025FA4E19002015E7 /* Spit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spit.swift; sourceTree = "<group>"; };
 		8118BD7F25FA5873002015E7 /* AnimateSpriteComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimateSpriteComponent.swift; sourceTree = "<group>"; };
 		818A422725FF7E0F00454FAF /* AnimateBackgroundComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimateBackgroundComponent.swift; sourceTree = "<group>"; };
@@ -125,6 +129,7 @@
 		5B8AD09225F2717800B64371 /* SpitOTime */ = {
 			isa = PBXGroup;
 			children = (
+				810BD59E2600FBB400853F6C /* Particles */,
 				5B8AD09325F2717800B64371 /* AppDelegate.swift */,
 				A4A0361F25F7C29F0036CCCB /* Components */,
 				A4A0362725F7C29F0036CCCB /* Controllers */,
@@ -157,6 +162,15 @@
 				5B8AD0B825F2717B00B64371 /* Info.plist */,
 			);
 			path = SpitOTimeUITests;
+			sourceTree = "<group>";
+		};
+		810BD59E2600FBB400853F6C /* Particles */ = {
+			isa = PBXGroup;
+			children = (
+				810BD59F2600FBCA00853F6C /* SpitParticle.sks */,
+				810BD5A02600FBCA00853F6C /* Assets.xcassets */,
+			);
+			path = Particles;
 			sourceTree = "<group>";
 		};
 		A4A0361D25F7C29F0036CCCB /* Scenes */ = {
@@ -329,6 +343,8 @@
 				AEC2BAB925FA43FF00D4261A /* LaunchScreen.storyboard in Resources */,
 				5B8AD0A125F2717A00B64371 /* Assets.xcassets in Resources */,
 				5B8AD09825F2717800B64371 /* Actions.sks in Resources */,
+				810BD5A12600FBCA00853F6C /* SpitParticle.sks in Resources */,
+				810BD5A22600FBCA00853F6C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
