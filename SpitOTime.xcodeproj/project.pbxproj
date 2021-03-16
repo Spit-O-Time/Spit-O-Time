@@ -13,6 +13,9 @@
 		5B8AD0A125F2717A00B64371 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B8AD0A025F2717A00B64371 /* Assets.xcassets */; };
 		5B8AD0AC25F2717B00B64371 /* SpitOTimeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8AD0AB25F2717B00B64371 /* SpitOTimeTests.swift */; };
 		5B8AD0B725F2717B00B64371 /* SpitOTimeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8AD0B625F2717B00B64371 /* SpitOTimeUITests.swift */; };
+		810BD58A2600D9D900853F6C /* SpawnComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810BD5892600D9D900853F6C /* SpawnComponent.swift */; };
+		810BD58F2600DE4600853F6C /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810BD58E2600DE4600853F6C /* Enemy.swift */; };
+		810BD5942600DE5000853F6C /* Obstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810BD5932600DE5000853F6C /* Obstacle.swift */; };
 		8118BD7125FA4E19002015E7 /* Spit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8118BD7025FA4E19002015E7 /* Spit.swift */; };
 		8118BD8025FA5873002015E7 /* AnimateSpriteComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8118BD7F25FA5873002015E7 /* AnimateSpriteComponent.swift */; };
 		818A422825FF7E0F00454FAF /* AnimateBackgroundComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818A422725FF7E0F00454FAF /* AnimateBackgroundComponent.swift */; };
@@ -57,6 +60,9 @@
 		5B8AD0B225F2717B00B64371 /* SpitOTimeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpitOTimeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B8AD0B625F2717B00B64371 /* SpitOTimeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpitOTimeUITests.swift; sourceTree = "<group>"; };
 		5B8AD0B825F2717B00B64371 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		810BD5892600D9D900853F6C /* SpawnComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpawnComponent.swift; sourceTree = "<group>"; };
+		810BD58E2600DE4600853F6C /* Enemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
+		810BD5932600DE5000853F6C /* Obstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Obstacle.swift; sourceTree = "<group>"; };
 		8118BD7025FA4E19002015E7 /* Spit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spit.swift; sourceTree = "<group>"; };
 		8118BD7F25FA5873002015E7 /* AnimateSpriteComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimateSpriteComponent.swift; sourceTree = "<group>"; };
 		818A422725FF7E0F00454FAF /* AnimateBackgroundComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimateBackgroundComponent.swift; sourceTree = "<group>"; };
@@ -168,6 +174,7 @@
 				A4A0363525F7C2C60036CCCB /* MoveComponent.swift */,
 				8118BD7F25FA5873002015E7 /* AnimateSpriteComponent.swift */,
 				818A422725FF7E0F00454FAF /* AnimateBackgroundComponent.swift */,
+				810BD5892600D9D900853F6C /* SpawnComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -178,6 +185,8 @@
 				A4A0363F25F7C2F90036CCCB /* Llama.swift */,
 				AEC2BAC025FA468100D4261A /* Background.swift */,
 				8118BD7025FA4E19002015E7 /* Spit.swift */,
+				810BD58E2600DE4600853F6C /* Enemy.swift */,
+				810BD5932600DE5000853F6C /* Obstacle.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -349,11 +358,14 @@
 				A4A0363B25F7C2E10036CCCB /* GameViewController.swift in Sources */,
 				AEC2BAAB25FA3B4400D4261A /* teste1.swift in Sources */,
 				A4A0364525F7C3070036CCCB /* UIColorExtension.swift in Sources */,
+				810BD58A2600D9D900853F6C /* SpawnComponent.swift in Sources */,
+				810BD5942600DE5000853F6C /* Obstacle.swift in Sources */,
 				818A422825FF7E0F00454FAF /* AnimateBackgroundComponent.swift in Sources */,
 				A4A0363625F7C2C60036CCCB /* MoveComponent.swift in Sources */,
 				A4A0364A25F7C31A0036CCCB /* ScreenSize.swift in Sources */,
 				5B8AD09A25F2717800B64371 /* GameScene.swift in Sources */,
 				A4A0364025F7C2F90036CCCB /* Llama.swift in Sources */,
+				810BD58F2600DE4600853F6C /* Enemy.swift in Sources */,
 				A4A0364F25F7C3280036CCCB /* Menu.swift in Sources */,
 				5B8AD09425F2717800B64371 /* AppDelegate.swift in Sources */,
 				AEC2BAC125FA468100D4261A /* Background.swift in Sources */,
