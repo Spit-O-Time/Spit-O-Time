@@ -25,29 +25,36 @@ class AnimateBackgroundComponent: GKComponent {
     var wallLeft: [SKSpriteNode] = {
         let wall1 = SKSpriteNode(imageNamed: "wallLeft")
         let wall1Width = wall1.size.width/2
-        wall1.position = CGPoint(x: wall1Width, y: ScreenSize.height/2)
-        wall1.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: wall1.size.width, height: ScreenSize.height))
+        wall1.position = CGPoint(x: wall1Width, y: 0)
+        wall1.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: wall1.size.width, height: wall1.size.height))
         wall1.physicsBody?.affectedByGravity = false
         wall1.physicsBody?.allowsRotation = false
+        wall1.physicsBody?.isDynamic = false
         
         let wall2 = SKSpriteNode(imageNamed: "wallLeft")
         wall2.position = CGPoint(x: wall1Width, y: wall1.frame.height)
         wall2.physicsBody = SKPhysicsBody(rectangleOf: wall2.size)
         wall2.physicsBody?.affectedByGravity = false
+        wall2.physicsBody?.isDynamic = false
+        wall2.physicsBody?.allowsRotation = false
         return [wall1, wall2]
     }()
     var wallRight: [SKSpriteNode] = {
         let wall1 = SKSpriteNode(imageNamed: "wallRight")
         let wall1Width = ScreenSize.width-wall1.size.width/2
-        wall1.position = CGPoint(x: wall1Width, y: ScreenSize.height/2)
-        wall1.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: wall1.size.width, height: ScreenSize.height))
+        wall1.position = CGPoint(x: wall1Width, y: 0)
+        wall1.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: wall1.size.width, height: wall1.size.height))
         wall1.physicsBody?.affectedByGravity = false
+        wall1.physicsBody?.isDynamic = false
         wall1.physicsBody?.allowsRotation = false
-        
+
         let wall2 = SKSpriteNode(imageNamed: "wallRight")
         wall2.position = CGPoint(x: wall1Width, y: wall1.frame.height)
         wall2.physicsBody = SKPhysicsBody(rectangleOf: wall2.size)
         wall2.physicsBody?.affectedByGravity = false
+        wall2.physicsBody?.isDynamic = false
+        wall2.physicsBody?.allowsRotation = false
+
         return [wall1, wall2]
     }()
     var llama: SKSpriteNode = {
