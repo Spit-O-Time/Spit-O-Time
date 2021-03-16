@@ -58,6 +58,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     @objc func timerTrigger() {
         startGame = true
+        spit.component(ofType: AnimateSpriteComponent.self)!.setAnimation(atlasName: "SpitAtlas")
     }
     
     func setupNodes() {
@@ -85,7 +86,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 .component(ofType: AnimateSpriteComponent.self)?
                 .spriteNode else { return }
         spitSpriteNode.position = CGPoint(x: ScreenSize.width/2, y: 0)
-        spitSpriteNode.size = CGSize(width: 40, height: 40)
         spitSpriteNode.physicsBody = SKPhysicsBody(circleOfRadius: spitSpriteNode.size.width/2)
         spitSpriteNode.physicsBody?.affectedByGravity = false
         spitSpriteNode.physicsBody?.allowsRotation = false
