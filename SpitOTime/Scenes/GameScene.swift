@@ -16,9 +16,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let motionManager = CMMotionManager()
     
     let background = Background()
-
+    
+    var startGame = false
+    
     lazy var sceneCamera: SKCameraNode = {
         let camera = SKCameraNode()
+        camera.position = CGPoint(x: ScreenSize.width/2, y: ScreenSize.height/2)
         return camera
     }()
     
@@ -27,7 +30,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.camera = sceneCamera
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
         self.setupNodes()
-
+        
+        Timer.scheduledTimer(timeInterval: 3,
+                             target: self,
+                             selector: #selector(timerTrigger),
+                             userInfo: nil,
+                             repeats:  false)
+        
+    }
+    
+    @objc func timerTrigger() {
+        startGame = true
     }
     
     func setupNodes() {
@@ -38,11 +51,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func addBackgroundsAndWalls() {
         guard let backgrounds = background
                 .component(ofType: AnimateBackgroundComponent.self) else { return }
-              
-          let ground = backgrounds.grounds
-          let leftWall = backgrounds.wallLeft
-          let rightWall = backgrounds.wallRight
         
+        let ground = backgrounds.grounds
+        let leftWall = backgrounds.wallLeft
+        let rightWall = backgrounds.wallRight
+        let llama = backgrounds.llama
+        
+        addChild(llama)
         ground.forEach { addChild($0) }
         leftWall.forEach { addChild($0) }
         rightWall.forEach { addChild($0) }
@@ -63,9 +78,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func update(_ currentTime: TimeInterval) {
+        guard startGame else {return}
         let spitPosition =  spit.component(ofType: AnimateSpriteComponent.self)!.spriteNode.position
-        let backgroundPosition = background.component(ofType: AnimateBackgroundComponent.self)?.grounds.first!.position
-        self.sceneCamera.position = backgroundPosition!
         
         
         if let accelerometerData = motionManager.accelerometerData {
@@ -77,7 +91,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         background.component(ofType: AnimateBackgroundComponent.self)?
-                    .updateBackground(cameraNode: sceneCamera)
+            .updateBackground(cameraNode: sceneCamera)
     }
     
 }

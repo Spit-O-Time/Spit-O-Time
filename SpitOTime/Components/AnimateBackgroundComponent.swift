@@ -13,7 +13,7 @@ class AnimateBackgroundComponent: GKComponent {
     
     var grounds: [SKSpriteNode] = {
         let firstBackground = SKSpriteNode(imageNamed: "ground")
-        firstBackground.position = CGPoint(x: ScreenSize.width/2, y: ScreenSize.height/2)
+        firstBackground.position = CGPoint(x: ScreenSize.width/2, y: 0)
         firstBackground.size = CGSize(width: ScreenSize.width, height: ScreenSize.height)
         firstBackground.zPosition = -1
         let secondBackground = SKSpriteNode(imageNamed: "ground")
@@ -50,10 +50,17 @@ class AnimateBackgroundComponent: GKComponent {
         wall2.physicsBody?.affectedByGravity = false
         return [wall1, wall2]
     }()
+    var llama: SKSpriteNode = {
+        let sprite = SKSpriteNode(imageNamed: "llama")
+        sprite.zPosition = 2
+        sprite.position = CGPoint(x: ScreenSize.width/2, y: sprite.frame.height/2)
+        return sprite
+    }()
 
     func updateBackground(cameraNode: SKCameraNode) {
         let spriteArrays = [grounds, wallRight, wallLeft]
         spriteArrays.forEach { (spriteArray) in
+            
             if (cameraNode.position.y > spriteArray[0].position.y + spriteArray[0].size.height) {
                 spriteArray[0].position.y = spriteArray[1].position.y + spriteArray[1].size.height
             }
@@ -61,6 +68,10 @@ class AnimateBackgroundComponent: GKComponent {
             if (cameraNode.position.y > spriteArray[1].position.y + spriteArray[1].size.height) {
                 spriteArray[1].position.y = spriteArray[0].position.y + spriteArray[0].size.height
             }
+            
+            llama.position.y -= 2
+            spriteArray[0].position.y -= 6
+            spriteArray[1].position.y -= 6
         }
     }
     
