@@ -16,6 +16,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let motionManager = CMMotionManager()
     
     let background = Background()
+    let obstacle = Obstacle()
+    
+    var obstacles = [SKSpriteNode]()
     
     var startGame = false
     
@@ -36,7 +39,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                              selector: #selector(timerTrigger),
                              userInfo: nil,
                              repeats:  false)
+
         
+
+        let wait = SKAction.wait(forDuration: 3, withRange: 2)
+        let spawn = SKAction.run {
+            guard let llama = self.obstacle
+                    .component(ofType: SpawnComponent.self)?.spawn() else { return }
+            if llama.parent == nil {
+                self.addChild(llama)
+            }
+            self.obstacles.append(llama)
+        }
+
+        let sequence = SKAction.sequence([wait, spawn])
+        self.run(SKAction.repeatForever(sequence))
     }
     
     @objc func timerTrigger() {
@@ -92,6 +109,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         background.component(ofType: AnimateBackgroundComponent.self)?
             .updateBackground(cameraNode: sceneCamera)
+        
+        
+        obstacles.forEach { $0.position.y -= 5 }
+        
+        if spitPosition.y < -10 {
+            print("Game over")
+        }
     }
     
 }
