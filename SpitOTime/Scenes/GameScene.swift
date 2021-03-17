@@ -120,7 +120,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         spitTail = SKEmitterNode(fileNamed: "SpitParticle.sks")!
         spitTail?.position = spitSpriteNode.position
-        spitTail?.zPosition = -1
         addChild(spitTail!)
         
         addChild(spitSpriteNode)
