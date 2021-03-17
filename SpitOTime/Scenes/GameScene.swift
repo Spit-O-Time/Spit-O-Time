@@ -36,6 +36,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         setupNodes()
         
         self.camera = sceneCamera
+        self.physicsWorld.contactDelegate = self
         motionManager.startAccelerometerUpdates()
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
     }
@@ -54,6 +55,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let spawn = SKAction.run {
             guard let llama = self.obstacle
                     .component(ofType: SpawnComponent.self)?.spawn() else { return }
+            llama.physicsBody?.categoryBitMask = CategoryMask.obstacle.rawValue
+            llama.physicsBody?.contactTestBitMask = CategoryMask.spit.rawValue
             if llama.parent == nil {
                 self.addChild(llama)
             }
@@ -108,6 +111,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         spitSpriteNode.position = CGPoint(x: ScreenSize.width/2, y: 0)
         spitSpriteNode.physicsBody = SKPhysicsBody(circleOfRadius: spitSpriteNode.size.width/2)
         spitSpriteNode.anchorPoint = CGPoint(x: spitSpriteNode.size.width/2, y: spitSpriteNode.size.height)
+        spitSpriteNode.physicsBody?.categoryBitMask = CategoryMask.spit.rawValue
+        spitSpriteNode.physicsBody?.collisionBitMask = CategoryMask.obstacle.rawValue | CategoryMask.spit.rawValue
         spitSpriteNode.physicsBody?.affectedByGravity = false
         spitSpriteNode.physicsBody?.allowsRotation = false
         spitSpriteNode.physicsBody?.restitution = 0
@@ -115,7 +120,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         spitTail = SKEmitterNode(fileNamed: "SpitParticle.sks")!
         spitTail?.position = spitSpriteNode.position
-        spitTail?.zPosition = -1
         addChild(spitTail!)
         
         addChild(spitSpriteNode)
@@ -140,6 +144,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 .component(ofType: AnimateBackgroundComponent.self) else { return }
         
         backgoundComponent.updateBackground(cameraNode: sceneCamera)
+    }
+    
+    // MARK: Begin Contact
+    func didBegin(_ contact: SKPhysicsContact) {
+        
+        let collision = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
+        
+        if collision == CategoryMask.spit.rawValue | CategoryMask.obstacle.rawValue {
+            self.view?.isPaused = true
+        }
+        
     }
 
     // MARK: Update
