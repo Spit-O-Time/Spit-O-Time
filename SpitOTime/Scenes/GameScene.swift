@@ -11,17 +11,17 @@ import CoreMotion
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
+    // MARK: Variables
     let spit = Spit()
     var spitTail: SKEmitterNode?
     
-    let motionManager = CMMotionManager()
-    
     let background = Background()
-    let obstacle = Obstacle()
     
+    let obstacle = Obstacle()
     var obstacles = [SKSpriteNode]()
     
     var startGame = false
+    let motionManager = CMMotionManager()
     
     lazy var sceneCamera: SKCameraNode = {
         let camera = SKCameraNode()
@@ -29,20 +29,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         return camera
     }()
     
+    // MARK: DidMove
     override func didMove(to view: SKView) {
-        motionManager.startAccelerometerUpdates()
-        self.camera = sceneCamera
-        self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
-        self.setupNodes()
+        scheduleTimer()
+        spawnObstacles()
+        setupNodes()
         
+        self.camera = sceneCamera
+        motionManager.startAccelerometerUpdates()
+        self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
+    }
+    
+    // MARK: Time events
+    func scheduleTimer() {
         Timer.scheduledTimer(timeInterval: 3,
                              target: self,
                              selector: #selector(timerTrigger),
                              userInfo: nil,
                              repeats:  false)
-
-        
-
+    }
+    
+    func spawnObstacles() {
         let wait = SKAction.wait(forDuration: 3, withRange: 2)
         let spawn = SKAction.run {
             guard let llama = self.obstacle
@@ -55,6 +62,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         let sequence = SKAction.sequence([wait, spawn])
         self.run(SKAction.repeatForever(sequence))
+        removeObstacles()
+    }
+    
+    func removeObstacles() {
+        obstacles.enumerated().forEach { (index, obstacle) in
+            if obstacle.position.y < -obstacle.frame.height {
+                guard obstacles.indices.contains(index) else { return }
+                obstacles.remove(at: index)
+                obstacle.removeFromParent()
+            }
+        }
     }
     
     @objc func timerTrigger() {
@@ -62,6 +80,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         spit.component(ofType: AnimateSpriteComponent.self)!.setAnimation(atlasName: "SpitAtlas")
     }
     
+    // MARK: Setup Sprites
     func setupNodes() {
         addSpit()
         addBackgroundsAndWalls()
@@ -90,7 +109,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         spitSpriteNode.physicsBody = SKPhysicsBody(circleOfRadius: spitSpriteNode.size.width/2)
         spitSpriteNode.anchorPoint = CGPoint(x: spitSpriteNode.size.width/2, y: spitSpriteNode.size.height)
         spitSpriteNode.physicsBody?.affectedByGravity = false
-        spitSpriteNode.zPosition = 1
         spitSpriteNode.physicsBody?.allowsRotation = false
         spitSpriteNode.physicsBody?.restitution = 0
         spitSpriteNode.physicsBody?.density = 12
@@ -103,28 +121,39 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(spitSpriteNode)
     }
     
-    override func update(_ currentTime: TimeInterval) {
-        guard startGame else {return}
+    // MARK: Movimentation
+    func animateSpit() {
         let spitPosition =  spit.component(ofType: AnimateSpriteComponent.self)!.spriteNode.position
         spitTail?.position = spitPosition
         
         if let accelerometerData = motionManager.accelerometerData {
-            spit.component(ofType: AnimateSpriteComponent.self)!.spriteNode.position.x += CGFloat(accelerometerData.acceleration.x) * 9.8
+            spit.component(ofType: AnimateSpriteComponent.self)!.spriteNode.position.x += CGFloat(accelerometerData.acceleration.x) * 16
         }
         
-        if spitPosition.y < sceneCamera.position.y {
+        if spitPosition.y < sceneCamera.position.y/2 {
             spit.component(ofType: AnimateSpriteComponent.self)!.spriteNode.position.y += 10
         }
+    }
+    
+    func animateBackground() {
+        guard let backgoundComponent = background
+                .component(ofType: AnimateBackgroundComponent.self) else { return }
         
-        background.component(ofType: AnimateBackgroundComponent.self)?
-            .updateBackground(cameraNode: sceneCamera)
+        backgoundComponent.updateBackground(cameraNode: sceneCamera)
+    }
+
+    // MARK: Update
+    override func update(_ currentTime: TimeInterval) {
+        guard startGame else { return }
         
+        animateSpit()
+        animateBackground()
+        removeObstacles()
         
-        obstacles.forEach { $0.position.y -= 5 }
-        
-        if spitPosition.y < -10 {
-            print("Game over")
+        for obstacle in obstacles {
+            obstacle.position.y -= 8
         }
+        
     }
     
 }
