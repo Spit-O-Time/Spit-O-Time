@@ -20,8 +20,13 @@
 		810BD5A22600FBCA00853F6C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 810BD5A02600FBCA00853F6C /* Assets.xcassets */; };
 		8118BD7125FA4E19002015E7 /* Spit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8118BD7025FA4E19002015E7 /* Spit.swift */; };
 		8118BD8025FA5873002015E7 /* AnimateSpriteComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8118BD7F25FA5873002015E7 /* AnimateSpriteComponent.swift */; };
+		815EFD9526027D7D008EEC0C /* PlayingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815EFD9426027D7D008EEC0C /* PlayingState.swift */; };
+		815EFD9B26027DBB008EEC0C /* GameCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815EFD9A26027DBB008EEC0C /* GameCoordinator.swift */; };
 		818A422825FF7E0F00454FAF /* AnimateBackgroundComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818A422725FF7E0F00454FAF /* AnimateBackgroundComponent.swift */; };
 		818ACC5F260237040033F65F /* CategoryMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818ACC5E260237040033F65F /* CategoryMask.swift */; };
+		818ACC6E260242BB0033F65F /* PausedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818ACC6D260242BB0033F65F /* PausedState.swift */; };
+		818ACC76260242C40033F65F /* GameOverState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818ACC75260242C40033F65F /* GameOverState.swift */; };
+		818ACC7B260246A30033F65F /* GameStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818ACC7A260246A30033F65F /* GameStateMachine.swift */; };
 		A4A0363B25F7C2E10036CCCB /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A0363A25F7C2E10036CCCB /* GameViewController.swift */; };
 		A4A0364025F7C2F90036CCCB /* Llama.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A0363F25F7C2F90036CCCB /* Llama.swift */; };
 		A4A0364525F7C3070036CCCB /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A0364425F7C3070036CCCB /* UIColorExtension.swift */; };
@@ -69,8 +74,13 @@
 		810BD5A02600FBCA00853F6C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8118BD7025FA4E19002015E7 /* Spit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spit.swift; sourceTree = "<group>"; };
 		8118BD7F25FA5873002015E7 /* AnimateSpriteComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimateSpriteComponent.swift; sourceTree = "<group>"; };
+		815EFD9426027D7D008EEC0C /* PlayingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayingState.swift; sourceTree = "<group>"; };
+		815EFD9A26027DBB008EEC0C /* GameCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCoordinator.swift; sourceTree = "<group>"; };
 		818A422725FF7E0F00454FAF /* AnimateBackgroundComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimateBackgroundComponent.swift; sourceTree = "<group>"; };
 		818ACC5E260237040033F65F /* CategoryMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryMask.swift; sourceTree = "<group>"; };
+		818ACC6D260242BB0033F65F /* PausedState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PausedState.swift; sourceTree = "<group>"; };
+		818ACC75260242C40033F65F /* GameOverState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverState.swift; sourceTree = "<group>"; };
+		818ACC7A260246A30033F65F /* GameStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStateMachine.swift; sourceTree = "<group>"; };
 		A4A0363A25F7C2E10036CCCB /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		A4A0363F25F7C2F90036CCCB /* Llama.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Llama.swift; sourceTree = "<group>"; };
 		A4A0364425F7C3070036CCCB /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
@@ -173,9 +183,30 @@
 			path = Particles;
 			sourceTree = "<group>";
 		};
+		815EFD9926027DA9008EEC0C /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				815EFD9A26027DBB008EEC0C /* GameCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		818ACC6C260241FA0033F65F /* States */ = {
+			isa = PBXGroup;
+			children = (
+				818ACC6D260242BB0033F65F /* PausedState.swift */,
+				818ACC75260242C40033F65F /* GameOverState.swift */,
+				818ACC7A260246A30033F65F /* GameStateMachine.swift */,
+				815EFD9426027D7D008EEC0C /* PlayingState.swift */,
+			);
+			path = States;
+			sourceTree = "<group>";
+		};
 		A4A0361D25F7C29F0036CCCB /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				815EFD9926027DA9008EEC0C /* Coordinator */,
+				818ACC6C260241FA0033F65F /* States */,
 				5B8AD09925F2717800B64371 /* GameScene.swift */,
 				A4A0364E25F7C3280036CCCB /* Menu.swift */,
 			);
@@ -370,7 +401,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8118BD7125FA4E19002015E7 /* Spit.swift in Sources */,
+				818ACC76260242C40033F65F /* GameOverState.swift in Sources */,
 				8118BD8025FA5873002015E7 /* AnimateSpriteComponent.swift in Sources */,
+				815EFD9B26027DBB008EEC0C /* GameCoordinator.swift in Sources */,
 				A4A0363B25F7C2E10036CCCB /* GameViewController.swift in Sources */,
 				AEC2BAAB25FA3B4400D4261A /* teste1.swift in Sources */,
 				A4A0364525F7C3070036CCCB /* UIColorExtension.swift in Sources */,
@@ -380,10 +413,13 @@
 				818A422825FF7E0F00454FAF /* AnimateBackgroundComponent.swift in Sources */,
 				A4A0364A25F7C31A0036CCCB /* ScreenSize.swift in Sources */,
 				5B8AD09A25F2717800B64371 /* GameScene.swift in Sources */,
+				818ACC6E260242BB0033F65F /* PausedState.swift in Sources */,
 				A4A0364025F7C2F90036CCCB /* Llama.swift in Sources */,
 				810BD58F2600DE4600853F6C /* Enemy.swift in Sources */,
 				A4A0364F25F7C3280036CCCB /* Menu.swift in Sources */,
+				818ACC7B260246A30033F65F /* GameStateMachine.swift in Sources */,
 				5B8AD09425F2717800B64371 /* AppDelegate.swift in Sources */,
+				815EFD9526027D7D008EEC0C /* PlayingState.swift in Sources */,
 				AEC2BAC125FA468100D4261A /* Background.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

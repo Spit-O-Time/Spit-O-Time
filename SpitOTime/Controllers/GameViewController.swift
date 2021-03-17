@@ -20,7 +20,9 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let scene: SKScene = GameScene(size: CGSize(width: ScreenSize.width, height: ScreenSize.height))
+        let scene: GameScene = GameScene(size: CGSize(width: ScreenSize.width, height: ScreenSize.height))
+        scene.stateMachine = GameStateMachine(present: self, states: [GameOverState(), PausedState(), PlayingState()])
+
         scene.scaleMode = .aspectFill
         skView.showsPhysics = true
         skView.showsFPS = true
