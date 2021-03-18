@@ -34,7 +34,7 @@ class GameOverViewController: UIViewController {
         label.text = "Game\nOver"
         label.numberOfLines = 2
         label.textAlignment = .center
-        label.font = .boldSystemFont(ofSize: 50)
+        label.font = .orange(size: 50)
         label.textColor = .buttonColor
         label.adjustsFontSizeToFitWidth = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -47,6 +47,7 @@ class GameOverViewController: UIViewController {
         button.layer.masksToBounds = false
         button.layer.cornerRadius = 16
         button.setTitle("Restart", for: .normal)
+        button.titleLabel?.font = .nunito(size:20)
         button.setTitleColor(.cardBackgroundColor, for: .normal)
         button.addTarget(self, action: #selector(restart), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -57,6 +58,7 @@ class GameOverViewController: UIViewController {
         let button = UIButton()
         button.setTitle("Main Menu", for: .normal)
         button.setTitleColor(.buttonColor, for: .normal)
+        button.titleLabel?.font = .nunito(size:20)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
