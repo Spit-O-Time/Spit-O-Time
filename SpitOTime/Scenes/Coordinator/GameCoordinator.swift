@@ -20,7 +20,7 @@ enum GameStateRoute {
 
 class GameStateCoordinator: Coordinator {
     
-    var stateMachine: GameStateMachine?
+    weak var stateMachine: GameStateMachine?
     
     init(stateMachine: GameStateMachine?) {
         self.stateMachine = stateMachine
@@ -45,13 +45,15 @@ class GameStateCoordinator: Coordinator {
             print("game paused")
         case .restart:
             let gameViewController = stateMachine?.present as? GameViewController
+            gameViewController?.skView.scene?.removeAllActions()
+            gameViewController?.skView.scene?.removeAllChildren()
             gameViewController?.skView.scene?.removeFromParent()
             if let controller = gameViewController { addScene(controller: controller) }
         }
     }
     
     func addScene(controller: GameViewController) {
-        let scene: GameScene = GameScene(size: CGSize(width: ScreenSize.width, height: ScreenSize.height))
+        let scene = GameScene(size: CGSize(width: ScreenSize.width, height: ScreenSize.height))
         scene.stateMachine = GameStateMachine(present: controller, states: [GameOverState(), PausedState(), PlayingState()])
 
         scene.scaleMode = .aspectFill
