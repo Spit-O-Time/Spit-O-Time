@@ -129,7 +129,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         spitSpriteNode.physicsBody?.restitution = 0
         spitSpriteNode.physicsBody?.density = 12
         
-        spitTail = SKEmitterNode(fileNamed: "SpitParticle.sks")!
+        spitTail = SKEmitterNode(fileNamed: "SpitParticle2.sks")!
         spitTail?.position = spitSpriteNode.position
         addChild(spitTail!)
         
