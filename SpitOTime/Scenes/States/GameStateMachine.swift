@@ -10,7 +10,7 @@ import SpriteKit
 
 class GameStateMachine: GKStateMachine {
     
-    var present: UIViewController?
+    weak var present: UIViewController?
     
     init(present: UIViewController, states: [GKState]) {
         self.present = present

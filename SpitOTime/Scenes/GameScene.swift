@@ -40,6 +40,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.camera = sceneCamera
         self.physicsWorld.contactDelegate = self
         motionManager.startAccelerometerUpdates()
+        stateMachine?.enter(PlayingState.self)
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
     }
     
@@ -154,6 +155,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let collision = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
         
         if collision == CategoryMask.spit.rawValue | CategoryMask.obstacle.rawValue {
+            self.view?.isPaused = true
             stateMachine?.enter(GameOverState.self)
         }
         
