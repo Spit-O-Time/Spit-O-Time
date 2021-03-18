@@ -23,6 +23,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var startGame = false
     let motionManager = CMMotionManager()
     
+    var stateMachine: GameStateMachine?
+    
     lazy var sceneCamera: SKCameraNode = {
         let camera = SKCameraNode()
         camera.position = CGPoint(x: ScreenSize.width/2, y: ScreenSize.height/2)
@@ -38,6 +40,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.camera = sceneCamera
         self.physicsWorld.contactDelegate = self
         motionManager.startAccelerometerUpdates()
+        stateMachine?.enter(PlayingState.self)
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
     }
     
@@ -153,6 +156,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if collision == CategoryMask.spit.rawValue | CategoryMask.obstacle.rawValue {
             self.view?.isPaused = true
+            stateMachine?.enter(GameOverState.self)
         }
         
     }
