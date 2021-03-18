@@ -6,9 +6,12 @@
 //
 
 import UIKit
+import GameplayKit
 
 class GameOverViewController: UIViewController {
 
+    weak var stateMachine: GKStateMachine?
+    
     lazy var blur: UIVisualEffectView = {
         let effect = UIBlurEffect(style: .dark)
         let blurView = UIVisualEffectView(effect: effect)
@@ -45,6 +48,7 @@ class GameOverViewController: UIViewController {
         button.layer.cornerRadius = 16
         button.setTitle("Restart", for: .normal)
         button.setTitleColor(.cardBackgroundColor, for: .normal)
+        button.addTarget(self, action: #selector(restart), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -69,6 +73,11 @@ class GameOverViewController: UIViewController {
         view.addSubview(gameOverLabel)
         view.addSubview(restartButton)
         view.addSubview(mainMenuButton)
+    }
+    
+    @objc func restart() {
+        stateMachine?.enter(PlayingState.self)
+        dismiss(animated: true, completion: nil)
     }
     
     private func setupConstraints() {
