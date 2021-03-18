@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow()
         window?.makeKeyAndVisible()
 
-        let controller = GameViewController()
+        let controller = GameOverViewController()
         window?.rootViewController = controller
 
         return true

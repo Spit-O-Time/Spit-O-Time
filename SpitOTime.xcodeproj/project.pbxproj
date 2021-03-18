@@ -30,6 +30,7 @@
 		AEC2BAAB25FA3B4400D4261A /* teste1.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC2BAAA25FA3B4400D4261A /* teste1.swift */; };
 		AEC2BAB925FA43FF00D4261A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEC2BAB825FA43FF00D4261A /* LaunchScreen.storyboard */; };
 		AEC2BAC125FA468100D4261A /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC2BAC025FA468100D4261A /* Background.swift */; };
+		AED591C52603830C002D41AE /* GameOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED591C42603830C002D41AE /* GameOverViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		AEC2BAAA25FA3B4400D4261A /* teste1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = teste1.swift; sourceTree = "<group>"; };
 		AEC2BAB825FA43FF00D4261A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AEC2BAC025FA468100D4261A /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
+		AED591C42603830C002D41AE /* GameOverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,6 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				A4A0363A25F7C2E10036CCCB /* GameViewController.swift */,
+				AED591C42603830C002D41AE /* GameOverViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -373,6 +376,7 @@
 				8118BD8025FA5873002015E7 /* AnimateSpriteComponent.swift in Sources */,
 				A4A0363B25F7C2E10036CCCB /* GameViewController.swift in Sources */,
 				AEC2BAAB25FA3B4400D4261A /* teste1.swift in Sources */,
+				AED591C52603830C002D41AE /* GameOverViewController.swift in Sources */,
 				A4A0364525F7C3070036CCCB /* UIColorExtension.swift in Sources */,
 				810BD58A2600D9D900853F6C /* SpawnComponent.swift in Sources */,
 				810BD5942600DE5000853F6C /* Obstacle.swift in Sources */,
