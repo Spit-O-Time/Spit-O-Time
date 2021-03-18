@@ -29,12 +29,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         return camera
     }()
     
+    // MARK: Sounds
+    let llamaSpit = SKAction.playSoundFileNamed("LlamaSpit", waitForCompletion: false)
+    let backgroundSound = SKAction.playSoundFileNamed("MenuBackground", waitForCompletion: false)
+    let gameOverSound = SKAction.playSoundFileNamed("GameOver", waitForCompletion: false)
+    
     // MARK: DidMove
     override func didMove(to view: SKView) {
         scheduleTimer()
         spawnObstacles()
         setupNodes()
         
+        run(backgroundSound)
         self.camera = sceneCamera
         self.physicsWorld.contactDelegate = self
         motionManager.startAccelerometerUpdates()
@@ -80,6 +86,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     @objc func timerTrigger() {
         startGame = true
+        run(llamaSpit)
         spit.component(ofType: AnimateSpriteComponent.self)!.setAnimation(atlasName: "SpitAtlas")
     }
     
@@ -152,11 +159,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let collision = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
         
         if collision == CategoryMask.spit.rawValue | CategoryMask.obstacle.rawValue {
-            self.view?.isPaused = true
+            gameOver()
         }
         
     }
 
+    // MARK: Game Over
+    func gameOver() {
+        self.removeAllActions()
+        pause()
+        run(gameOverSound)
+    }
+    
     // MARK: Update
     override func update(_ currentTime: TimeInterval) {
         guard startGame else { return }
