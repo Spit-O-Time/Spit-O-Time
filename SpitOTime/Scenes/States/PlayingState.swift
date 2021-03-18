@@ -12,7 +12,18 @@ class PlayingState: GKState {
     var gameStateCoordinator: GameStateCoordinator?
 
     override func didEnter(from previousState: GKState?) {
-        gameStateCoordinator?.route(to: .playing)
+        loadCoordinator()
+        if previousState is GameOverState {
+            gameStateCoordinator?.route(to: .restart)
+        }
+    }
+    
+    func loadCoordinator() {
+        guard let gameStateMachine = stateMachine as? GameStateMachine else {
+            return
+        }
+        
+        gameStateCoordinator = GameStateCoordinator(stateMachine: gameStateMachine)
     }
     
 }
