@@ -35,7 +35,10 @@ class GameStateCoordinator: Coordinator {
         switch  route {
         case .gameOver:
             print("gameOver")
-            rootViewController?.present(GameViewController(), animated: false, completion: nil)
+            let controller = GameOverViewController()
+            controller.modalPresentationStyle = .overFullScreen
+            controller.modalTransitionStyle = .crossDissolve
+            rootViewController?.present(controller, animated: true, completion: nil)
         case .paused:
             print("game paused")
         case .playing:

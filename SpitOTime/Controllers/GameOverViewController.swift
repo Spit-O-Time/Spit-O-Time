@@ -9,6 +9,14 @@ import UIKit
 
 class GameOverViewController: UIViewController {
 
+    lazy var blur: UIVisualEffectView = {
+        let effect = UIBlurEffect(style: .dark)
+        let blurView = UIVisualEffectView(effect: effect)
+        blurView.alpha = 0.6
+        blurView.frame = self.view.bounds
+        return blurView
+    }()
+    
     lazy var backgroundView: UIView = {
         let view = UIView()
         view.backgroundColor = .cardBackgroundColor
@@ -51,12 +59,12 @@ class GameOverViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setupViewHierarchy()
         setupConstraints()
     }
     
     private func setupViewHierarchy() {
+        view.addSubview(blur)
         view.addSubview(backgroundView)
         view.addSubview(gameOverLabel)
         view.addSubview(restartButton)
