@@ -21,7 +21,7 @@ class GameOverState: GKState {
             return
         }
         
-        gameStateCoordinator = GameStateCoordinator(rootViewController: gameStateMachine.present)
+        gameStateCoordinator = GameStateCoordinator(stateMachine: gameStateMachine)
     }
     
 }

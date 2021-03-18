@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import GameplayKit
 
 protocol Coordinator {
     func start()
@@ -19,10 +20,10 @@ enum GameStateRoute {
 
 class GameStateCoordinator: Coordinator {
     
-    var rootViewController: UIViewController?
+    var stateMachine: GameStateMachine?
     
-    init(rootViewController: UIViewController?) {
-        self.rootViewController = rootViewController
+    init(stateMachine: GameStateMachine?) {
+        self.stateMachine = stateMachine
     }
     
     func start() {
@@ -35,7 +36,11 @@ class GameStateCoordinator: Coordinator {
         switch  route {
         case .gameOver:
             print("gameOver")
-            rootViewController?.present(GameViewController(), animated: false, completion: nil)
+            let controller = GameOverViewController()
+            controller.modalPresentationStyle = .overFullScreen
+            controller.modalTransitionStyle = .crossDissolve
+            controller.stateMachine = stateMachine
+            stateMachine?.present?.present(controller, animated: true, completion: nil)
         case .paused:
             print("game paused")
         case .playing:
