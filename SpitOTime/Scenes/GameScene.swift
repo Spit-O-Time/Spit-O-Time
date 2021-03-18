@@ -89,7 +89,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     @objc func timerTrigger() {
         startGame = true
         llamaSpit = AudioManager().getSKAudioNode(name: .spit)
-        addChild(llamaSpit)
+        llamaSpit.run(SKAction.play())
         AudioManager().stopSKAudioNode(audioNode: llamaSpit)
         spit.component(ofType: AnimateSpriteComponent.self)!.setAnimation(atlasName: "SpitAtlas")
     }
