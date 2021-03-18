@@ -23,6 +23,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var startGame = false
     let motionManager = CMMotionManager()
     
+    var stateMachine: GameStateMachine?
+    
     lazy var sceneCamera: SKCameraNode = {
         let camera = SKCameraNode()
         camera.position = CGPoint(x: ScreenSize.width/2, y: ScreenSize.height/2)
@@ -46,6 +48,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.camera = sceneCamera
         self.physicsWorld.contactDelegate = self
         motionManager.startAccelerometerUpdates()
+        stateMachine?.enter(PlayingState.self)
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
     }
     
@@ -129,7 +132,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         spitSpriteNode.physicsBody?.restitution = 0
         spitSpriteNode.physicsBody?.density = 12
         
-        spitTail = SKEmitterNode(fileNamed: "SpitParticle2.sks")!
+        spitTail = SKEmitterNode(fileNamed: "SpitParticle.sks")!
         spitTail?.position = spitSpriteNode.position
         addChild(spitTail!)
         
@@ -171,6 +174,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: Game Over
     func gameOver() {
         self.view?.isPaused = true
+        stateMachine?.enter(GameOverState.self)
         AudioManager().stopSKAudioNode(audioNode: backgroundSound)
         gameOverSound = AudioManager().getSKAudioNode(name: .gameOver)
         addChild(gameOverSound)
