@@ -90,6 +90,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         startGame = true
         llamaSpit = AudioManager().getSKAudioNode(name: .spit)
         addChild(llamaSpit)
+        AudioManager().stopSKAudioNode(audioNode: llamaSpit)
         spit.component(ofType: AnimateSpriteComponent.self)!.setAnimation(atlasName: "SpitAtlas")
     }
     
@@ -128,7 +129,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         spitSpriteNode.physicsBody?.restitution = 0
         spitSpriteNode.physicsBody?.density = 12
         
-        spitTail = SKEmitterNode(fileNamed: "MyParticle.sks")!
+        spitTail = SKEmitterNode(fileNamed: "SpitParticle.sks")!
         spitTail?.position = spitSpriteNode.position
         addChild(spitTail!)
         
@@ -171,7 +172,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func gameOver() {
         self.view?.isPaused = true
         AudioManager().stopSKAudioNode(audioNode: backgroundSound)
-        AudioManager().stopSKAudioNode(audioNode: gameOverSound)
+        gameOverSound = AudioManager().getSKAudioNode(name: .gameOver)
+        addChild(gameOverSound)
     }
     
     // MARK: Update
