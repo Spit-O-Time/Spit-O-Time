@@ -30,9 +30,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }()
     
     // MARK: Sounds
-    let llamaSpit = SKAction.playSoundFileNamed("LlamaSpit", waitForCompletion: false)
-    let backgroundSound = SKAction.playSoundFileNamed("MenuBackground", waitForCompletion: false)
-    let gameOverSound = SKAction.playSoundFileNamed("GameOver", waitForCompletion: false)
+    var backgroundSound: SKAudioNode!
+    var llamaSpit: SKAudioNode!
+    var gameOverSound: SKAudioNode!
     
     // MARK: DidMove
     override func didMove(to view: SKView) {
@@ -40,7 +40,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         spawnObstacles()
         setupNodes()
         
-        run(backgroundSound)
+        backgroundSound = AudioManager().getSKAudioNode(name: .background)
+        addChild(backgroundSound)
+        
         self.camera = sceneCamera
         self.physicsWorld.contactDelegate = self
         motionManager.startAccelerometerUpdates()
@@ -86,7 +88,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     @objc func timerTrigger() {
         startGame = true
-        run(llamaSpit)
+        llamaSpit = AudioManager().getSKAudioNode(name: .spit)
+        addChild(llamaSpit)
         spit.component(ofType: AnimateSpriteComponent.self)!.setAnimation(atlasName: "SpitAtlas")
     }
     
@@ -125,7 +128,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         spitSpriteNode.physicsBody?.restitution = 0
         spitSpriteNode.physicsBody?.density = 12
         
-        spitTail = SKEmitterNode(fileNamed: "SpitParticle.sks")!
+        spitTail = SKEmitterNode(fileNamed: "MyParticle.sks")!
         spitTail?.position = spitSpriteNode.position
         addChild(spitTail!)
         
@@ -166,9 +169,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     // MARK: Game Over
     func gameOver() {
-        self.removeAllActions()
-        pause()
-        run(gameOverSound)
+        self.view?.isPaused = true
+        AudioManager().stopSKAudioNode(audioNode: backgroundSound)
+        AudioManager().stopSKAudioNode(audioNode: gameOverSound)
     }
     
     // MARK: Update
