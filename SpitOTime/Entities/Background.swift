@@ -12,7 +12,10 @@ class Background: GKEntity {
     
     override init() {
         super.init()
-        self.addComponent(AnimateBackgroundComponent())
+        self.addComponent(AnimateBackgroundComponent(shooterAsset: "llama",
+                                                     backgroundAsset: "ground",
+                                                     leftBarrierAsset: "wallLeft",
+                                                     rightBarrierAsset: "wallRight"))
     }
     
     required init?(coder: NSCoder) {

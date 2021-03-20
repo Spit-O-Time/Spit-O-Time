@@ -110,7 +110,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let ground = backgrounds.grounds
         let leftWall = backgrounds.wallLeft
         let rightWall = backgrounds.wallRight
-        let llama = backgrounds.llama
+        let llama = backgrounds.shooterCharacter
         
         addChild(llama)
         ground.forEach { addChild($0) }
