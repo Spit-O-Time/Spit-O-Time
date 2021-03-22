@@ -17,8 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow()
         window?.makeKeyAndVisible()
 
-        let controller = GameViewController()
-        window?.rootViewController = controller
+        let controller = MainMenuViewController()
+        let navigation = UINavigationController(rootViewController: controller)
+        window?.rootViewController = navigation
 
         return true
     }
