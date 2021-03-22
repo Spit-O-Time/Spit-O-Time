@@ -12,6 +12,8 @@ class GameOverViewController: UIViewController {
 
     weak var stateMachine: GKStateMachine?
     
+    lazy var audioManager = AudioManager()
+    
     lazy var blur: UIVisualEffectView = {
         let effect = UIBlurEffect(style: .dark)
         let blurView = UIVisualEffectView(effect: effect)
@@ -65,6 +67,7 @@ class GameOverViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        audioManager.playSound(named: .gameOver, volume: 3.0)
         setupViewHierarchy()
         setupConstraints()
     }

@@ -13,7 +13,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // MARK: Variables
     let spit = Spit()
-    var spitTail: SKEmitterNode?
+    var spitTail: SKEmitterNode!
     
     let background = Background()
     
@@ -44,14 +44,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var llamaSpit: SKAudioNode!
     var gameOverSound: SKAudioNode!
     
+    var audioManager = AudioManager()
+    
     // MARK: DidMove
     override func didMove(to view: SKView) {
         scheduleTimer()
         spawnObstacles()
         setupNodes()
-        setUpText();
-
-        backgroundSound = AudioManager().getSKAudioNode(name: .background)
+        setUpText();        
+        backgroundSound = audioManager.getSKAudioNode(.background)
         addChild(backgroundSound)
         
         self.camera = sceneCamera
@@ -100,10 +101,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     @objc func timerTrigger() {
         startGame = true
-        llamaSpit = AudioManager().getSKAudioNode(name: .spit)
-        llamaSpit.run(SKAction.play())
-        AudioManager().stopSKAudioNode(audioNode: llamaSpit)
-        spit.component(ofType: AnimateSpriteComponent.self)!.setAnimation(atlasName: "SpitAtlas")
+        if let spitComponent = spit.component(ofType: AnimateSpriteComponent.self) {
+            spitComponent.setAnimation(atlasName: "SpitAtlas")
+            spitComponent.spriteNode.run(audioManager.playSKAudioNode(.spit))
+        }
     }
     
     // MARK: Setup Sprites
@@ -141,9 +142,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         spitSpriteNode.physicsBody?.restitution = 0
         spitSpriteNode.physicsBody?.density = 12
         
-        spitTail = SKEmitterNode(fileNamed: "SpitParticle.sks")!
-        spitTail?.position = spitSpriteNode.position
-        addChild(spitTail!)
+        if let spitTail = SKEmitterNode(fileNamed: "SpitParticle.sks") {
+            self.spitTail = spitTail
+            self.spitTail.position = spitSpriteNode.position
+            addChild(self.spitTail)
+        }
         
         addChild(spitSpriteNode)
     }
@@ -197,9 +200,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.score = 0
         self.view?.isPaused = true
         stateMachine?.enter(GameOverState.self)
-        AudioManager().stopSKAudioNode(audioNode: backgroundSound)
-        gameOverSound = AudioManager().getSKAudioNode(name: .gameOver)
-        addChild(gameOverSound)
+        audioManager.stopSKAudioNode(backgroundSound)
     }
     
     // MARK: Update
