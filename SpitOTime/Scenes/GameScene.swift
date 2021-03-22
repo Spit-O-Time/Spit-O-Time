@@ -26,12 +26,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var stateMachine: GameStateMachine?
     
     var scoreLabel:SKLabelNode!;
-     
-     var score:Int = 0 {
+    var score:Int = 0 {
          didSet{
-             scoreLabel.text = "Score \(score)";
+             scoreLabel.text = "Score: \(score)";
          }
      }
+    
+    var scoreCount:Float = 0
     
     lazy var sceneCamera: SKCameraNode = {
         let camera = SKCameraNode()
@@ -49,12 +50,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: DidMove
     override func didMove(to view: SKView) {
         scheduleTimer()
+        scoreTimer()
         spawnObstacles()
         setupNodes()
-        setUpText();        
+        setUpText()
         backgroundSound = audioManager.getSKAudioNode(.background)
         addChild(backgroundSound)
-        
         self.camera = sceneCamera
         self.physicsWorld.contactDelegate = self
         motionManager.startAccelerometerUpdates()
@@ -69,6 +70,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                              selector: #selector(timerTrigger),
                              userInfo: nil,
                              repeats:  false)
+    }
+    
+    func scoreTimer(){
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+            Timer.scheduledTimer(timeInterval: 1,
+                                 target: self,
+                                 selector: #selector(self.scorePoints),
+                                 userInfo: nil,
+                                 repeats:  true)
+        })
+    }
+    
+    @objc func scorePoints(){
+        if scoreCount > 5 {
+            score += 32
+        }else{
+            score = Int(powf(2, scoreCount))
+        }
+        scoreCount += 1
     }
     
     func spawnObstacles() {
@@ -153,14 +173,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func setUpText() {
          scoreLabel = SKLabelNode(fontNamed: "Orange Slices")
-         scoreLabel.text = "Score: 0";
-         scoreLabel.fontColor = SKColor.black;
-         scoreLabel.horizontalAlignmentMode = .right;
+         scoreLabel.text = "Score: 0"
+         scoreLabel.fontColor = .cardBackgroundColor
+         scoreLabel.horizontalAlignmentMode = .center
          scoreLabel.zPosition = 5
-         scoreLabel.position = CGPoint(x: ScreenSize.width/2 + scoreLabel.frame.width/2, y: ScreenSize.height - 70);
-         
-         print(scoreLabel.position);
-         self.addChild(scoreLabel);
+         scoreLabel.position = CGPoint(x: ScreenSize.width/2, y: ScreenSize.height - 70)
+         print(scoreLabel.position)
+         self.addChild(scoreLabel)
      }
     
     // MARK: Movimentation
@@ -198,6 +217,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: Game Over
     func gameOver() {
         self.score = 0
+        self.scoreCount = 0
         self.view?.isPaused = true
         stateMachine?.enter(GameOverState.self)
         audioManager.stopSKAudioNode(backgroundSound)
@@ -206,11 +226,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: Update
     override func update(_ currentTime: TimeInterval) {
         guard startGame else { return }
-        
         animateSpit()
         animateBackground()
         removeObstacles()
-        self.score += 1
         for obstacle in obstacles {
             obstacle.position.y -= 8
         }

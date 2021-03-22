@@ -19,6 +19,10 @@ class GameViewController: UIViewController {
         self.view = skView
     }
     
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let scene: GameScene = GameScene(size: CGSize(width: ScreenSize.width, height: ScreenSize.height))
