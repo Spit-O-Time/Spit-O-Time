@@ -14,6 +14,18 @@ class GameViewController: UIViewController {
     let skView = SKView()
     var colorAmbience = UIView()
     
+    lazy var pauseButton: UIButton = {
+        let button = UIButton()
+        button.layer.masksToBounds = false
+        button.layer.cornerRadius = 8
+        button.backgroundColor = .buttonColor
+        button.setImage(UIImage(named: "pause"), for: .normal)
+        button.tintColor = .cardBackgroundColor
+        button.addTarget(self, action: #selector(pause), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
     override func loadView() {
         super.loadView()
         self.view = skView
@@ -34,13 +46,31 @@ class GameViewController: UIViewController {
         skView.presentScene(scene)
         
         setupColorAmbience()
+        setupPauseButton()
     }
 
     func setAmbienceColor(_ color: UIColor) {
         colorAmbience.backgroundColor = color
     }
     
-    func setupColorAmbience() {
+    @objc func pause() {
+        if let scene = skView.scene as? GameScene {
+            skView.isPaused = true
+            scene.stateMachine?.enter(PausedState.self)
+        }
+    }
+    
+    private func setupPauseButton() {
+        self.view.addSubview(pauseButton)
+        NSLayoutConstraint.activate([
+            pauseButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32),
+            pauseButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            pauseButton.heightAnchor.constraint(equalToConstant: 42),
+            pauseButton.widthAnchor.constraint(equalTo: pauseButton.heightAnchor)
+        ])
+    }
+    
+    private func setupColorAmbience() {
         colorAmbience.backgroundColor = .black
         colorAmbience.alpha = 0.08
         colorAmbience.translatesAutoresizingMaskIntoConstraints = false
