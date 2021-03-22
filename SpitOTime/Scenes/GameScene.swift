@@ -25,6 +25,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var stateMachine: GameStateMachine?
     
+    var scoreLabel:SKLabelNode!;
+     
+     var score:Int = 0 {
+         didSet{
+             scoreLabel.text = "Score \(score)";
+         }
+     }
+    
     lazy var sceneCamera: SKCameraNode = {
         let camera = SKCameraNode()
         camera.position = CGPoint(x: ScreenSize.width/2, y: ScreenSize.height/2)
@@ -41,7 +49,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scheduleTimer()
         spawnObstacles()
         setupNodes()
-        
+        setUpText();
+
         backgroundSound = AudioManager().getSKAudioNode(name: .background)
         addChild(backgroundSound)
         
@@ -139,6 +148,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(spitSpriteNode)
     }
     
+    func setUpText() {
+         scoreLabel = SKLabelNode(fontNamed: "Orange Slices")
+         scoreLabel.text = "Score: 0";
+         scoreLabel.fontColor = SKColor.black;
+         scoreLabel.horizontalAlignmentMode = .right;
+         scoreLabel.zPosition = 5
+         scoreLabel.position = CGPoint(x: ScreenSize.width/2 + scoreLabel.frame.width/2, y: ScreenSize.height - 70);
+         
+         print(scoreLabel.position);
+         self.addChild(scoreLabel);
+     }
+    
     // MARK: Movimentation
     func animateSpit() {
         let spitPosition =  spit.component(ofType: AnimateSpriteComponent.self)!.spriteNode.position
@@ -173,6 +194,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     // MARK: Game Over
     func gameOver() {
+        self.score = 0
         self.view?.isPaused = true
         stateMachine?.enter(GameOverState.self)
         AudioManager().stopSKAudioNode(audioNode: backgroundSound)
@@ -187,7 +209,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         animateSpit()
         animateBackground()
         removeObstacles()
-        
+        self.score += 1
         for obstacle in obstacles {
             obstacle.position.y -= 8
         }
