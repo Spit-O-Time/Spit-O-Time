@@ -37,7 +37,7 @@ class GameOverViewController: UIViewController {
         label.numberOfLines = 2
         label.textAlignment = .center
         label.font = .orange(size: 50)
-        label.textColor = .buttonColor
+        label.textColor = .titleLabel
         label.adjustsFontSizeToFitWidth = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -61,6 +61,7 @@ class GameOverViewController: UIViewController {
         button.setTitle("Main Menu", for: .normal)
         button.setTitleColor(.buttonColor, for: .normal)
         button.titleLabel?.font = .nunito(size:20)
+        button.addTarget(self, action: #selector(goToMainMenu), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -83,6 +84,19 @@ class GameOverViewController: UIViewController {
     @objc func restart() {
         stateMachine?.enter(PlayingState.self)
         dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func goToMainMenu() {
+        dismiss(animated: true) {
+            if let stateMachine = self.stateMachine as? GameStateMachine {
+                let transition = CATransition()
+                transition.duration = 0.3
+                transition.type = .fade
+                transition.subtype = .none
+                stateMachine.present?.navigationController?.view.layer.add(transition, forKey: kCATransition)
+                stateMachine.present?.navigationController?.popViewController(animated: false)
+            }
+        }
     }
     
     private func setupConstraints() {

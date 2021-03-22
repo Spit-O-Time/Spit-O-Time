@@ -42,6 +42,8 @@
 		AED591A9260242EA002D41AE /* LlamaSpit.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AED591A8260242EA002D41AE /* LlamaSpit.mp3 */; };
 		AED591AE260242F8002D41AE /* GameOver.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AED591AD260242F8002D41AE /* GameOver.mp3 */; };
 		AED591C52603830C002D41AE /* GameOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED591C42603830C002D41AE /* GameOverViewController.swift */; };
+		AEFE241F2608C8D700278D50 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFE241D2608C8D700278D50 /* MainMenuViewController.swift */; };
+		AEFE24202608C8D700278D50 /* MainMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AEFE241E2608C8D700278D50 /* MainMenuViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +105,8 @@
 		AED591A8260242EA002D41AE /* LlamaSpit.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = LlamaSpit.mp3; sourceTree = "<group>"; };
 		AED591AD260242F8002D41AE /* GameOver.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = GameOver.mp3; sourceTree = "<group>"; };
 		AED591C42603830C002D41AE /* GameOverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverViewController.swift; sourceTree = "<group>"; };
+		AEFE241D2608C8D700278D50 /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
+		AEFE241E2608C8D700278D50 /* MainMenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenuViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -270,6 +274,8 @@
 			children = (
 				A4A0363A25F7C2E10036CCCB /* GameViewController.swift */,
 				AED591C42603830C002D41AE /* GameOverViewController.swift */,
+				AEFE241D2608C8D700278D50 /* MainMenuViewController.swift */,
+				AEFE241E2608C8D700278D50 /* MainMenuViewController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -424,6 +430,7 @@
 				815EFDB826039492008EEC0C /* Assets.xcassets in Resources */,
 				AED591A4260242D5002D41AE /* MenuBackground.mp3 in Resources */,
 				815EFDB726039492008EEC0C /* SpitParticle.sks in Resources */,
+				AEFE24202608C8D700278D50 /* MainMenuViewController.xib in Resources */,
 				A4D6B5C02603A1E2002639C4 /* NunitoRegular-vmABZ.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -465,6 +472,7 @@
 				818A422825FF7E0F00454FAF /* AnimateBackgroundComponent.swift in Sources */,
 				A4A0364A25F7C31A0036CCCB /* ScreenSize.swift in Sources */,
 				5B8AD09A25F2717800B64371 /* GameScene.swift in Sources */,
+				AEFE241F2608C8D700278D50 /* MainMenuViewController.swift in Sources */,
 				A4D6B5B626039FD3002639C4 /* UIFontExtension.swift in Sources */,
 				818ACC6E260242BB0033F65F /* PausedState.swift in Sources */,
 				A4A0364025F7C2F90036CCCB /* Llama.swift in Sources */,

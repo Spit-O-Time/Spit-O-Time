@@ -22,17 +22,17 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bigLlama" translatesAutoresizingMaskIntoConstraints="NO" id="ec9-yS-fQt">
-                                <rect key="frame" x="-457" y="-56" width="796" height="1337"/>
+                                <rect key="frame" x="-457" y="100" width="796" height="1181"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
-                        <color key="backgroundColor" red="0.99373310800000003" green="0.77965408560000005" blue="0.3777808547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="1" green="0.77570170159999996" blue="0.27349430320000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Bcu-3y-fUS" firstAttribute="centerX" secondItem="obG-Y5-kRd" secondAttribute="centerX" id="5cz-MP-9tL"/>
                             <constraint firstAttribute="bottom" secondItem="ec9-yS-fQt" secondAttribute="bottom" constant="-385" id="6Dg-lm-MDV"/>
                             <constraint firstItem="Bcu-3y-fUS" firstAttribute="trailing" secondItem="ec9-yS-fQt" secondAttribute="trailing" constant="75" id="7eX-72-tgt"/>
-                            <constraint firstItem="obG-Y5-kRd" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" constant="20" symbolic="YES" id="SfN-ll-jLj"/>
-                            <constraint firstItem="ec9-yS-fQt" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" constant="-56" id="XN9-Sg-llQ"/>
+                            <constraint firstItem="ec9-yS-fQt" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" constant="100" id="C4y-Tf-FEw"/>
+                            <constraint firstItem="obG-Y5-kRd" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" symbolic="YES" id="SfN-ll-jLj"/>
                             <constraint firstAttribute="bottom" secondItem="obG-Y5-kRd" secondAttribute="bottom" constant="20" id="Y44-ml-fuU"/>
                             <constraint firstItem="ec9-yS-fQt" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="-457" id="jLq-i0-qbL"/>
                         </constraints>

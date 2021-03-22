@@ -15,4 +15,8 @@ extension UIColor {
     static var buttonColor: UIColor {
         UIColor(red: 255/255, green: 113/255, blue: 113/255, alpha: 1)
     }
+    
+    static var titleLabel: UIColor {
+        UIColor(red: 121/255, green: 0/255, blue: 27/255, alpha: 1)
+    }
 }
