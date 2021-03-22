@@ -44,7 +44,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         spawnObstacles()
         setupNodes()
         
-        backgroundSound = audioManager.getSKAudioNode(name: .background)
+        backgroundSound = audioManager.getSKAudioNode(.background)
         addChild(backgroundSound)
         
         self.camera = sceneCamera
@@ -95,7 +95,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         startGame = true
         if let spitComponent = spit.component(ofType: AnimateSpriteComponent.self) {
             spitComponent.setAnimation(atlasName: "SpitAtlas")
-            spitComponent.spriteNode.run(audioManager.play(.spit))
+            spitComponent.spriteNode.run(audioManager.playSKAudioNode(.spit))
         }
     }
     
@@ -179,7 +179,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func gameOver() {
         self.view?.isPaused = true
         stateMachine?.enter(GameOverState.self)
-        audioManager.stopSKAudioNode(audioNode: backgroundSound)
+        audioManager.stopSKAudioNode(backgroundSound)
     }
     
     // MARK: Update

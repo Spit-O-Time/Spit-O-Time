@@ -20,15 +20,15 @@ class AudioManager {
     
     var audioPlayer: AVAudioPlayer?
     
-    func getSKAudioNode(name: SoundName) -> SKAudioNode {
+    func getSKAudioNode(_ name: SoundName) -> SKAudioNode {
         return SKAudioNode(fileNamed: name.rawValue)
     }
     
-    func stopSKAudioNode(audioNode: SKAudioNode) {
+    func stopSKAudioNode(_ audioNode: SKAudioNode) {
         audioNode.run(SKAction.stop())
     }
     
-    func play(_ name: SoundName) -> SKAction {
+    func playSKAudioNode(_ name: SoundName) -> SKAction {
         SKAction.playSoundFileNamed(name.rawValue, waitForCompletion: false)
     }
     
