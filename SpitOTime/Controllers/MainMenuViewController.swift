@@ -44,4 +44,24 @@ class MainMenuViewController: UIViewController {
         navigationController?.view.layer.add(transition, forKey: kCATransition)
         navigationController?.pushViewController(controller, animated: false)
     }
+    @IBAction func changeSoundtrackAction(_ sender: Any) {
+        changeValueUserDefaults(forKey: .isSoundtrackMuted, button: music)
+    }
+    
+    @IBAction func changeSoundEffectAction(_ sender: Any) {
+        changeValueUserDefaults(forKey: .isSoundEffectMuted, button: sound)
+    }
+    
+    func changeValueUserDefaults(forKey: AudioConfig, button: UIButton) {
+        if UserDefaults.standard.bool(forKey: forKey.rawValue) {
+            UserDefaults.standard.setValue(false, forKey: forKey.rawValue)
+            button.setImage(UIImage(named: forKey.rawValue+"_deactive"), for: .normal)
+        } else {
+            UserDefaults.standard.setValue(true, forKey: forKey.rawValue)
+            button.setImage(UIImage(named: forKey.rawValue+"_active"), for: .normal)
+        }
+        
+        UserDefaults.standard.synchronize()
+        print(UserDefaults.standard.bool(forKey: forKey.rawValue))
+    }
 }

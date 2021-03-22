@@ -55,6 +55,9 @@
                     <fontDescription key="fontDescription" type="system" pointSize="22"/>
                     <color key="tintColor" red="1" green="0.77570170159999996" blue="0.27349430320000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <state key="normal" image="speaker.wave.3.fill" catalog="system"/>
+                    <connections>
+                        <action selector="changeSoundEffectAction:" destination="-1" eventType="touchUpInside" id="WyV-rB-IHh"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oe7-fe-kvU">
                     <rect key="frame" x="350" y="60" width="32" height="32"/>
@@ -66,6 +69,9 @@
                     <fontDescription key="fontDescription" type="system" pointSize="22"/>
                     <color key="tintColor" red="1" green="0.77570170159999996" blue="0.27349430320000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <state key="normal" image="music.note" catalog="system"/>
+                    <connections>
+                        <action selector="changeSoundtrackAction:" destination="-1" eventType="touchUpInside" id="JpT-ku-a7g"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spit 'o time" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Exw-Gy-r0Y">
                     <rect key="frame" x="107" y="92" width="200" height="159.5"/>

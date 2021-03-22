@@ -54,8 +54,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         spawnObstacles()
         setupNodes()
         setUpText()
-        backgroundSound = audioManager.getSKAudioNode(.background)
-        addChild(backgroundSound)
+        addBackgroundSound()
         self.camera = sceneCamera
         self.physicsWorld.contactDelegate = self
         motionManager.startAccelerometerUpdates()
@@ -119,11 +118,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    func addBackgroundSound() {
+        if let backgroundSound = audioManager.getSKAudioNode(.background) {
+            addChild(backgroundSound)
+        }
+    }
+    
     @objc func timerTrigger() {
         startGame = true
         if let spitComponent = spit.component(ofType: AnimateSpriteComponent.self) {
             spitComponent.setAnimation(atlasName: "SpitAtlas")
-            spitComponent.spriteNode.run(audioManager.playSKAudioNode(.spit))
+            guard let sound = audioManager.playSKAudioNode(.spit) else { return }
+            spitComponent.spriteNode.run(sound)
         }
     }
     
@@ -231,8 +237,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         removeObstacles()
         for obstacle in obstacles {
             obstacle.position.y -= 8
-        }
-        
+        } 
     }
     
 }

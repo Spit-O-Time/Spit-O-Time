@@ -16,20 +16,40 @@ enum SoundName: String {
     static let soundExtension = "mp3"
 }
 
+enum AudioConfig: String {
+    case isSoundtrackMuted = "isSoundtrackMuted"
+    case isSoundEffectMuted = "isSoundEffectMuted"
+}
+
 class AudioManager {
     
     var audioPlayer: AVAudioPlayer?
+    var isSoundtrackMuted: Bool
+    var isSoundEffectMuted: Bool
     
-    func getSKAudioNode(_ name: SoundName) -> SKAudioNode {
-        return SKAudioNode(fileNamed: name.rawValue)
+    init() {
+        isSoundtrackMuted = UserDefaults.standard.bool(forKey: AudioConfig.isSoundtrackMuted.rawValue)
+        isSoundEffectMuted = UserDefaults.standard.bool(forKey: AudioConfig.isSoundEffectMuted.rawValue)
     }
     
-    func stopSKAudioNode(_ audioNode: SKAudioNode) {
-        audioNode.run(SKAction.stop())
+    func getSKAudioNode(_ name: SoundName) -> SKAudioNode? {
+        if !isSoundEffectMuted {
+            return SKAudioNode(fileNamed: name.rawValue)
+        }
+        return nil
     }
     
-    func playSKAudioNode(_ name: SoundName) -> SKAction {
-        SKAction.playSoundFileNamed(name.rawValue, waitForCompletion: false)
+    func stopSKAudioNode(_ audioNode: SKAudioNode?) {
+        if !isSoundEffectMuted {
+            audioNode?.run(SKAction.stop())
+        }
+    }
+    
+    func playSKAudioNode(_ name: SoundName) -> SKAction? {
+        if isSoundEffectMuted == false {
+            SKAction.playSoundFileNamed(name.rawValue, waitForCompletion: false)
+        }
+        return nil
     }
     
     func stopSound() {
@@ -37,14 +57,16 @@ class AudioManager {
     }
 
     func playSound(named: SoundName, numberOfLoop: Int = 0, volume: Float = 1.0) {
-        if let url: URL = Bundle.main.url(forResource: named.rawValue, withExtension: SoundName.soundExtension) {
-            do {
-                audioPlayer = try AVAudioPlayer(contentsOf: url, fileTypeHint: nil)
-                audioPlayer?.numberOfLoops = numberOfLoop
-                audioPlayer?.volume = volume
-                audioPlayer?.play()
-            } catch {
-                fatalError()
+        if isSoundEffectMuted == false {
+            if let url: URL = Bundle.main.url(forResource: named.rawValue, withExtension: SoundName.soundExtension) {
+                do {
+                    audioPlayer = try AVAudioPlayer(contentsOf: url, fileTypeHint: nil)
+                    audioPlayer?.numberOfLoops = numberOfLoop
+                    audioPlayer?.volume = volume
+                    audioPlayer?.play()
+                } catch {
+                    fatalError()
+                }
             }
         }
     }
