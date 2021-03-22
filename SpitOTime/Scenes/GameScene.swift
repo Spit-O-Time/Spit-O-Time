@@ -120,6 +120,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func addBackgroundSound() {
         if let backgroundSound = audioManager.getSKAudioNode(.background) {
+            self.backgroundSound = backgroundSound
             addChild(backgroundSound)
         }
     }

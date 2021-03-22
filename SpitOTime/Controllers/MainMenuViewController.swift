@@ -10,6 +10,7 @@ import UIKit
 class MainMenuViewController: UIViewController {
 
     
+    
     @IBOutlet weak var sound: UIButton! {
         didSet {
             sound.layer.masksToBounds = false
@@ -29,9 +30,16 @@ class MainMenuViewController: UIViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setButtonImage(forKey: .isSoundEffectMuted, button: sound)
+        setButtonImage(forKey: .isSoundtrackMuted, button: music)
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
@@ -63,5 +71,14 @@ class MainMenuViewController: UIViewController {
         
         UserDefaults.standard.synchronize()
         print(UserDefaults.standard.bool(forKey: forKey.rawValue))
+    }
+    
+    func setButtonImage(forKey: AudioConfig, button: UIButton) {
+        if !UserDefaults.standard.bool(forKey: forKey.rawValue) {
+            button.setImage(UIImage(named: forKey.rawValue+"_deactive"), for: .normal)
+        } else {
+            button.setImage(UIImage(named: forKey.rawValue+"_active"), for: .normal)
+        }
+        
     }
 }

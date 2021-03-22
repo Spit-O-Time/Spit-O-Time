@@ -15,6 +15,7 @@ protocol Coordinator {
 enum GameStateRoute {
     case paused
     case restart
+    case resume
     case gameOver
 }
 
@@ -43,12 +44,20 @@ class GameStateCoordinator: Coordinator {
             stateMachine?.present?.present(controller, animated: true, completion: nil)
         case .paused:
             print("game paused")
+            let controller = PauseGameViewController()
+            controller.modalPresentationStyle = .overFullScreen
+            controller.modalTransitionStyle = .crossDissolve
+            controller.stateMachine = stateMachine
+            stateMachine?.present?.present(controller, animated: true, completion: nil)
         case .restart:
             let gameViewController = stateMachine?.present as? GameViewController
             gameViewController?.skView.scene?.removeAllActions()
             gameViewController?.skView.scene?.removeAllChildren()
             gameViewController?.skView.scene?.removeFromParent()
             if let controller = gameViewController { addScene(controller: controller) }
+        case .resume:
+            let gameViewController = stateMachine?.present as? GameViewController
+            gameViewController?.skView.isPaused = false
         }
     }
     

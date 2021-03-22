@@ -34,9 +34,10 @@ class AudioManager {
     
     func getSKAudioNode(_ name: SoundName) -> SKAudioNode? {
         if !isSoundEffectMuted {
-            return SKAudioNode(fileNamed: name.rawValue)
+            let audioNode = SKAudioNode(fileNamed: name.rawValue)
+            return audioNode
         }
-        return nil
+        return  nil
     }
     
     func stopSKAudioNode(_ audioNode: SKAudioNode?) {
