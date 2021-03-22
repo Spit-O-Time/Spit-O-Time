@@ -15,6 +15,8 @@ class PlayingState: GKState {
         loadCoordinator()
         if previousState is GameOverState {
             gameStateCoordinator?.route(to: .restart)
+        } else if previousState is PausedState {
+            gameStateCoordinator?.route(to: .resume)
         }
     }
     

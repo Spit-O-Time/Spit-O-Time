@@ -12,7 +12,15 @@ class PausedState: GKState {
     var gameStateCoordinator: GameStateCoordinator?
 
     override func didEnter(from previousState: GKState?) {
+        loadCoordinator()
         gameStateCoordinator?.route(to: .paused)
     }
     
+    func loadCoordinator() {
+        guard let gameStateMachine = stateMachine as? GameStateMachine else {
+            return
+        }
+        
+        gameStateCoordinator = GameStateCoordinator(stateMachine: gameStateMachine)
+    }
 }

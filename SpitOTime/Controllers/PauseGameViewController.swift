@@ -1,18 +1,16 @@
 //
-//  GameOverViewController.swift
+//  PauseGameViewController.swift
 //  SpitOTime
 //
-//  Created by Albert Rayneer on 18/03/21.
+//  Created by Albert Rayneer on 22/03/21.
 //
 
 import UIKit
 import GameplayKit
 
-class GameOverViewController: UIViewController {
+class PauseGameViewController: UIViewController {
 
     weak var stateMachine: GKStateMachine?
-    
-    lazy var audioManager = AudioManager()
     
     lazy var blur: UIVisualEffectView = {
         let effect = UIBlurEffect(style: .dark)
@@ -31,9 +29,9 @@ class GameOverViewController: UIViewController {
         return view
     }()
     
-    lazy var gameOverLabel: UILabel = {
+    lazy var pauseLabel: UILabel = {
         let label = UILabel()
-        label.text = "Game\nOver"
+        label.text = "Pause"
         label.numberOfLines = 2
         label.textAlignment = .center
         label.font = .orange(size: 50)
@@ -43,12 +41,12 @@ class GameOverViewController: UIViewController {
         return label
     }()
     
-    lazy var restartButton: UIButton = {
+    lazy var resumeButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .buttonColor
         button.layer.masksToBounds = false
         button.layer.cornerRadius = 16
-        button.setTitle("Restart", for: .normal)
+        button.setTitle("Resume", for: .normal)
         button.titleLabel?.font = .nunito(size:20)
         button.setTitleColor(.cardBackgroundColor, for: .normal)
         button.addTarget(self, action: #selector(resume), for: .touchUpInside)
@@ -68,7 +66,6 @@ class GameOverViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        audioManager.playSound(named: .gameOver, volume: 3.0)
         setupViewHierarchy()
         setupConstraints()
     }
@@ -76,8 +73,8 @@ class GameOverViewController: UIViewController {
     private func setupViewHierarchy() {
         view.addSubview(blur)
         view.addSubview(backgroundView)
-        view.addSubview(gameOverLabel)
-        view.addSubview(restartButton)
+        view.addSubview(pauseLabel)
+        view.addSubview(resumeButton)
         view.addSubview(mainMenuButton)
     }
     
@@ -106,17 +103,17 @@ class GameOverViewController: UIViewController {
             backgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
             backgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
             
-            gameOverLabel.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor),
-            gameOverLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 80),
-            gameOverLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -80),
-            gameOverLabel.topAnchor.constraint(equalTo: backgroundView.topAnchor, constant: 42),
+            pauseLabel.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor),
+            pauseLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 80),
+            pauseLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -80),
+            pauseLabel.topAnchor.constraint(equalTo: backgroundView.topAnchor, constant: 42),
             
-            restartButton.topAnchor.constraint(equalTo: gameOverLabel.bottomAnchor, constant: 42),
-            restartButton.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor),
-            restartButton.heightAnchor.constraint(equalToConstant: 64),
-            restartButton.widthAnchor.constraint(equalToConstant: 200),
+            resumeButton.topAnchor.constraint(equalTo: pauseLabel.bottomAnchor, constant: 42),
+            resumeButton.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor),
+            resumeButton.heightAnchor.constraint(equalToConstant: 64),
+            resumeButton.widthAnchor.constraint(equalToConstant: 200),
             
-            mainMenuButton.topAnchor.constraint(equalTo: restartButton.bottomAnchor, constant: 24),
+            mainMenuButton.topAnchor.constraint(equalTo: resumeButton.bottomAnchor, constant: 24),
             mainMenuButton.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor),
             mainMenuButton.bottomAnchor.constraint(equalTo: backgroundView.bottomAnchor, constant: -32),
             mainMenuButton.heightAnchor.constraint(equalToConstant: 64),
