@@ -41,8 +41,8 @@ class GameViewController: UIViewController {
         scene.stateMachine = GameStateMachine(present: self, states: [GameOverState(), PausedState(), PlayingState()])
 
         scene.scaleMode = .aspectFill
-        skView.showsPhysics = true
-        skView.showsFPS = true
+//        skView.showsPhysics = true
+//        skView.showsFPS = true
         skView.presentScene(scene)
         
         setupColorAmbience()

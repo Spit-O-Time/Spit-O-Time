@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B760CB0260A1876007BF4BF /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B760CAF260A1876007BF4BF /* GameKit.framework */; };
 		5B8AD09425F2717800B64371 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8AD09325F2717800B64371 /* AppDelegate.swift */; };
 		5B8AD09A25F2717800B64371 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8AD09925F2717800B64371 /* GameScene.swift */; };
 		5B8AD0A125F2717A00B64371 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B8AD0A025F2717A00B64371 /* Assets.xcassets */; };
@@ -65,6 +66,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5B760CAF260A1876007BF4BF /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		5B8AD09025F2717800B64371 /* SpitOTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpitOTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B8AD09325F2717800B64371 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5B8AD09925F2717800B64371 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B760CB0260A1876007BF4BF /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,6 +139,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5B760CAE260A1876007BF4BF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5B760CAF260A1876007BF4BF /* GameKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		5B8AD08725F2717800B64371 = {
 			isa = PBXGroup;
 			children = (
@@ -143,6 +154,7 @@
 				5B8AD0AA25F2717B00B64371 /* SpitOTimeTests */,
 				5B8AD0B525F2717B00B64371 /* SpitOTimeUITests */,
 				5B8AD09125F2717800B64371 /* Products */,
+				5B760CAE260A1876007BF4BF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -642,7 +654,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Y8XB2TQUP3;
+				DEVELOPMENT_TEAM = 795A25396T;
 				INFOPLIST_FILE = SpitOTime/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -661,7 +673,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Y8XB2TQUP3;
+				DEVELOPMENT_TEAM = 795A25396T;
 				INFOPLIST_FILE = SpitOTime/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
