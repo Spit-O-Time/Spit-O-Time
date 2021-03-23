@@ -10,12 +10,10 @@ import SpriteKit
 
 class SpawnComponent: GKComponent {
     
-    var sprites: [SKSpriteNode]
+    var sprites: [String]!
     
     init(sprites: [String]) {
-        self.sprites = sprites.compactMap {
-            SKSpriteNode(imageNamed: $0)
-        }
+        self.sprites = sprites
         super.init()
     }
     
@@ -24,7 +22,7 @@ class SpawnComponent: GKComponent {
     }
     
     func spawn() -> SKSpriteNode? {
-        guard let random = sprites.randomElement() else { return nil }
+        let random = SKSpriteNode(imageNamed: sprites.randomElement() ?? "")
         random.zPosition = 0
         random.size = CGSize(width: 83.8, height: 100)
         random.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: random.size.width, height: random.size.height/2))
@@ -39,6 +37,8 @@ class SpawnComponent: GKComponent {
         let position = CGPoint(x: CGFloat.random(in: spawnAreaLeft...spawnAreaRight),
                                y: ScreenSize.height + CGFloat.random(in: 0...ScreenSize.height))
         random.position = position
+        random.physicsBody?.categoryBitMask = CategoryMask.obstacle.rawValue
+        random.physicsBody?.contactTestBitMask = CategoryMask.spit.rawValue
         return random
     }
 

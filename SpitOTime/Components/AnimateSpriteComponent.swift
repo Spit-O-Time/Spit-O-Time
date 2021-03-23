@@ -29,6 +29,15 @@ class AnimateSpriteComponent: GKComponent {
         self.animationAtlas = SKTextureAtlas(named: atlasName)
         self.spriteNode = SKSpriteNode(imageNamed: animationAtlas!.textureNames.first!)
         self.spriteNode.texture = animationTextures.first!
+        self.spriteNode.position = CGPoint(x: ScreenSize.width/2, y: 0)
+        self.spriteNode.physicsBody = SKPhysicsBody(circleOfRadius: self.spriteNode.size.width/2)
+        self.spriteNode.anchorPoint = CGPoint(x: self.spriteNode.size.width/2, y: self.spriteNode.size.height)
+        self.spriteNode.physicsBody?.categoryBitMask = CategoryMask.spit.rawValue
+        self.spriteNode.physicsBody?.collisionBitMask = CategoryMask.obstacle.rawValue | CategoryMask.spit.rawValue
+        self.spriteNode.physicsBody?.affectedByGravity = false
+        self.spriteNode.physicsBody?.allowsRotation = false
+        self.spriteNode.physicsBody?.restitution = 0
+        self.spriteNode.physicsBody?.density = 12
     }
     
     required init?(coder: NSCoder) {
