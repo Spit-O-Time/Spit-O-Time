@@ -8,7 +8,7 @@
 import UIKit
 import SpriteKit
 import GameplayKit
-
+import GameKit
 class GameViewController: UIViewController {
 
     let skView = SKView()
@@ -41,8 +41,11 @@ class GameViewController: UIViewController {
         scene.stateMachine = GameStateMachine(present: self, states: [GameOverState(), PausedState(), PlayingState()])
 
         scene.scaleMode = .aspectFill
-//        skView.showsPhysics = true
-//        skView.showsFPS = true
+        #if DEBUG
+            skView.showsPhysics = true
+            skView.showsFPS = true
+        #endif
+
         skView.presentScene(scene)
         
         setupColorAmbience()

@@ -17,6 +17,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainMenuViewController" customModule="SpitOTime" customModuleProvider="target">
             <connections>
+                <outlet property="leaderboard" destination="pMg-h0-EOx" id="4G6-pk-4hP"/>
                 <outlet property="music" destination="oe7-fe-kvU" id="0HI-Hg-n5m"/>
                 <outlet property="play" destination="ofE-Vs-G9h" id="k5j-0W-fH2"/>
                 <outlet property="sound" destination="UnJ-FF-uCm" id="4ph-1e-AjW"/>
@@ -84,6 +85,21 @@
                     <color key="textColor" red="0.52029937510000002" green="0.0" blue="0.083525545899999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pMg-h0-EOx">
+                    <rect key="frame" x="32" y="60" width="42" height="42"/>
+                    <color key="backgroundColor" red="1" green="0.39815920589999998" blue="0.42292946580000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="42" id="Z8V-E8-dLr"/>
+                        <constraint firstAttribute="height" constant="42" id="nkq-PA-493"/>
+                    </constraints>
+                    <color key="tintColor" red="0.99770480390000005" green="0.78461742400000001" blue="0.3724429011" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <state key="normal" image="crown.fill" catalog="system">
+                        <color key="titleColor" red="0.93814623360000005" green="0.83099347349999997" blue="0.74661612509999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="leaderboard:" destination="-1" eventType="touchUpInside" id="mUN-b2-iOQ"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" red="1" green="0.77570170159999996" blue="0.27349430320000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -91,12 +107,14 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="ofE-Vs-G9h" secondAttribute="bottom" constant="116" id="1Cs-nB-Nam"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="4a3-FC-5jR" secondAttribute="trailing" constant="75" id="3xW-6s-op5"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ofE-Vs-G9h" secondAttribute="trailing" constant="80" id="64E-wC-K0d"/>
+                <constraint firstItem="pMg-h0-EOx" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="I9X-Hw-vKa"/>
                 <constraint firstItem="oe7-fe-kvU" firstAttribute="centerY" secondItem="UnJ-FF-uCm" secondAttribute="centerY" id="NyU-4x-Jrh"/>
                 <constraint firstItem="UnJ-FF-uCm" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="VvF-32-sgP"/>
                 <constraint firstItem="Exw-Gy-r0Y" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="Xvl-N0-4UU"/>
                 <constraint firstItem="oe7-fe-kvU" firstAttribute="leading" secondItem="UnJ-FF-uCm" secondAttribute="trailing" constant="16" id="ZuB-qT-Zyf"/>
                 <constraint firstAttribute="bottom" secondItem="4a3-FC-5jR" secondAttribute="bottom" constant="-385" id="bRQ-vg-vAB"/>
                 <constraint firstItem="ofE-Vs-G9h" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="80" id="efS-o4-rql"/>
+                <constraint firstItem="pMg-h0-EOx" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="fkh-WU-NeT"/>
                 <constraint firstItem="4a3-FC-5jR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="100" id="nn9-re-bLb"/>
                 <constraint firstItem="Exw-Gy-r0Y" firstAttribute="top" secondItem="UnJ-FF-uCm" secondAttribute="bottom" id="olZ-a5-XQe"/>
                 <constraint firstItem="4a3-FC-5jR" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="-457" id="pTw-4V-DVg"/>
@@ -107,6 +125,7 @@
     </objects>
     <resources>
         <image name="bigLlama" width="767" height="916"/>
+        <image name="crown.fill" catalog="system" width="128" height="92"/>
         <image name="isSoundEffectMuted_active" width="25" height="26"/>
         <image name="musicOn" width="17" height="28"/>
     </resources>

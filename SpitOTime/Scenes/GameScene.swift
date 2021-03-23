@@ -8,6 +8,7 @@
 import SpriteKit
 import GameplayKit
 import CoreMotion
+import GameKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
@@ -213,6 +214,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     // MARK: Game Over
     func gameOver() {
+        report(score: self.score)
         self.score = 0
         self.scoreCount = 0
         self.view?.isPaused = true
@@ -228,6 +230,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         removeObstacles()
         for obstacle in obstacles {
             obstacle.position.y -= 8
+        }
+    }
+    
+    func report(score: Int) {
+        GKLeaderboard.submitScore(score, context: .zero, player: GKLocalPlayer.local, leaderboardIDs: ["Leaderboard"]){ erro in
+            print(erro)
         }
     }
     
