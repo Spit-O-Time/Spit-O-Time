@@ -59,6 +59,7 @@ class GameViewController: UIViewController {
     @objc func pause() {
         if let scene = skView.scene as? GameScene {
             skView.isPaused = true
+            scene.isPlaying = false
             scene.stateMachine?.enter(PausedState.self)
         }
     }
