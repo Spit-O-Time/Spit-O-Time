@@ -24,6 +24,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let motionManager = CMMotionManager()
     
     var stateMachine: GameStateMachine?
+
+    var difficulty: CGFloat = 8
     
     var scoreLabel: SKLabelNode!
 
@@ -51,6 +53,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: DidMove
     override func didMove(to view: SKView) {
         scheduleTimer()
+        difficultyTimer()
         scoreTimer()
         spawnObstacles()
         setupNodes()
@@ -70,6 +73,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                              selector: #selector(timerTrigger),
                              userInfo: nil,
                              repeats:  false)
+    }
+    
+    func difficultyTimer() {
+        Timer.scheduledTimer(timeInterval: 3,
+                             target: self,
+                             selector: #selector(difficultyTrigger),
+                             userInfo: nil,
+                             repeats: true)
+        
+    }
+    
+    @objc func difficultyTrigger() {
+        if startGame {
+            difficulty += 0.5
+        }
     }
     
     func scoreTimer() {
@@ -185,7 +203,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         spitTail?.position = spitPosition
         
         if let accelerometerData = motionManager.accelerometerData {
-            spit.component(ofType: AnimateSpriteComponent.self)!.spriteNode.position.x += CGFloat(accelerometerData.acceleration.x) * 16
+            spit.component(ofType: AnimateSpriteComponent.self)!.spriteNode.position.x += CGFloat(accelerometerData.acceleration.x) * (8 + difficulty)
         }
         
         if spitPosition.y < sceneCamera.position.y/2 {
@@ -197,7 +215,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         guard let backgoundComponent = background
                 .component(ofType: AnimateBackgroundComponent.self) else { return }
         
-        backgoundComponent.updateBackground(cameraNode: sceneCamera)
+        backgoundComponent.updateBackground(cameraNode: sceneCamera, velocity: difficulty)
     }
     
     // MARK: Begin Contact
@@ -227,7 +245,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         animateBackground()
         removeObstacles()
         for obstacle in obstacles {
-            obstacle.position.y -= 8
+            obstacle.position.y -= difficulty
         }
     }
     

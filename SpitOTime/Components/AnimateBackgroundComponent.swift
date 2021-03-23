@@ -80,7 +80,7 @@ class AnimateBackgroundComponent: GKComponent {
         return sprite
     }
     
-    func updateBackground(cameraNode: SKCameraNode) {
+    func updateBackground(cameraNode: SKCameraNode, velocity: CGFloat) {
         let spriteArrays = [grounds, wallRight, wallLeft]
         spriteArrays.forEach { (spriteArray) in
             
@@ -93,8 +93,8 @@ class AnimateBackgroundComponent: GKComponent {
             }
             
             shooterCharacter.position.y -= 2
-            spriteArray[0].position.y -= 6
-            spriteArray[1].position.y -= 6
+            spriteArray[0].position.y -= velocity
+            spriteArray[1].position.y -= velocity
         }
     }
     
