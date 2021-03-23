@@ -54,9 +54,12 @@
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="22"/>
                     <color key="tintColor" red="1" green="0.77570170159999996" blue="0.27349430320000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <state key="normal" image="soundOn">
+                    <state key="normal" image="isSoundEffectMuted_active">
                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
                     </state>
+                    <connections>
+                        <action selector="changeSoundEffectAction:" destination="-1" eventType="touchUpInside" id="WyV-rB-IHh"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oe7-fe-kvU">
                     <rect key="frame" x="340" y="60" width="42" height="42"/>
@@ -68,6 +71,9 @@
                     <fontDescription key="fontDescription" type="system" pointSize="22"/>
                     <color key="tintColor" red="1" green="0.77570170159999996" blue="0.27349430320000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <state key="normal" image="musicOn"/>
+                    <connections>
+                        <action selector="changeSoundtrackAction:" destination="-1" eventType="touchUpInside" id="JpT-ku-a7g"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spit 'o time" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Exw-Gy-r0Y">
                     <rect key="frame" x="107" y="102" width="200" height="159.5"/>
@@ -101,7 +107,7 @@
     </objects>
     <resources>
         <image name="bigLlama" width="767" height="916"/>
+        <image name="isSoundEffectMuted_active" width="25" height="26"/>
         <image name="musicOn" width="17" height="28"/>
-        <image name="soundOn" width="39" height="27"/>
     </resources>
 </document>

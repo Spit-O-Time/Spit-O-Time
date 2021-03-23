@@ -90,6 +90,11 @@ class PauseGameViewController: UIViewController {
                 transition.duration = 0.3
                 transition.type = .fade
                 transition.subtype = .none
+                let gameViewController = stateMachine.present as? GameViewController
+                gameViewController?.skView.scene?.removeAllActions()
+                gameViewController?.skView.scene?.removeAllChildren()
+                gameViewController?.skView.scene?.removeFromParent()
+                
                 stateMachine.present?.navigationController?.view.layer.add(transition, forKey: kCATransition)
                 stateMachine.present?.navigationController?.popViewController(animated: false)
             }
