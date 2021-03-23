@@ -57,6 +57,9 @@ class GameStateCoordinator: Coordinator {
             if let controller = gameViewController { addScene(controller: controller) }
         case .resume:
             let gameViewController = stateMachine?.present as? GameViewController
+            if let scene = gameViewController?.skView.scene as? GameScene {
+                scene.isPlaying = true
+            }
             gameViewController?.skView.isPaused = false
         }
     }
