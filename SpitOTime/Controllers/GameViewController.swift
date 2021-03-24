@@ -44,17 +44,28 @@ class GameViewController: UIViewController {
         scene.stateMachine = GameStateMachine(present: self, states: [GameOverState(), PausedState(), PlayingState()])
         
         scene.scaleMode = .aspectFill
-//        skView.showsPhysics = true
-//        skView.showsFPS = true
         skView.presentScene(scene)
         setupColorAmbience()
         setupPauseButton()
         countAnimationIfNeeded()
         tutorialAnimationIfNeeded()
+        animateColorAmbience()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        self.view.layer.removeAllAnimations()
     }
 
-    func setAmbienceColor(_ color: UIColor) {
+    func setAmbienceColor(_ color: UIColor, with alpha: CGFloat = 0.1) {
         colorAmbience.backgroundColor = color
+        colorAmbience.alpha = alpha
+    }
+    
+    private func animateColorAmbience() {
+        setAmbienceColor(.orange, with: 0.04)
+        UIView.animate(withDuration: 15, delay: 0, options: [.repeat, .autoreverse]) {
+            self.setAmbienceColor(.black, with: 0.4)
+        }
     }
     
     @objc func pause() {
@@ -107,7 +118,6 @@ class GameViewController: UIViewController {
     
     private func setupColorAmbience() {
         colorAmbience.backgroundColor = .black
-        colorAmbience.alpha = 0.08
         colorAmbience.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(colorAmbience)
         NSLayoutConstraint.activate([
