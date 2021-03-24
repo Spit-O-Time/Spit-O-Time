@@ -41,16 +41,36 @@ class GameViewController: UIViewController {
         scene.stateMachine = GameStateMachine(present: self, states: [GameOverState(), PausedState(), PlayingState()])
 
         scene.scaleMode = .aspectFill
-//        skView.showsPhysics = true
-//        skView.showsFPS = true
         skView.presentScene(scene)
         
         setupColorAmbience()
         setupPauseButton()
+        animateColorAmbience()
     }
 
-    func setAmbienceColor(_ color: UIColor) {
+    func setAmbienceColor(_ color: UIColor, with alpha: CGFloat = 0.1) {
         colorAmbience.backgroundColor = color
+        colorAmbience.alpha = alpha
+    }
+    
+    private func animateColorAmbience() {
+        UIView.animate(withDuration: 15) {
+            self.setAmbienceColor(.clear)
+        } completion: { (status) in
+            UIView.animate(withDuration: 15) {
+                self.setAmbienceColor(.yellow)
+            } completion: { (status) in
+                UIView.animate(withDuration: 15) {
+                    self.setAmbienceColor(.orange)
+                } completion: { (status) in
+                    UIView.animate(withDuration: 20) {
+                        self.setAmbienceColor(.black, with: 0.36)
+                    } completion: { (status) in
+                        self.animateColorAmbience()
+                    }
+                }
+            }
+        }
     }
     
     @objc func pause() {
@@ -73,7 +93,7 @@ class GameViewController: UIViewController {
     
     private func setupColorAmbience() {
         colorAmbience.backgroundColor = .black
-        colorAmbience.alpha = 0.08
+        colorAmbience.alpha = 0.06
         colorAmbience.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(colorAmbience)
         NSLayoutConstraint.activate([
