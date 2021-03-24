@@ -69,8 +69,6 @@ class GameStateCoordinator: Coordinator {
         scene.stateMachine = GameStateMachine(present: controller, states: [GameOverState(), PausedState(), PlayingState()])
 
         scene.scaleMode = .aspectFill
-        controller.skView.showsPhysics = true
-        controller.skView.showsFPS = true
         controller.skView.presentScene(scene)
     }
     

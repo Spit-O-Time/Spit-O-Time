@@ -48,7 +48,7 @@ class AudioManager {
     
     func playSKAudioNode(_ name: SoundName) -> SKAction? {
         if isSoundEffectMuted == false {
-            SKAction.playSoundFileNamed(name.rawValue, waitForCompletion: false)
+           return SKAction.playSoundFileNamed(name.rawValue, waitForCompletion: false)
         }
         return nil
     }

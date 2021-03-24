@@ -224,6 +224,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let collision = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
         
         if collision == CategoryMask.spit.rawValue | CategoryMask.obstacle.rawValue {
+            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
             gameOver()
         }
         
