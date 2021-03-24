@@ -45,7 +45,11 @@ class GameViewController: UIViewController {
         
         setupColorAmbience()
         setupPauseButton()
-//        animateColorAmbience()
+        animateColorAmbience()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        self.view.layer.removeAllAnimations()
     }
 
     func setAmbienceColor(_ color: UIColor, with alpha: CGFloat = 0.1) {
@@ -54,22 +58,9 @@ class GameViewController: UIViewController {
     }
     
     private func animateColorAmbience() {
-        UIView.animate(withDuration: 15) {
-            self.setAmbienceColor(.clear)
-        } completion: { (status) in
-            UIView.animate(withDuration: 15) {
-                self.setAmbienceColor(.yellow)
-            } completion: { (status) in
-                UIView.animate(withDuration: 15) {
-                    self.setAmbienceColor(.orange)
-                } completion: { (status) in
-                    UIView.animate(withDuration: 20) {
-                        self.setAmbienceColor(.black, with: 0.36)
-                    } completion: { (status) in
-                        self.animateColorAmbience()
-                    }
-                }
-            }
+        setAmbienceColor(.orange, with: 0.04)
+        UIView.animate(withDuration: 15, delay: 0, options: [.repeat, .autoreverse]) {
+            self.setAmbienceColor(.black, with: 0.4)
         }
     }
     
@@ -93,7 +84,6 @@ class GameViewController: UIViewController {
     
     private func setupColorAmbience() {
         colorAmbience.backgroundColor = .black
-        colorAmbience.alpha = 0.06
         colorAmbience.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(colorAmbience)
         NSLayoutConstraint.activate([
