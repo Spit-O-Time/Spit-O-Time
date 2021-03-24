@@ -68,7 +68,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // MARK: Time events
     func scheduleTimer() {
-        Timer.scheduledTimer(timeInterval: 3,
+        Timer.scheduledTimer(timeInterval: 4,
                              target: self,
                              selector: #selector(timerTrigger),
                              userInfo: nil,

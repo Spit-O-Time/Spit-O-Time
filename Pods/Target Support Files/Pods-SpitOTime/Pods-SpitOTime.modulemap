@@ -1,0 +1,6 @@
+framework module Pods_SpitOTime {
+  umbrella header "Pods-SpitOTime-umbrella.h"
+
+  export *
+  module * { export * }
+}
