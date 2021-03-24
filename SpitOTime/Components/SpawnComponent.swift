@@ -25,7 +25,7 @@ class SpawnComponent: GKComponent {
         let random = SKSpriteNode(imageNamed: sprites.randomElement() ?? "")
         random.zPosition = 0
         random.size = CGSize(width: 83.8, height: 100)
-        random.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: random.size.width, height: random.size.height/2))
+        random.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: random.size.width - 10, height: random.size.height/1.5))
         random.physicsBody?.affectedByGravity = false
         random.physicsBody?.isDynamic = false
         random.physicsBody?.allowsRotation = false
