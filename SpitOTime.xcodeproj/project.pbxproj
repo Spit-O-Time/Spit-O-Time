@@ -25,7 +25,7 @@
 		815EFDD426039B3C008EEC0C /* PlayingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815EFD9426027D7D008EEC0C /* PlayingState.swift */; };
 		815EFDD826039B54008EEC0C /* GameCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815EFD9A26027DBB008EEC0C /* GameCoordinator.swift */; };
 		8170AEB7260B7A3D00CD0560 /* tutorial_movement.json in Resources */ = {isa = PBXBuildFile; fileRef = 8170AEB6260B7A3D00CD0560 /* tutorial_movement.json */; };
-		8170AED2260B845500CD0560 /* count.json in Resources */ = {isa = PBXBuildFile; fileRef = 8170AED1260B845500CD0560 /* count.json */; };
+		8170AEEB260B8C3D00CD0560 /* count.json in Resources */ = {isa = PBXBuildFile; fileRef = 8170AEEA260B8C3D00CD0560 /* count.json */; };
 		818A422825FF7E0F00454FAF /* AnimateBackgroundComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818A422725FF7E0F00454FAF /* AnimateBackgroundComponent.swift */; };
 		818ACC5F260237040033F65F /* CategoryMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818ACC5E260237040033F65F /* CategoryMask.swift */; };
 		818ACC6E260242BB0033F65F /* PausedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818ACC6D260242BB0033F65F /* PausedState.swift */; };
@@ -99,7 +99,7 @@
 		815EFDB526039492008EEC0C /* SpitParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SpitParticle.sks; sourceTree = "<group>"; };
 		815EFDB626039492008EEC0C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8170AEB6260B7A3D00CD0560 /* tutorial_movement.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tutorial_movement.json; sourceTree = "<group>"; };
-		8170AED1260B845500CD0560 /* count.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = count.json; sourceTree = "<group>"; };
+		8170AEEA260B8C3D00CD0560 /* count.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = count.json; sourceTree = "<group>"; };
 		818A422725FF7E0F00454FAF /* AnimateBackgroundComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimateBackgroundComponent.swift; sourceTree = "<group>"; };
 		818ACC5E260237040033F65F /* CategoryMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryMask.swift; sourceTree = "<group>"; };
 		818ACC6D260242BB0033F65F /* PausedState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PausedState.swift; sourceTree = "<group>"; };
@@ -273,7 +273,7 @@
 		81BB4980260B729400BDC688 /* Animations */ = {
 			isa = PBXGroup;
 			children = (
-				8170AED1260B845500CD0560 /* count.json */,
+				8170AEEA260B8C3D00CD0560 /* count.json */,
 				8170AEB6260B7A3D00CD0560 /* tutorial_movement.json */,
 			);
 			path = Animations;
@@ -491,7 +491,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8170AED2260B845500CD0560 /* count.json in Resources */,
 				AED591AE260242F8002D41AE /* GameOver.mp3 in Resources */,
 				8170AEB7260B7A3D00CD0560 /* tutorial_movement.json in Resources */,
 				AEC2BAB925FA43FF00D4261A /* LaunchScreen.storyboard in Resources */,
@@ -500,6 +499,7 @@
 				AED591A9260242EA002D41AE /* LlamaSpit.mp3 in Resources */,
 				815EFDB826039492008EEC0C /* Assets.xcassets in Resources */,
 				AED591A4260242D5002D41AE /* MenuBackground.mp3 in Resources */,
+				8170AEEB260B8C3D00CD0560 /* count.json in Resources */,
 				815EFDB726039492008EEC0C /* SpitParticle.sks in Resources */,
 				AEFE24202608C8D700278D50 /* MainMenuViewController.xib in Resources */,
 				A4D6B5C02603A1E2002639C4 /* NunitoRegular-vmABZ.ttf in Resources */,

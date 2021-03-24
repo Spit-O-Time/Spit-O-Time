@@ -65,9 +65,11 @@ class GameViewController: UIViewController {
         }
     }
     
-    private func countAnimationIfNeeded() {
+    func countAnimationIfNeeded() {
         guard UserDefaults.standard.bool(forKey: UserDefaultsKey.notFirstTime.rawValue) else { return }
         animationView = .init(name: "count")
+        animationView.frame.size = CGSize(width: 20, height: 20)
+        animationView.contentMode = .scaleAspectFit
         setupAnimationView()
         animationView.play { _ in
             UIView.animate(withDuration: 0.3) {
@@ -120,10 +122,10 @@ class GameViewController: UIViewController {
         self.view.addSubview(animationView)
         animationView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            animationView.topAnchor.constraint(equalTo: view.topAnchor),
-            animationView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            animationView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            animationView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            animationView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            animationView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            animationView.heightAnchor.constraint(equalToConstant: 200),
+            animationView.widthAnchor.constraint(equalToConstant: 200)
         ])
     }
 }
