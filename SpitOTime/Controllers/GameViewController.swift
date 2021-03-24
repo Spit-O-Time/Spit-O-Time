@@ -63,7 +63,7 @@ class GameViewController: UIViewController {
     
     private func animateColorAmbience() {
         setAmbienceColor(.orange, with: 0.04)
-        UIView.animate(withDuration: 15, delay: 0, options: [.repeat, .autoreverse]) {
+        UIView.animate(withDuration: 40, delay: 0, options: [.repeat, .autoreverse]) {
             self.setAmbienceColor(.black, with: 0.4)
         }
     }
@@ -79,9 +79,8 @@ class GameViewController: UIViewController {
     func countAnimationIfNeeded() {
         guard UserDefaults.standard.bool(forKey: UserDefaultsKey.notFirstTime.rawValue) else { return }
         animationView = .init(name: "count")
-        animationView.frame.size = CGSize(width: 20, height: 20)
         animationView.contentMode = .scaleAspectFit
-        setupAnimationView()
+        setupAnimationView(withSize: CGSize(width: 200, height: 200))
         animationView.play { _ in
             UIView.animate(withDuration: 0.3) {
                 self.animationView.alpha = 0
@@ -95,7 +94,8 @@ class GameViewController: UIViewController {
         guard !UserDefaults.standard.bool(forKey: UserDefaultsKey.notFirstTime.rawValue) else { return }
         animationView = .init(name: "tutorial_movement")
         animationView.animationSpeed = 0.5
-        setupAnimationView()
+        animationView.contentMode = .scaleToFill
+        setupAnimationView(withSize: CGSize(width: 500, height: 500))
         animationView.play { _ in
             UIView.animate(withDuration: 0.3) {
                 self.animationView.alpha = 0
@@ -128,14 +128,14 @@ class GameViewController: UIViewController {
         ])
     }
     
-    private func setupAnimationView() {
+    private func setupAnimationView(withSize size: CGSize) {
         self.view.addSubview(animationView)
         animationView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             animationView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             animationView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            animationView.heightAnchor.constraint(equalToConstant: 200),
-            animationView.widthAnchor.constraint(equalToConstant: 200)
+            animationView.heightAnchor.constraint(equalToConstant: size.height),
+            animationView.widthAnchor.constraint(equalToConstant: size.width)
         ])
     }
 }
