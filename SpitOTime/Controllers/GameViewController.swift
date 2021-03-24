@@ -50,7 +50,7 @@ class GameViewController: UIViewController {
         
         setupColorAmbience()
         setupPauseButton()
-        animateColorAmbience()
+//        animateColorAmbience()
     }
 
     func setAmbienceColor(_ color: UIColor, with alpha: CGFloat = 0.1) {
