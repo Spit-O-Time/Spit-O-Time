@@ -94,10 +94,12 @@ class GameViewController: UIViewController {
         animationView.contentMode = .scaleAspectFit
         setupAnimationView(withSize: CGSize(width: 200, height: 200))
         animationView.play { _ in
+            self.scene?.isRunningAnimationCount = true
             UIView.animate(withDuration: 0.3) {
                 self.animationView.alpha = 0
             } completion: { _ in
                 self.animationView.isHidden = true
+                self.scene?.isRunningAnimationCount = false
             }
         }
     }
