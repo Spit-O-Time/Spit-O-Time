@@ -14,6 +14,7 @@ class GameViewController: UIViewController {
 
     let skView = SKView()
     var colorAmbience = UIView()
+    var scene: GameScene?
     private var animationView: AnimationView!
     
     lazy var pauseButton: UIButton = {
@@ -40,11 +41,14 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let scene: GameScene = GameScene(size: CGSize(width: ScreenSize.width, height: ScreenSize.height))
-        scene.stateMachine = GameStateMachine(present: self, states: [GameOverState(), PausedState(), PlayingState()])
+        scene = GameScene(size: CGSize(width: ScreenSize.width, height: ScreenSize.height))
+        scene?.stateMachine = GameStateMachine(present: self, states: [GameOverState(), PausedState(), PlayingState()])
         
-        scene.scaleMode = .aspectFill
-        skView.presentScene(scene)
+        let notificationCenter = NotificationCenter.default
+            notificationCenter.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.willResignActiveNotification, object: nil)
+        
+        scene?.scaleMode = .aspectFill
+        skView.presentScene(scene!)
         setupColorAmbience()
         setupPauseButton()
         countAnimationIfNeeded()
@@ -54,6 +58,14 @@ class GameViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         self.view.layer.removeAllAnimations()
+    }
+    
+    @objc func appMovedToBackground() {
+        if let scene = skView.scene as? GameScene {
+            skView.isPaused = true
+            scene.isPlaying = false
+            scene.stateMachine?.enter(PausedState.self)
+        }
     }
 
     func setAmbienceColor(_ color: UIColor, with alpha: CGFloat = 0.1) {
