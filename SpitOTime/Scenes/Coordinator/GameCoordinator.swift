@@ -51,6 +51,7 @@ class GameStateCoordinator: Coordinator {
             stateMachine?.present?.present(controller, animated: true, completion: nil)
         case .restart:
             let gameViewController = stateMachine?.present as? GameViewController
+            gameViewController?.countAnimationIfNeeded()
             gameViewController?.skView.scene?.removeAllActions()
             gameViewController?.skView.scene?.removeAllChildren()
             gameViewController?.skView.scene?.removeFromParent()
