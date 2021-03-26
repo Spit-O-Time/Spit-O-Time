@@ -69,7 +69,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // MARK: Time events
     func scheduleTimer() {
-        Timer.scheduledTimer(timeInterval: 3,
+        Timer.scheduledTimer(timeInterval: 4,
                              target: self,
                              selector: #selector(timerTrigger),
                              userInfo: nil,
@@ -175,7 +175,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func addSpit() {
         guard let spitSpriteNode = spit
                 .component(ofType: AnimateSpriteComponent.self)?
-                .spriteNode else { return }
+                .spriteNode,
+              let shooterSpriteNode = background
+                .component(ofType: AnimateBackgroundComponent.self)?
+                .shooterCharacter
+              else { return }
+        spitSpriteNode.position = CGPoint(x: ScreenSize.width/2, y: shooterSpriteNode.position.y)
         
         if let spitTail = SKEmitterNode(fileNamed: "SpitParticle.sks") {
             self.spitTail = spitTail

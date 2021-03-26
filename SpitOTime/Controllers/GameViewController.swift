@@ -9,10 +9,13 @@ import UIKit
 import SpriteKit
 import GameplayKit
 import GameKit
+import Lottie
+
 class GameViewController: UIViewController {
 
     let skView = SKView()
     var colorAmbience = UIView()
+    private var animationView: AnimationView!
     
     lazy var pauseButton: UIButton = {
         let button = UIButton()
@@ -37,9 +40,10 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let scene: GameScene = GameScene(size: CGSize(width: ScreenSize.width, height: ScreenSize.height))
         scene.stateMachine = GameStateMachine(present: self, states: [GameOverState(), PausedState(), PlayingState()])
-
+        
         scene.scaleMode = .aspectFill
         #if DEBUG
             skView.showsPhysics = true
@@ -47,9 +51,10 @@ class GameViewController: UIViewController {
         #endif
 
         skView.presentScene(scene)
-        
         setupColorAmbience()
         setupPauseButton()
+        countAnimationIfNeeded()
+        tutorialAnimationIfNeeded()
         animateColorAmbience()
     }
     
@@ -64,7 +69,7 @@ class GameViewController: UIViewController {
     
     private func animateColorAmbience() {
         setAmbienceColor(.orange, with: 0.04)
-        UIView.animate(withDuration: 15, delay: 0, options: [.repeat, .autoreverse]) {
+        UIView.animate(withDuration: 40, delay: 0, options: [.repeat, .autoreverse]) {
             self.setAmbienceColor(.black, with: 0.4)
         }
     }
@@ -75,6 +80,36 @@ class GameViewController: UIViewController {
             scene.isPlaying = false
             scene.stateMachine?.enter(PausedState.self)
         }
+    }
+    
+    func countAnimationIfNeeded() {
+        guard UserDefaults.standard.bool(forKey: UserDefaultsKey.notFirstTime.rawValue) else { return }
+        animationView = .init(name: "count")
+        animationView.contentMode = .scaleAspectFit
+        setupAnimationView(withSize: CGSize(width: 200, height: 200))
+        animationView.play { _ in
+            UIView.animate(withDuration: 0.3) {
+                self.animationView.alpha = 0
+            } completion: { _ in
+                self.animationView.isHidden = true
+            }
+        }
+    }
+    
+    private func tutorialAnimationIfNeeded() {
+        guard !UserDefaults.standard.bool(forKey: UserDefaultsKey.notFirstTime.rawValue) else { return }
+        animationView = .init(name: "tutorial_movement")
+        animationView.animationSpeed = 0.5
+        animationView.contentMode = .scaleToFill
+        setupAnimationView(withSize: CGSize(width: 500, height: 500))
+        animationView.play { _ in
+            UIView.animate(withDuration: 0.3) {
+                self.animationView.alpha = 0
+            } completion: { _ in
+                self.animationView.isHidden = true
+            }
+        }
+        UserDefaults.standard.setValue(true, forKey: UserDefaultsKey.notFirstTime.rawValue)
     }
     
     private func setupPauseButton() {
@@ -96,6 +131,17 @@ class GameViewController: UIViewController {
             colorAmbience.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             colorAmbience.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             colorAmbience.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+    }
+    
+    private func setupAnimationView(withSize size: CGSize) {
+        self.view.addSubview(animationView)
+        animationView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            animationView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            animationView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            animationView.heightAnchor.constraint(equalToConstant: size.height),
+            animationView.widthAnchor.constraint(equalToConstant: size.width)
         ])
     }
 }
