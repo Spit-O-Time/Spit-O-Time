@@ -21,7 +21,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var obstacles = [SKSpriteNode]()
     
     var isPlaying = false
-    var isRunningAnimationCount = true
+    var isRunningAnimationCount = false
     let motionManager = CMMotionManager()
     
     var stateMachine: GameStateMachine?

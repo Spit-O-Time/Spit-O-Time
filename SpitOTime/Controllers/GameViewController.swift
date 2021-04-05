@@ -15,7 +15,7 @@ class GameViewController: UIViewController {
     let skView = SKView()
     var colorAmbience = UIView()
     var scene: GameScene?
-    private var animationView: AnimationView!
+    var animationView: AnimationView!
     
     lazy var pauseButton: UIButton = {
         let button = UIButton()
