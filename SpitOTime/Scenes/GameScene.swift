@@ -25,7 +25,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var stateMachine: GameStateMachine?
     
-    var difficulty: CGFloat = 8
+    var difficulty: CGFloat = 6
     
     var scoreLabel: SKLabelNode!
     
@@ -86,7 +86,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     @objc func difficultyTrigger() {
         if isPlaying {
-            difficulty += 0.5
+            difficulty += 0.2 
         }
     }
     
