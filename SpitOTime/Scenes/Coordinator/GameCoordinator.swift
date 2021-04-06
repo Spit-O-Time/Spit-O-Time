@@ -70,7 +70,6 @@ class GameStateCoordinator: Coordinator {
     func addScene(controller: GameViewController) {
         let scene = GameScene(size: CGSize(width: ScreenSize.width, height: ScreenSize.height))
         scene.stateMachine = GameStateMachine(present: controller, states: [GameOverState(), PausedState(), PlayingState()])
-
         scene.scaleMode = .aspectFill
         controller.skView.showsPhysics = true
         controller.skView.showsFPS = true

@@ -225,15 +225,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if collision == CategoryMask.spit.rawValue | CategoryMask.obstacle.rawValue {
             gameOver()
+            contact.bodyA.node?.removeFromParent()
         }
         
     }
     
     // MARK: Game Over
     func gameOver() {
-        self.score = 0
-        self.scoreCount = 0
         self.view?.isPaused = true
+        self.isPlaying = false
         stateMachine?.enter(GameOverState.self)
         audioManager.stopSKAudioNode(backgroundSound)
     }

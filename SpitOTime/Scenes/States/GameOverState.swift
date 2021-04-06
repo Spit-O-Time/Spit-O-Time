@@ -10,7 +10,8 @@ import GameplayKit
 class GameOverState: GKState {
     
     var gameStateCoordinator: GameStateCoordinator?
-
+    var restart = true
+    
     override func didEnter(from previousState: GKState?) {
         loadCoordinator()
         gameStateCoordinator?.route(to: .gameOver)
