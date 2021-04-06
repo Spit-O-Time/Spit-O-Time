@@ -7,7 +7,8 @@ target 'SpitOTime' do
 
   # Pods for SpitOTime
   pod 'lottie-ios'
-
+  pod 'Google-Mobile-Ads-SDK'
+  
   target 'SpitOTimeTests' do
     inherit! :search_paths
     # Pods for testing
