@@ -32,15 +32,24 @@ class MainMenuViewController: UIViewController {
 
     let audioManager = AudioManager()
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.audioManager.playSound(named: .menuBackground, numberOfLoop: -1, volume: 0.5)
         }
+        
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
         setButtonImage(forKey: .isSoundEffectMuted, button: sound)
         setButtonImage(forKey: .isSoundtrackMuted, button: music)
         navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.audioManager.stopSound()
     }
 
     @IBAction func playButtonAction(_ sender: Any) {
@@ -65,9 +74,11 @@ class MainMenuViewController: UIViewController {
         if UserDefaults.standard.bool(forKey: forKey.rawValue) {
             UserDefaults.standard.setValue(false, forKey: forKey.rawValue)
             button.setImage(UIImage(named: forKey.rawValue+"_deactive"), for: .normal)
+            self.audioManager.stopSound()
         } else {
             UserDefaults.standard.setValue(true, forKey: forKey.rawValue)
             button.setImage(UIImage(named: forKey.rawValue+"_active"), for: .normal)
+            self.audioManager.playSound(named: .menuBackground, numberOfLoop: -1, volume: 0.5)
         }
         UserDefaults.standard.synchronize()
         print(UserDefaults.standard.bool(forKey: forKey.rawValue))
