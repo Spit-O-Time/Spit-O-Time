@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0ED482CCCDA78DBE77F90EAF /* Pods_SpitOTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3919AA3A576443BAE3BCABF1 /* Pods_SpitOTime.framework */; };
-		5702402D4F513AE70A33BD83 /* Pods_SpitOTime_SpitOTimeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 266562967FE13879105F930A /* Pods_SpitOTime_SpitOTimeUITests.framework */; };
+		12CE0A9748A143BC20DE5350 /* Pods_SpitOTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE8153D792C7891A1FF1E7F6 /* Pods_SpitOTime.framework */; };
+		331457085BA67BE61EF79A73 /* Pods_SpitOTimeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32FA9B32D8CFF5C2021BC600 /* Pods_SpitOTimeTests.framework */; };
+		3CD9BE0537D5ACF2680B7CEC /* Pods_SpitOTime_SpitOTimeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A6CA53D669D71AFD17062FB /* Pods_SpitOTime_SpitOTimeUITests.framework */; };
 		5B760CB0260A1876007BF4BF /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B760CAF260A1876007BF4BF /* GameKit.framework */; };
 		5B8AD09425F2717800B64371 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8AD09325F2717800B64371 /* AppDelegate.swift */; };
 		5B8AD09A25F2717800B64371 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8AD09925F2717800B64371 /* GameScene.swift */; };
@@ -20,18 +21,21 @@
 		810BD5942600DE5000853F6C /* Obstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810BD5932600DE5000853F6C /* Obstacle.swift */; };
 		8118BD7125FA4E19002015E7 /* Spit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8118BD7025FA4E19002015E7 /* Spit.swift */; };
 		8118BD8025FA5873002015E7 /* AnimateSpriteComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8118BD7F25FA5873002015E7 /* AnimateSpriteComponent.swift */; };
+		813A8BE7261DF40C00F2F13F /* Background.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 813A8BE6261DF40C00F2F13F /* Background.mp3 */; };
+		813A8BEC261DF42100F2F13F /* BackgroundLoop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 813A8BEB261DF42000F2F13F /* BackgroundLoop.mp3 */; };
 		815EFDAE26038248008EEC0C /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815EFDAD26038248008EEC0C /* AudioManager.swift */; };
 		815EFDB726039492008EEC0C /* SpitParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 815EFDB526039492008EEC0C /* SpitParticle.sks */; };
 		815EFDB826039492008EEC0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 815EFDB626039492008EEC0C /* Assets.xcassets */; };
 		815EFDD426039B3C008EEC0C /* PlayingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815EFD9426027D7D008EEC0C /* PlayingState.swift */; };
 		815EFDD826039B54008EEC0C /* GameCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815EFD9A26027DBB008EEC0C /* GameCoordinator.swift */; };
 		8170AEB7260B7A3D00CD0560 /* tutorial_movement.json in Resources */ = {isa = PBXBuildFile; fileRef = 8170AEB6260B7A3D00CD0560 /* tutorial_movement.json */; };
-		8170AED2260B845500CD0560 /* count.json in Resources */ = {isa = PBXBuildFile; fileRef = 8170AED1260B845500CD0560 /* count.json */; };
+		8170AEEB260B8C3D00CD0560 /* count.json in Resources */ = {isa = PBXBuildFile; fileRef = 8170AEEA260B8C3D00CD0560 /* count.json */; };
 		818A422825FF7E0F00454FAF /* AnimateBackgroundComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818A422725FF7E0F00454FAF /* AnimateBackgroundComponent.swift */; };
 		818ACC5F260237040033F65F /* CategoryMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818ACC5E260237040033F65F /* CategoryMask.swift */; };
 		818ACC6E260242BB0033F65F /* PausedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818ACC6D260242BB0033F65F /* PausedState.swift */; };
 		818ACC76260242C40033F65F /* GameOverState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818ACC75260242C40033F65F /* GameOverState.swift */; };
 		818ACC7B260246A30033F65F /* GameStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818ACC7A260246A30033F65F /* GameStateMachine.swift */; };
+		818B044B261DF81F00105209 /* MenuBackground.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 818B044A261DF81F00105209 /* MenuBackground.mp3 */; };
 		81BB495C260B6D7800BDC688 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BB495B260B6D7800BDC688 /* UserDefaultsManager.swift */; };
 		A4A0363B25F7C2E10036CCCB /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A0363A25F7C2E10036CCCB /* GameViewController.swift */; };
 		A4A0364025F7C2F90036CCCB /* Llama.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A0363F25F7C2F90036CCCB /* Llama.swift */; };
@@ -44,14 +48,12 @@
 		AEC2BAAB25FA3B4400D4261A /* teste1.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC2BAAA25FA3B4400D4261A /* teste1.swift */; };
 		AEC2BAB925FA43FF00D4261A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEC2BAB825FA43FF00D4261A /* LaunchScreen.storyboard */; };
 		AEC2BAC125FA468100D4261A /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC2BAC025FA468100D4261A /* Background.swift */; };
-		AED591A4260242D5002D41AE /* MenuBackground.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AED591A3260242D5002D41AE /* MenuBackground.mp3 */; };
 		AED591A9260242EA002D41AE /* LlamaSpit.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AED591A8260242EA002D41AE /* LlamaSpit.mp3 */; };
 		AED591AE260242F8002D41AE /* GameOver.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AED591AD260242F8002D41AE /* GameOver.mp3 */; };
 		AED591C52603830C002D41AE /* GameOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED591C42603830C002D41AE /* GameOverViewController.swift */; };
 		AEFE241F2608C8D700278D50 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFE241D2608C8D700278D50 /* MainMenuViewController.swift */; };
 		AEFE24202608C8D700278D50 /* MainMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AEFE241E2608C8D700278D50 /* MainMenuViewController.xib */; };
 		AEFE242B2608D80900278D50 /* PauseGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFE242A2608D80900278D50 /* PauseGameViewController.swift */; };
-		D45C4ECE66F8C34B12F340BF /* Pods_SpitOTimeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDFE47D768EDA920460866BB /* Pods_SpitOTimeTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,11 +74,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		17A35F75CBD11B0A0A868CAF /* Pods-SpitOTimeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpitOTimeTests.release.xcconfig"; path = "Target Support Files/Pods-SpitOTimeTests/Pods-SpitOTimeTests.release.xcconfig"; sourceTree = "<group>"; };
-		1FC6EB5C3EA80EEB8CA9DE84 /* Pods-SpitOTime-SpitOTimeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpitOTime-SpitOTimeUITests.release.xcconfig"; path = "Target Support Files/Pods-SpitOTime-SpitOTimeUITests/Pods-SpitOTime-SpitOTimeUITests.release.xcconfig"; sourceTree = "<group>"; };
-		266562967FE13879105F930A /* Pods_SpitOTime_SpitOTimeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpitOTime_SpitOTimeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3919AA3A576443BAE3BCABF1 /* Pods_SpitOTime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpitOTime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4B772490BDE6467BA449A832 /* Pods-SpitOTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpitOTime.release.xcconfig"; path = "Target Support Files/Pods-SpitOTime/Pods-SpitOTime.release.xcconfig"; sourceTree = "<group>"; };
+		01D8776BBE338CB2886F01BE /* Pods-SpitOTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpitOTime.release.xcconfig"; path = "Target Support Files/Pods-SpitOTime/Pods-SpitOTime.release.xcconfig"; sourceTree = "<group>"; };
+		0A6CA53D669D71AFD17062FB /* Pods_SpitOTime_SpitOTimeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpitOTime_SpitOTimeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		11C87D3E91721896699C8B15 /* Pods-SpitOTime-SpitOTimeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpitOTime-SpitOTimeUITests.debug.xcconfig"; path = "Target Support Files/Pods-SpitOTime-SpitOTimeUITests/Pods-SpitOTime-SpitOTimeUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		32FA9B32D8CFF5C2021BC600 /* Pods_SpitOTimeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpitOTimeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B760CAF260A1876007BF4BF /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		5B8AD09025F2717800B64371 /* SpitOTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpitOTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B8AD09325F2717800B64371 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -89,25 +90,31 @@
 		5B8AD0B225F2717B00B64371 /* SpitOTimeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpitOTimeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B8AD0B625F2717B00B64371 /* SpitOTimeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpitOTimeUITests.swift; sourceTree = "<group>"; };
 		5B8AD0B825F2717B00B64371 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6AE6EB8745E3FE2EAA94BB49 /* Pods-SpitOTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpitOTime.debug.xcconfig"; path = "Target Support Files/Pods-SpitOTime/Pods-SpitOTime.debug.xcconfig"; sourceTree = "<group>"; };
+		5F331CDABA4A86DBACACC057 /* Pods-SpitOTimeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpitOTimeTests.debug.xcconfig"; path = "Target Support Files/Pods-SpitOTimeTests/Pods-SpitOTimeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		810BD5892600D9D900853F6C /* SpawnComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpawnComponent.swift; sourceTree = "<group>"; };
 		810BD58E2600DE4600853F6C /* Enemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 		810BD5932600DE5000853F6C /* Obstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Obstacle.swift; sourceTree = "<group>"; };
 		8118BD7025FA4E19002015E7 /* Spit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spit.swift; sourceTree = "<group>"; };
 		8118BD7F25FA5873002015E7 /* AnimateSpriteComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimateSpriteComponent.swift; sourceTree = "<group>"; };
+		813A8BE6261DF40C00F2F13F /* Background.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Background.mp3; sourceTree = "<group>"; };
+		813A8BEB261DF42000F2F13F /* BackgroundLoop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BackgroundLoop.mp3; sourceTree = "<group>"; };
 		815EFD9426027D7D008EEC0C /* PlayingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayingState.swift; sourceTree = "<group>"; };
 		815EFD9A26027DBB008EEC0C /* GameCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCoordinator.swift; sourceTree = "<group>"; };
 		815EFDAD26038248008EEC0C /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		815EFDB526039492008EEC0C /* SpitParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SpitParticle.sks; sourceTree = "<group>"; };
 		815EFDB626039492008EEC0C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8170AEB6260B7A3D00CD0560 /* tutorial_movement.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tutorial_movement.json; sourceTree = "<group>"; };
-		8170AED1260B845500CD0560 /* count.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = count.json; sourceTree = "<group>"; };
+		8170AEEA260B8C3D00CD0560 /* count.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = count.json; sourceTree = "<group>"; };
 		818A422725FF7E0F00454FAF /* AnimateBackgroundComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimateBackgroundComponent.swift; sourceTree = "<group>"; };
 		818ACC5E260237040033F65F /* CategoryMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryMask.swift; sourceTree = "<group>"; };
 		818ACC6D260242BB0033F65F /* PausedState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PausedState.swift; sourceTree = "<group>"; };
 		818ACC75260242C40033F65F /* GameOverState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverState.swift; sourceTree = "<group>"; };
 		818ACC7A260246A30033F65F /* GameStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStateMachine.swift; sourceTree = "<group>"; };
+		818B044A261DF81F00105209 /* MenuBackground.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = MenuBackground.mp3; sourceTree = "<group>"; };
 		81BB495B260B6D7800BDC688 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		8625CC2CB8EAEADCA9D967F1 /* Pods-SpitOTime-SpitOTimeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpitOTime-SpitOTimeUITests.release.xcconfig"; path = "Target Support Files/Pods-SpitOTime-SpitOTimeUITests/Pods-SpitOTime-SpitOTimeUITests.release.xcconfig"; sourceTree = "<group>"; };
+		935A58A0FE245296F3948646 /* Pods-SpitOTimeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpitOTimeTests.release.xcconfig"; path = "Target Support Files/Pods-SpitOTimeTests/Pods-SpitOTimeTests.release.xcconfig"; sourceTree = "<group>"; };
+		A3EE4EAFED577E27E0025DC9 /* Pods-SpitOTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpitOTime.debug.xcconfig"; path = "Target Support Files/Pods-SpitOTime/Pods-SpitOTime.debug.xcconfig"; sourceTree = "<group>"; };
 		A4A0363A25F7C2E10036CCCB /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		A4A0363F25F7C2F90036CCCB /* Llama.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Llama.swift; sourceTree = "<group>"; };
 		A4A0364425F7C3070036CCCB /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
@@ -116,19 +123,16 @@
 		A4D6B5B326039EF4002639C4 /* Orange.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Orange.otf; sourceTree = "<group>"; };
 		A4D6B5B426039EFF002639C4 /* NunitoRegular-vmABZ.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NunitoRegular-vmABZ.ttf"; sourceTree = "<group>"; };
 		A4D6B5B526039FD3002639C4 /* UIFontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
-		ABADC145D1844F0947F5E6FD /* Pods-SpitOTime-SpitOTimeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpitOTime-SpitOTimeUITests.debug.xcconfig"; path = "Target Support Files/Pods-SpitOTime-SpitOTimeUITests/Pods-SpitOTime-SpitOTimeUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		AEC2BAAA25FA3B4400D4261A /* teste1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = teste1.swift; sourceTree = "<group>"; };
 		AEC2BAB825FA43FF00D4261A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AEC2BAC025FA468100D4261A /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
-		AED591A3260242D5002D41AE /* MenuBackground.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = MenuBackground.mp3; sourceTree = "<group>"; };
 		AED591A8260242EA002D41AE /* LlamaSpit.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = LlamaSpit.mp3; sourceTree = "<group>"; };
 		AED591AD260242F8002D41AE /* GameOver.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = GameOver.mp3; sourceTree = "<group>"; };
 		AED591C42603830C002D41AE /* GameOverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverViewController.swift; sourceTree = "<group>"; };
 		AEFE241D2608C8D700278D50 /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		AEFE241E2608C8D700278D50 /* MainMenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenuViewController.xib; sourceTree = "<group>"; };
 		AEFE242A2608D80900278D50 /* PauseGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseGameViewController.swift; sourceTree = "<group>"; };
-		BDFE47D768EDA920460866BB /* Pods_SpitOTimeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpitOTimeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E19A876EB66FF3C837F80068 /* Pods-SpitOTimeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpitOTimeTests.debug.xcconfig"; path = "Target Support Files/Pods-SpitOTimeTests/Pods-SpitOTimeTests.debug.xcconfig"; sourceTree = "<group>"; };
+		BE8153D792C7891A1FF1E7F6 /* Pods_SpitOTime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpitOTime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,7 +141,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B760CB0260A1876007BF4BF /* GameKit.framework in Frameworks */,
-				0ED482CCCDA78DBE77F90EAF /* Pods_SpitOTime.framework in Frameworks */,
+				12CE0A9748A143BC20DE5350 /* Pods_SpitOTime.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,7 +149,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D45C4ECE66F8C34B12F340BF /* Pods_SpitOTimeTests.framework in Frameworks */,
+				331457085BA67BE61EF79A73 /* Pods_SpitOTimeTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,7 +157,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5702402D4F513AE70A33BD83 /* Pods_SpitOTime_SpitOTimeUITests.framework in Frameworks */,
+				3CD9BE0537D5ACF2680B7CEC /* Pods_SpitOTime_SpitOTimeUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,12 +167,12 @@
 		095DDD47BD6FBE4EC2D5F6D3 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				6AE6EB8745E3FE2EAA94BB49 /* Pods-SpitOTime.debug.xcconfig */,
-				4B772490BDE6467BA449A832 /* Pods-SpitOTime.release.xcconfig */,
-				ABADC145D1844F0947F5E6FD /* Pods-SpitOTime-SpitOTimeUITests.debug.xcconfig */,
-				1FC6EB5C3EA80EEB8CA9DE84 /* Pods-SpitOTime-SpitOTimeUITests.release.xcconfig */,
-				E19A876EB66FF3C837F80068 /* Pods-SpitOTimeTests.debug.xcconfig */,
-				17A35F75CBD11B0A0A868CAF /* Pods-SpitOTimeTests.release.xcconfig */,
+				A3EE4EAFED577E27E0025DC9 /* Pods-SpitOTime.debug.xcconfig */,
+				01D8776BBE338CB2886F01BE /* Pods-SpitOTime.release.xcconfig */,
+				11C87D3E91721896699C8B15 /* Pods-SpitOTime-SpitOTimeUITests.debug.xcconfig */,
+				8625CC2CB8EAEADCA9D967F1 /* Pods-SpitOTime-SpitOTimeUITests.release.xcconfig */,
+				5F331CDABA4A86DBACACC057 /* Pods-SpitOTimeTests.debug.xcconfig */,
+				935A58A0FE245296F3948646 /* Pods-SpitOTimeTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -177,9 +181,9 @@
 			isa = PBXGroup;
 			children = (
 				5B760CAF260A1876007BF4BF /* GameKit.framework */,
-				3919AA3A576443BAE3BCABF1 /* Pods_SpitOTime.framework */,
-				266562967FE13879105F930A /* Pods_SpitOTime_SpitOTimeUITests.framework */,
-				BDFE47D768EDA920460866BB /* Pods_SpitOTimeTests.framework */,
+				BE8153D792C7891A1FF1E7F6 /* Pods_SpitOTime.framework */,
+				0A6CA53D669D71AFD17062FB /* Pods_SpitOTime_SpitOTimeUITests.framework */,
+				32FA9B32D8CFF5C2021BC600 /* Pods_SpitOTimeTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -273,7 +277,7 @@
 		81BB4980260B729400BDC688 /* Animations */ = {
 			isa = PBXGroup;
 			children = (
-				8170AED1260B845500CD0560 /* count.json */,
+				8170AEEA260B8C3D00CD0560 /* count.json */,
 				8170AEB6260B7A3D00CD0560 /* tutorial_movement.json */,
 			);
 			path = Animations;
@@ -376,7 +380,9 @@
 		AED591A2260242A7002D41AE /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
-				AED591A3260242D5002D41AE /* MenuBackground.mp3 */,
+				813A8BEB261DF42000F2F13F /* BackgroundLoop.mp3 */,
+				818B044A261DF81F00105209 /* MenuBackground.mp3 */,
+				813A8BE6261DF40C00F2F13F /* Background.mp3 */,
 				AED591A8260242EA002D41AE /* LlamaSpit.mp3 */,
 				AED591AD260242F8002D41AE /* GameOver.mp3 */,
 			);
@@ -390,11 +396,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5B8AD0BB25F2717B00B64371 /* Build configuration list for PBXNativeTarget "SpitOTime" */;
 			buildPhases = (
-				B715DFF0F81FBBEE80BE65C7 /* [CP] Check Pods Manifest.lock */,
+				B9F6786D100DBA7490800E1E /* [CP] Check Pods Manifest.lock */,
 				5B8AD08C25F2717800B64371 /* Sources */,
 				5B8AD08D25F2717800B64371 /* Frameworks */,
 				5B8AD08E25F2717800B64371 /* Resources */,
-				27E43C88122DAFD30479F25C /* [CP] Embed Pods Frameworks */,
+				33705E1BBFFDBF88F750464C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -409,7 +415,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5B8AD0BE25F2717B00B64371 /* Build configuration list for PBXNativeTarget "SpitOTimeTests" */;
 			buildPhases = (
-				71BD44B5FFED2990E9D7448C /* [CP] Check Pods Manifest.lock */,
+				BCB8085DC6FA4ACD161AFB16 /* [CP] Check Pods Manifest.lock */,
 				5B8AD0A325F2717B00B64371 /* Sources */,
 				5B8AD0A425F2717B00B64371 /* Frameworks */,
 				5B8AD0A525F2717B00B64371 /* Resources */,
@@ -428,11 +434,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5B8AD0C125F2717B00B64371 /* Build configuration list for PBXNativeTarget "SpitOTimeUITests" */;
 			buildPhases = (
-				B4C4DAB13D900DED2269F032 /* [CP] Check Pods Manifest.lock */,
+				2F345B32337B5351BDB9BD52 /* [CP] Check Pods Manifest.lock */,
 				5B8AD0AE25F2717B00B64371 /* Sources */,
 				5B8AD0AF25F2717B00B64371 /* Frameworks */,
 				5B8AD0B025F2717B00B64371 /* Resources */,
-				448D932D6C698DF0EFC54095 /* [CP] Embed Pods Frameworks */,
+				F923738534027A188BC8E56F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -491,15 +497,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8170AED2260B845500CD0560 /* count.json in Resources */,
 				AED591AE260242F8002D41AE /* GameOver.mp3 in Resources */,
 				8170AEB7260B7A3D00CD0560 /* tutorial_movement.json in Resources */,
 				AEC2BAB925FA43FF00D4261A /* LaunchScreen.storyboard in Resources */,
 				5B8AD0A125F2717A00B64371 /* Assets.xcassets in Resources */,
 				A4D6B5C42603A1E5002639C4 /* Orange.otf in Resources */,
+				818B044B261DF81F00105209 /* MenuBackground.mp3 in Resources */,
 				AED591A9260242EA002D41AE /* LlamaSpit.mp3 in Resources */,
 				815EFDB826039492008EEC0C /* Assets.xcassets in Resources */,
-				AED591A4260242D5002D41AE /* MenuBackground.mp3 in Resources */,
+				813A8BE7261DF40C00F2F13F /* Background.mp3 in Resources */,
+				813A8BEC261DF42100F2F13F /* BackgroundLoop.mp3 in Resources */,
+				8170AEEB260B8C3D00CD0560 /* count.json in Resources */,
 				815EFDB726039492008EEC0C /* SpitParticle.sks in Resources */,
 				AEFE24202608C8D700278D50 /* MainMenuViewController.xib in Resources */,
 				A4D6B5C02603A1E2002639C4 /* NunitoRegular-vmABZ.ttf in Resources */,
@@ -523,63 +531,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		27E43C88122DAFD30479F25C /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SpitOTime/Pods-SpitOTime-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SpitOTime/Pods-SpitOTime-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SpitOTime/Pods-SpitOTime-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		448D932D6C698DF0EFC54095 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SpitOTime-SpitOTimeUITests/Pods-SpitOTime-SpitOTimeUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SpitOTime-SpitOTimeUITests/Pods-SpitOTime-SpitOTimeUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SpitOTime-SpitOTimeUITests/Pods-SpitOTime-SpitOTimeUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		71BD44B5FFED2990E9D7448C /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SpitOTimeTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B4C4DAB13D900DED2269F032 /* [CP] Check Pods Manifest.lock */ = {
+		2F345B32337B5351BDB9BD52 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -601,7 +553,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B715DFF0F81FBBEE80BE65C7 /* [CP] Check Pods Manifest.lock */ = {
+		33705E1BBFFDBF88F750464C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SpitOTime/Pods-SpitOTime-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SpitOTime/Pods-SpitOTime-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SpitOTime/Pods-SpitOTime-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B9F6786D100DBA7490800E1E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -621,6 +590,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BCB8085DC6FA4ACD161AFB16 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SpitOTimeTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F923738534027A188BC8E56F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SpitOTime-SpitOTimeUITests/Pods-SpitOTime-SpitOTimeUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SpitOTime-SpitOTimeUITests/Pods-SpitOTime-SpitOTimeUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SpitOTime-SpitOTimeUITests/Pods-SpitOTime-SpitOTimeUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -810,12 +818,11 @@
 		};
 		5B8AD0BC25F2717B00B64371 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6AE6EB8745E3FE2EAA94BB49 /* Pods-SpitOTime.debug.xcconfig */;
+			baseConfigurationReference = A3EE4EAFED577E27E0025DC9 /* Pods-SpitOTime.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 795A25396T;
 				INFOPLIST_FILE = SpitOTime/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -832,12 +839,11 @@
 		};
 		5B8AD0BD25F2717B00B64371 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4B772490BDE6467BA449A832 /* Pods-SpitOTime.release.xcconfig */;
+			baseConfigurationReference = 01D8776BBE338CB2886F01BE /* Pods-SpitOTime.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 795A25396T;
 				INFOPLIST_FILE = SpitOTime/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -854,7 +860,7 @@
 		};
 		5B8AD0BF25F2717B00B64371 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E19A876EB66FF3C837F80068 /* Pods-SpitOTimeTests.debug.xcconfig */;
+			baseConfigurationReference = 5F331CDABA4A86DBACACC057 /* Pods-SpitOTimeTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -877,7 +883,7 @@
 		};
 		5B8AD0C025F2717B00B64371 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 17A35F75CBD11B0A0A868CAF /* Pods-SpitOTimeTests.release.xcconfig */;
+			baseConfigurationReference = 935A58A0FE245296F3948646 /* Pods-SpitOTimeTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -900,7 +906,7 @@
 		};
 		5B8AD0C225F2717B00B64371 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ABADC145D1844F0947F5E6FD /* Pods-SpitOTime-SpitOTimeUITests.debug.xcconfig */;
+			baseConfigurationReference = 11C87D3E91721896699C8B15 /* Pods-SpitOTime-SpitOTimeUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -921,7 +927,7 @@
 		};
 		5B8AD0C325F2717B00B64371 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1FC6EB5C3EA80EEB8CA9DE84 /* Pods-SpitOTime-SpitOTimeUITests.release.xcconfig */;
+			baseConfigurationReference = 8625CC2CB8EAEADCA9D967F1 /* Pods-SpitOTime-SpitOTimeUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

@@ -59,7 +59,9 @@ class GameStateCoordinator: Coordinator {
         case .resume:
             let gameViewController = stateMachine?.present as? GameViewController
             if let scene = gameViewController?.skView.scene as? GameScene {
-                scene.isPlaying = true
+                if !scene.isRunningAnimationCount {
+                    scene.isPlaying = true
+                }
             }
             gameViewController?.skView.isPaused = false
         }
@@ -68,7 +70,6 @@ class GameStateCoordinator: Coordinator {
     func addScene(controller: GameViewController) {
         let scene = GameScene(size: CGSize(width: ScreenSize.width, height: ScreenSize.height))
         scene.stateMachine = GameStateMachine(present: controller, states: [GameOverState(), PausedState(), PlayingState()])
-
         scene.scaleMode = .aspectFill
         controller.skView.presentScene(scene)
     }

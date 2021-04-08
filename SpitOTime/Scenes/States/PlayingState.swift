@@ -10,11 +10,15 @@ import GameplayKit
 class PlayingState: GKState {
     
     var gameStateCoordinator: GameStateCoordinator?
-
+    
     override func didEnter(from previousState: GKState?) {
         loadCoordinator()
-        if previousState is GameOverState {
-            gameStateCoordinator?.route(to: .restart)
+        if let previousState = previousState as? GameOverState {
+            if previousState.restart {
+                gameStateCoordinator?.route(to: .restart)
+            } else {
+                gameStateCoordinator?.route(to: .resume)
+            }
         } else if previousState is PausedState {
             gameStateCoordinator?.route(to: .resume)
         }

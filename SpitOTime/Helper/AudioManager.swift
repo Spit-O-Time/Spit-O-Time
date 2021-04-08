@@ -10,9 +10,10 @@ import AVFoundation
 
 enum SoundName: String {
     case spit = "LlamaSpit"
-    case background = "MenuBackground"
+    case background = "Background"
+    case backgroundLoop = "BackgroundLoop"
     case gameOver = "GameOver"
-    
+    case menuBackground = "MenuBackground"
     static let soundExtension = "mp3"
 }
 

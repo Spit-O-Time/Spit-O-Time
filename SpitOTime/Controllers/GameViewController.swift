@@ -15,7 +15,8 @@ class GameViewController: UIViewController {
 
     let skView = SKView()
     var colorAmbience = UIView()
-    private var animationView: AnimationView!
+    var scene: GameScene?
+    var animationView: AnimationView!
     
     lazy var pauseButton: UIButton = {
         let button = UIButton()
@@ -41,16 +42,14 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let scene: GameScene = GameScene(size: CGSize(width: ScreenSize.width, height: ScreenSize.height))
-        scene.stateMachine = GameStateMachine(present: self, states: [GameOverState(), PausedState(), PlayingState()])
+        scene = GameScene(size: CGSize(width: ScreenSize.width, height: ScreenSize.height))
+        scene?.stateMachine = GameStateMachine(present: self, states: [GameOverState(), PausedState(), PlayingState()])
         
-        scene.scaleMode = .aspectFill
-        #if DEBUG
-            skView.showsPhysics = true
-            skView.showsFPS = true
-        #endif
-
-        skView.presentScene(scene)
+        let notificationCenter = NotificationCenter.default
+            notificationCenter.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.willResignActiveNotification, object: nil)
+        
+        scene?.scaleMode = .aspectFill
+        skView.presentScene(scene!)
         setupColorAmbience()
         setupPauseButton()
         countAnimationIfNeeded()
@@ -60,6 +59,14 @@ class GameViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         self.view.layer.removeAllAnimations()
+    }
+    
+    @objc func appMovedToBackground() {
+        if let scene = skView.scene as? GameScene {
+            skView.isPaused = true
+            scene.isPlaying = false
+            scene.stateMachine?.enter(PausedState.self)
+        }
     }
 
     func setAmbienceColor(_ color: UIColor, with alpha: CGFloat = 0.1) {
@@ -88,10 +95,12 @@ class GameViewController: UIViewController {
         animationView.contentMode = .scaleAspectFit
         setupAnimationView(withSize: CGSize(width: 200, height: 200))
         animationView.play { _ in
+            self.scene?.isRunningAnimationCount = true
             UIView.animate(withDuration: 0.3) {
                 self.animationView.alpha = 0
             } completion: { _ in
                 self.animationView.isHidden = true
+                self.scene?.isRunningAnimationCount = false
             }
         }
     }
