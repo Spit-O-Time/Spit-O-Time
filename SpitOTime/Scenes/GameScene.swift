@@ -57,7 +57,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scheduleTimer()
         difficultyTimer()
         scoreTimer()
-        // spawnObstacles()
+        spawnObstacles()
         setupNodes()
         setUpText()
         addBackgroundSound()
