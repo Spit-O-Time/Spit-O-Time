@@ -46,6 +46,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // MARK: Sounds
     var backgroundSound: SKAudioNode!
+    var backgroundLoop: SKAudioNode!
     var llamaSpit: SKAudioNode!
     var gameOverSound: SKAudioNode!
     
@@ -56,7 +57,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scheduleTimer()
         difficultyTimer()
         scoreTimer()
-        spawnObstacles()
+        // spawnObstacles()
         setupNodes()
         setUpText()
         addBackgroundSound()
@@ -137,9 +138,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func addBackgroundSound() {
+        
         if let backgroundSound = audioManager.getSKAudioNode(.background) {
             self.backgroundSound = backgroundSound
             addChild(backgroundSound)
+            let sequence = SKAction.sequence( [SKAction.play(), SKAction.wait(forDuration: 4.0 ) ])
+            backgroundSound.run(SKAction.changeVolume(to: Float(0.5), duration: 0))
+            run(sequence, completion: {
+                guard let backgroundLoop = self.audioManager.getSKAudioNode(.backgroundLoop) else { return }
+                backgroundSound.removeFromParent()
+                self.addChild(backgroundLoop)
+                backgroundLoop.run(SKAction.changeVolume(to: Float(0.5), duration: 0))
+            })
         }
     }
     
