@@ -93,6 +93,22 @@ class GameOverViewController: UIViewController {
         return button
     }()
     
+    var surviveState: Bool {
+        get {
+            guard let stateMachine = stateMachine as? GameStateMachine,
+            let gameViewController = stateMachine.present as? GameViewController,
+            let scene = gameViewController.skView.scene as? GameScene else { return false }
+            return scene.didSurvive
+        }
+        set {
+            if let stateMachine = stateMachine as? GameStateMachine,
+            let gameViewController = stateMachine.present as? GameViewController,
+            let scene = gameViewController.skView.scene as? GameScene {
+                scene.didSurvive = newValue
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         audioManager.playSound(named: .gameOver, volume: 3.0)
@@ -127,7 +143,9 @@ class GameOverViewController: UIViewController {
         view.addSubview(blur)
         view.addSubview(backgroundView)
         view.addSubview(gameOverLabel)
-        view.addSubview(continueButton)
+        if !surviveState {
+            view.addSubview(continueButton)
+        }
         view.addSubview(restartButton)
         view.addSubview(mainMenuButton)
         view.addSubview(activityIndicator)
@@ -168,12 +186,21 @@ class GameOverViewController: UIViewController {
             gameOverLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -80),
             gameOverLabel.topAnchor.constraint(equalTo: backgroundView.topAnchor, constant: 42),
             
-            continueButton.topAnchor.constraint(equalTo: gameOverLabel.bottomAnchor, constant: 42),
-            continueButton.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor),
-            continueButton.heightAnchor.constraint(equalToConstant: 64),
-            continueButton.widthAnchor.constraint(equalToConstant: 200),
-            
-            restartButton.topAnchor.constraint(equalTo: continueButton.bottomAnchor, constant: 24),
+        ])
+        
+        if !surviveState {
+            NSLayoutConstraint.activate([
+                continueButton.topAnchor.constraint(equalTo: gameOverLabel.bottomAnchor, constant: 42),
+                continueButton.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor),
+                continueButton.heightAnchor.constraint(equalToConstant: 64),
+                continueButton.widthAnchor.constraint(equalToConstant: 200),
+                restartButton.topAnchor.constraint(equalTo: continueButton.bottomAnchor, constant: 24),
+            ])
+        } else {
+            restartButton.topAnchor.constraint(equalTo: gameOverLabel.bottomAnchor, constant: 24).isActive = true
+        }
+        
+        NSLayoutConstraint.activate([
             restartButton.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor),
             restartButton.heightAnchor.constraint(equalToConstant: 64),
             restartButton.widthAnchor.constraint(equalToConstant: 200),
@@ -197,6 +224,7 @@ extension GameOverViewController: GADRewardedAdDelegate {
     func rewardedAd(_ rewardedAd: GADRewardedAd, userDidEarn reward: GADAdReward) {
         if let stateMachine = self.stateMachine?.currentState as? GameOverState {
             stateMachine.restart = false
+            self.surviveState = true
         }
     }
     
