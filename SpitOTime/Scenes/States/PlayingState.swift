@@ -24,12 +24,14 @@ class PlayingState: GKState {
         }
     }
     
-    func loadCoordinator() {
+    func loadCoordinator() -> Bool {
         guard let gameStateMachine = stateMachine as? GameStateMachine else {
-            return
+            return false
         }
         
         gameStateCoordinator = GameStateCoordinator(stateMachine: gameStateMachine)
+        
+        return true
     }
     
 }
