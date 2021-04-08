@@ -14,6 +14,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: Variables
     let spit = Spit()
     var spitTail: SKEmitterNode!
+    var didSurvive = false
     
     let background = Background()
     
