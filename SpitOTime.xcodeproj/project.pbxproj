@@ -34,6 +34,9 @@
 		818ACC76260242C40033F65F /* GameOverState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818ACC75260242C40033F65F /* GameOverState.swift */; };
 		818ACC7B260246A30033F65F /* GameStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818ACC7A260246A30033F65F /* GameStateMachine.swift */; };
 		818B044B261DF81F00105209 /* MenuBackground.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 818B044A261DF81F00105209 /* MenuBackground.mp3 */; };
+		818EEB3526207866000A8414 /* GameCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818EEB3426207866000A8414 /* GameCoordinatorTests.swift */; };
+		818EEB3E26207DED000A8414 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818EEB3D26207DED000A8414 /* UserDefaultsManager.swift */; };
+		818EEB4626208100000A8414 /* AudioManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818EEB4526208100000A8414 /* AudioManagerTests.swift */; };
 		81BB495C260B6D7800BDC688 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BB495B260B6D7800BDC688 /* UserDefaultsManager.swift */; };
 		A4A0363B25F7C2E10036CCCB /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A0363A25F7C2E10036CCCB /* GameViewController.swift */; };
 		A4A0364525F7C3070036CCCB /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A0364425F7C3070036CCCB /* UIColorExtension.swift */; };
@@ -110,6 +113,9 @@
 		818ACC75260242C40033F65F /* GameOverState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverState.swift; sourceTree = "<group>"; };
 		818ACC7A260246A30033F65F /* GameStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStateMachine.swift; sourceTree = "<group>"; };
 		818B044A261DF81F00105209 /* MenuBackground.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = MenuBackground.mp3; sourceTree = "<group>"; };
+		818EEB3426207866000A8414 /* GameCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCoordinatorTests.swift; sourceTree = "<group>"; };
+		818EEB3D26207DED000A8414 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		818EEB4526208100000A8414 /* AudioManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManagerTests.swift; sourceTree = "<group>"; };
 		81BB495B260B6D7800BDC688 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		97026431F7C7CBFE1B5E444F /* Pods_SpitOTime_SpitOTimeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpitOTime_SpitOTimeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		97F28F4F383A0CDBE3C67901 /* Pods-SpitOTimeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpitOTimeTests.release.xcconfig"; path = "Target Support Files/Pods-SpitOTimeTests/Pods-SpitOTimeTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -237,6 +243,8 @@
 		5B8AD0AA25F2717B00B64371 /* SpitOTimeTests */ = {
 			isa = PBXGroup;
 			children = (
+				818EEB3C26207DD9000A8414 /* Helpers */,
+				818EEB3326207853000A8414 /* Coordinator */,
 				A4AFAC23261F3886004EB4F8 /* StatesTests */,
 				A4AFAC0C261F23C9004EB4F8 /* ComponentsTests */,
 				5B8AD0AD25F2717B00B64371 /* Info.plist */,
@@ -279,6 +287,23 @@
 				815EFD9426027D7D008EEC0C /* PlayingState.swift */,
 			);
 			path = States;
+			sourceTree = "<group>";
+		};
+		818EEB3326207853000A8414 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				818EEB3426207866000A8414 /* GameCoordinatorTests.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		818EEB3C26207DD9000A8414 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				818EEB3D26207DED000A8414 /* UserDefaultsManager.swift */,
+				818EEB4526208100000A8414 /* AudioManagerTests.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		81BB4980260B729400BDC688 /* Animations */ = {
@@ -696,8 +721,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				818EEB3526207866000A8414 /* GameCoordinatorTests.swift in Sources */,
 				A4AFAC0E261F23FF004EB4F8 /* AnimeteBackgroundTests.swift in Sources */,
+				818EEB4626208100000A8414 /* AudioManagerTests.swift in Sources */,
 				A4AFAC32261F3F42004EB4F8 /* PlayingStateTests.swift in Sources */,
+				818EEB3E26207DED000A8414 /* UserDefaultsManager.swift in Sources */,
 				A4AFAC2D261F3F2B004EB4F8 /* GameOverStateTests.swift in Sources */,
 				A4AFAC25261F38B0004EB4F8 /* PausedStateTest.swift in Sources */,
 				A4AFAC19261F2EDE004EB4F8 /* SpawnComponentTests.swift in Sources */,

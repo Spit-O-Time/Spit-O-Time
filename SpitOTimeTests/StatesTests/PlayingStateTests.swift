@@ -26,7 +26,7 @@ class PlayingStateTests: XCTestCase {
     }
     
     func teste_didEnter_GameOverState_true() {
-        let gameStateMachine = GameStateMachine(present: GameViewController(), states: [PlayingState(), PausedState(), GameOverState()])
+        let gameStateMachine = GameStateMachine(present: GameViewController(), states: [PlayingState(), GameOverState()])
         gameStateMachine.enter(GameOverState.self)
         gameStateMachine.enter(PlayingState.self)
         
@@ -36,7 +36,10 @@ class PlayingStateTests: XCTestCase {
     }
     
     func teste_didEnter_PausedState_true() {
-        let gameStateMachine = GameStateMachine(present: GameViewController(), states: [PlayingState(), PausedState(), GameOverState()])
+        let gameViewController = GameViewController()
+        gameViewController.scene = GameScene()
+        gameViewController.scene!.isRunningAnimationCount = false
+        let gameStateMachine = GameStateMachine(present: gameViewController, states: [PlayingState(), PausedState()])
         gameStateMachine.enter(PausedState.self)
         gameStateMachine.enter(PlayingState.self)
         
