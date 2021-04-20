@@ -36,7 +36,7 @@ class MainMenuViewController: UIViewController {
         super.viewWillAppear(animated)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.audioManager.playSound(named: .menuBackground, numberOfLoop: -1, volume: 0.5)
+            try? self.audioManager.playSound(named: .menuBackground, numberOfLoop: -1, volume: 0.5)
         }
         
     }
@@ -78,7 +78,7 @@ class MainMenuViewController: UIViewController {
         } else {
             UserDefaults.standard.setValue(true, forKey: forKey.rawValue)
             button.setImage(UIImage(named: forKey.rawValue+"_active"), for: .normal)
-            self.audioManager.playSound(named: .menuBackground, numberOfLoop: -1, volume: 0.5)
+            try? self.audioManager.playSound(named: .menuBackground, numberOfLoop: -1, volume: 0.5)
         }
         UserDefaults.standard.synchronize()
         print(UserDefaults.standard.bool(forKey: forKey.rawValue))
