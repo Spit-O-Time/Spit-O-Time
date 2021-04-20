@@ -119,14 +119,15 @@ class GameOverViewController: UIViewController {
     private func loadRewardedAd() {
         let request = GADRequest()
         
-        self.rewardedAd = GADRewardedAd(adUnitID: "ca-app-pub-3940256099942544/1712485313")
-        #if DEBUG
-            self.rewardedAd = GADRewardedAd(adUnitID: "ca-app-pub-3940256099942544/1712485313")
-        #endif
+        self.rewardedAd = GADRewardedAd(adUnitID: "ca-app-pub-9249585883419480/2345481567")
+//        #if DEBUG
+//            self.rewardedAd = GADRewardedAd(adUnitID: "ca-app-pub-3940256099942544/1712485313")
+//        #endif
 
         self.rewardedAd?.load(request) { (error) in
             if let error = error {
                 print(error.localizedDescription)
+                self.activityIndicator.stopAnimating()
             } else {
                 self.activityIndicator.stopAnimating()
                 self.openRewardedAd()
@@ -237,5 +238,9 @@ extension GameOverViewController: GADRewardedAdDelegate {
                 }
             }
         }
+    }
+    
+    func rewardedAd(_ rewardedAd: GADRewardedAd, didFailToPresentWithError error: Error) {
+        activityIndicator.stopAnimating()
     }
 }
