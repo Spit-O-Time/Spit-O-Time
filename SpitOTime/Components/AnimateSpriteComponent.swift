@@ -51,14 +51,12 @@ class AnimateSpriteComponent: GKComponent {
         self.spriteNode.texture = animationTextures.first!
 
         spriteNode.run(
-//            SKAction.repeatForever(
                 SKAction.animate(
                     with: animationTextures,
                     timePerFrame: 0.1,
                     resize: false,
                     restore: true
                 ),
-//            ),
             withKey: atlasName
         )
     }

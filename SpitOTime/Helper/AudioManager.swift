@@ -10,9 +10,11 @@ import AVFoundation
 
 enum SoundName: String {
     case spit = "LlamaSpit"
-    case background = "MenuBackground"
+    case background = "Background"
+    case backgroundLoop = "BackgroundLoop"
     case gameOver = "GameOver"
-    
+    case menuBackground = "MenuBackground"
+    case failedCase
     static let soundExtension = "mp3"
 }
 
@@ -37,24 +39,28 @@ class AudioManager {
             let audioNode = SKAudioNode(fileNamed: name.rawValue)
             return audioNode
         }
-        return  nil
+        return nil
     }
     
-    func stopSKAudioNode(_ audioNode: SKAudioNode?) {
+    func stopSKAudioNode(_ audioNode: SKAudioNode?) -> Bool {
         if !isSoundEffectMuted {
             audioNode?.run(SKAction.stop())
+            return true
         }
+        return false
     }
     
     func playSKAudioNode(_ name: SoundName) -> SKAction? {
-        if isSoundEffectMuted == false {
+        if !isSoundEffectMuted {
             SKAction.playSoundFileNamed(name.rawValue, waitForCompletion: false)
         }
         return nil
     }
     
-    func stopSound() {
-        audioPlayer?.stop()
+    func stopSound() -> Bool {
+        guard let audioPlayer = audioPlayer else { return false }
+        audioPlayer.stop()
+        return true
     }
 
     func playSound(named: SoundName, numberOfLoop: Int = 0, volume: Float = 1.0) {
@@ -65,9 +71,7 @@ class AudioManager {
                     audioPlayer?.numberOfLoops = numberOfLoop
                     audioPlayer?.volume = volume
                     audioPlayer?.play()
-                } catch {
-                    fatalError()
-                }
+                } catch { }
             }
         }
     }
