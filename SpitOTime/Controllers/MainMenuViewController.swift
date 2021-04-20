@@ -36,7 +36,7 @@ class MainMenuViewController: UIViewController {
         super.viewWillAppear(animated)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.audioManager.playSound(named: .menuBackground, numberOfLoop: -1, volume: 0.5)
+            try? self.audioManager.playSound(named: .menuBackground, numberOfLoop: -1, volume: 0.5)
         }
         
     }

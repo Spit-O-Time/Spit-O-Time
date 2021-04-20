@@ -111,7 +111,7 @@ class GameOverViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        audioManager.playSound(named: .gameOver, volume: 3.0)
+        try? audioManager.playSound(named: .gameOver, volume: 3.0)
         setupViewHierarchy()
         setupConstraints()
     }

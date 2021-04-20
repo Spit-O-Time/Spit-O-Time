@@ -16,11 +16,13 @@ class PausedState: GKState {
         gameStateCoordinator?.route(to: .paused)
     }
     
-    func loadCoordinator() {
+    @discardableResult
+    func loadCoordinator() -> Bool {
         guard let gameStateMachine = stateMachine as? GameStateMachine else {
-            return
+            return false
         }
         
         gameStateCoordinator = GameStateCoordinator(stateMachine: gameStateMachine)
+        return true
     }
 }
