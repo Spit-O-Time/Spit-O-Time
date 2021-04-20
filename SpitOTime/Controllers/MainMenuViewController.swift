@@ -6,8 +6,12 @@
 //
 
 import UIKit
-
-class MainMenuViewController: UIViewController {
+import GameKit
+class MainMenuViewController: UIViewController, GKGameCenterControllerDelegate {
+    func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
 
     @IBOutlet weak var sound: UIButton! {
         didSet {
@@ -29,6 +33,13 @@ class MainMenuViewController: UIViewController {
             play.layer.cornerRadius = 16
         }
     }
+    
+    @IBOutlet weak var leaderboard: UIButton! {
+        didSet {
+            leaderboard.layer.masksToBounds = false
+            leaderboard.layer.cornerRadius = 8
+        }
+    }
 
     let audioManager = AudioManager()
 
@@ -42,6 +53,7 @@ class MainMenuViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        authenticateLocalPlayer()
         setButtonImage(forKey: .isSoundEffectMuted, button: sound)
         setButtonImage(forKey: .isSoundtrackMuted, button: music)
         navigationController?.setNavigationBarHidden(true, animated: false)
@@ -103,5 +115,24 @@ class MainMenuViewController: UIViewController {
             button.setImage(UIImage(named: forKey.rawValue+"_active"), for: .normal)
         }
         
+    }
+    
+    func authenticateLocalPlayer() {
+    let localPlayer = GKLocalPlayer.local
+    localPlayer.authenticateHandler = {(viewController, error) -> Void in
+
+        if (viewController != nil) {
+            self.present(viewController!, animated: true, completion: nil)
+        }
+        else {
+            print((GKLocalPlayer.local.isAuthenticated))
+        }
+    }
+}
+    
+    @IBAction func leaderboard(_ sender: Any) {
+      let vc = GKGameCenterViewController(leaderboardID: "Leaderboard", playerScope: .global, timeScope: .allTime)
+      vc.gameCenterDelegate = self
+      present(vc, animated: true, completion: nil)
     }
 }

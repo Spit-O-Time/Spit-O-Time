@@ -11,6 +11,7 @@
 import UIKit
 import GameplayKit
 import GoogleMobileAds
+import GoogleUtilities
 
 class GameOverViewController: UIViewController {
 
@@ -128,11 +129,18 @@ class GameOverViewController: UIViewController {
             if let error = error {
                 print(error.localizedDescription)
                 self.activityIndicator.stopAnimating()
+                self.presentModal(title: "Oops", message: "Sorry, can`t show you an ad right now")
             } else {
                 self.activityIndicator.stopAnimating()
                 self.openRewardedAd()
             }
         }
+    }
+    
+    private func presentModal(title: String, message: String) {
+        let modal = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        modal.addAction(.init(title: "Ok", style: .default, handler: nil))
+        self.present(modal, animated: true, completion: nil)
     }
     
     private func openRewardedAd() {
@@ -242,5 +250,6 @@ extension GameOverViewController: GADRewardedAdDelegate {
     
     func rewardedAd(_ rewardedAd: GADRewardedAd, didFailToPresentWithError error: Error) {
         activityIndicator.stopAnimating()
+        self.presentModal(title: "Oops", message: "Sorry, can`t show you an ad right now")
     }
 }

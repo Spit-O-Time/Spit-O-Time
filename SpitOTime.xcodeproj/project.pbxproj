@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		005602F49622FC3A857DD7BB /* Pods_SpitOTimeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7B2F8E6ABD72C8A6E63F0CE /* Pods_SpitOTimeTests.framework */; };
-		38F17B8D33E02FB0B7D1CCF6 /* Pods_SpitOTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9879446DFD8D0FB1D7C1AC9 /* Pods_SpitOTime.framework */; };
+		12CE0A9748A143BC20DE5350 /* Pods_SpitOTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE8153D792C7891A1FF1E7F6 /* Pods_SpitOTime.framework */; };
+		331457085BA67BE61EF79A73 /* Pods_SpitOTimeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32FA9B32D8CFF5C2021BC600 /* Pods_SpitOTimeTests.framework */; };
+		3CD9BE0537D5ACF2680B7CEC /* Pods_SpitOTime_SpitOTimeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A6CA53D669D71AFD17062FB /* Pods_SpitOTime_SpitOTimeUITests.framework */; };
 		5B760CB0260A1876007BF4BF /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B760CAF260A1876007BF4BF /* GameKit.framework */; };
 		5B8AD09425F2717800B64371 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8AD09325F2717800B64371 /* AppDelegate.swift */; };
 		5B8AD09A25F2717800B64371 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8AD09925F2717800B64371 /* GameScene.swift */; };
@@ -50,7 +51,6 @@
 		A4D6B5B626039FD3002639C4 /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D6B5B526039FD3002639C4 /* UIFontExtension.swift */; };
 		A4D6B5C02603A1E2002639C4 /* NunitoRegular-vmABZ.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A4D6B5B426039EFF002639C4 /* NunitoRegular-vmABZ.ttf */; };
 		A4D6B5C42603A1E5002639C4 /* Orange.otf in Resources */ = {isa = PBXBuildFile; fileRef = A4D6B5B326039EF4002639C4 /* Orange.otf */; };
-		AAF0BD7282A0E68D2C48F1AB /* Pods_SpitOTime_SpitOTimeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97026431F7C7CBFE1B5E444F /* Pods_SpitOTime_SpitOTimeUITests.framework */; };
 		AEC2BAAB25FA3B4400D4261A /* teste1.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC2BAAA25FA3B4400D4261A /* teste1.swift */; };
 		AEC2BAB925FA43FF00D4261A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEC2BAB825FA43FF00D4261A /* LaunchScreen.storyboard */; };
 		AEC2BAC125FA468100D4261A /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC2BAC025FA468100D4261A /* Background.swift */; };
@@ -80,7 +80,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		191D0B8297BB219FBBE52D37 /* Pods-SpitOTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpitOTime.debug.xcconfig"; path = "Target Support Files/Pods-SpitOTime/Pods-SpitOTime.debug.xcconfig"; sourceTree = "<group>"; };
+		01D8776BBE338CB2886F01BE /* Pods-SpitOTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpitOTime.release.xcconfig"; path = "Target Support Files/Pods-SpitOTime/Pods-SpitOTime.release.xcconfig"; sourceTree = "<group>"; };
+		0A6CA53D669D71AFD17062FB /* Pods_SpitOTime_SpitOTimeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpitOTime_SpitOTimeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		11C87D3E91721896699C8B15 /* Pods-SpitOTime-SpitOTimeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpitOTime-SpitOTimeUITests.debug.xcconfig"; path = "Target Support Files/Pods-SpitOTime-SpitOTimeUITests/Pods-SpitOTime-SpitOTimeUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		32FA9B32D8CFF5C2021BC600 /* Pods_SpitOTimeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpitOTimeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B760CAF260A1876007BF4BF /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		5B8AD09025F2717800B64371 /* SpitOTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpitOTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B8AD09325F2717800B64371 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -92,7 +95,7 @@
 		5B8AD0B225F2717B00B64371 /* SpitOTimeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpitOTimeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B8AD0B625F2717B00B64371 /* SpitOTimeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpitOTimeUITests.swift; sourceTree = "<group>"; };
 		5B8AD0B825F2717B00B64371 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		740D71D01C8F5A43C20F6D73 /* Pods-SpitOTime-SpitOTimeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpitOTime-SpitOTimeUITests.release.xcconfig"; path = "Target Support Files/Pods-SpitOTime-SpitOTimeUITests/Pods-SpitOTime-SpitOTimeUITests.release.xcconfig"; sourceTree = "<group>"; };
+		5F331CDABA4A86DBACACC057 /* Pods-SpitOTimeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpitOTimeTests.debug.xcconfig"; path = "Target Support Files/Pods-SpitOTimeTests/Pods-SpitOTimeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		810BD5892600D9D900853F6C /* SpawnComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpawnComponent.swift; sourceTree = "<group>"; };
 		810BD58E2600DE4600853F6C /* Enemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 		810BD5932600DE5000853F6C /* Obstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Obstacle.swift; sourceTree = "<group>"; };
@@ -117,8 +120,9 @@
 		818EEB3D26207DED000A8414 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		818EEB4526208100000A8414 /* AudioManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManagerTests.swift; sourceTree = "<group>"; };
 		81BB495B260B6D7800BDC688 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
-		97026431F7C7CBFE1B5E444F /* Pods_SpitOTime_SpitOTimeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpitOTime_SpitOTimeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		97F28F4F383A0CDBE3C67901 /* Pods-SpitOTimeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpitOTimeTests.release.xcconfig"; path = "Target Support Files/Pods-SpitOTimeTests/Pods-SpitOTimeTests.release.xcconfig"; sourceTree = "<group>"; };
+		8625CC2CB8EAEADCA9D967F1 /* Pods-SpitOTime-SpitOTimeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpitOTime-SpitOTimeUITests.release.xcconfig"; path = "Target Support Files/Pods-SpitOTime-SpitOTimeUITests/Pods-SpitOTime-SpitOTimeUITests.release.xcconfig"; sourceTree = "<group>"; };
+		935A58A0FE245296F3948646 /* Pods-SpitOTimeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpitOTimeTests.release.xcconfig"; path = "Target Support Files/Pods-SpitOTimeTests/Pods-SpitOTimeTests.release.xcconfig"; sourceTree = "<group>"; };
+		A3EE4EAFED577E27E0025DC9 /* Pods-SpitOTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpitOTime.debug.xcconfig"; path = "Target Support Files/Pods-SpitOTime/Pods-SpitOTime.debug.xcconfig"; sourceTree = "<group>"; };
 		A4A0363A25F7C2E10036CCCB /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		A4A0364425F7C3070036CCCB /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		A4A0364925F7C31A0036CCCB /* ScreenSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSize.swift; sourceTree = "<group>"; };
@@ -140,11 +144,7 @@
 		AEFE241D2608C8D700278D50 /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		AEFE241E2608C8D700278D50 /* MainMenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenuViewController.xib; sourceTree = "<group>"; };
 		AEFE242A2608D80900278D50 /* PauseGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseGameViewController.swift; sourceTree = "<group>"; };
-		D1D7541504511FE8BC65B72C /* Pods-SpitOTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpitOTime.release.xcconfig"; path = "Target Support Files/Pods-SpitOTime/Pods-SpitOTime.release.xcconfig"; sourceTree = "<group>"; };
-		D50EDCBEBBC26BD46A8BD1B2 /* Pods-SpitOTime-SpitOTimeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpitOTime-SpitOTimeUITests.debug.xcconfig"; path = "Target Support Files/Pods-SpitOTime-SpitOTimeUITests/Pods-SpitOTime-SpitOTimeUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		E539211A3C46BBA5171DDDAC /* Pods-SpitOTimeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpitOTimeTests.debug.xcconfig"; path = "Target Support Files/Pods-SpitOTimeTests/Pods-SpitOTimeTests.debug.xcconfig"; sourceTree = "<group>"; };
-		E7B2F8E6ABD72C8A6E63F0CE /* Pods_SpitOTimeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpitOTimeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F9879446DFD8D0FB1D7C1AC9 /* Pods_SpitOTime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpitOTime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE8153D792C7891A1FF1E7F6 /* Pods_SpitOTime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpitOTime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,7 +153,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B760CB0260A1876007BF4BF /* GameKit.framework in Frameworks */,
-				38F17B8D33E02FB0B7D1CCF6 /* Pods_SpitOTime.framework in Frameworks */,
+				12CE0A9748A143BC20DE5350 /* Pods_SpitOTime.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -161,7 +161,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				005602F49622FC3A857DD7BB /* Pods_SpitOTimeTests.framework in Frameworks */,
+				331457085BA67BE61EF79A73 /* Pods_SpitOTimeTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,7 +169,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AAF0BD7282A0E68D2C48F1AB /* Pods_SpitOTime_SpitOTimeUITests.framework in Frameworks */,
+				3CD9BE0537D5ACF2680B7CEC /* Pods_SpitOTime_SpitOTimeUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,12 +179,12 @@
 		095DDD47BD6FBE4EC2D5F6D3 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				191D0B8297BB219FBBE52D37 /* Pods-SpitOTime.debug.xcconfig */,
-				D1D7541504511FE8BC65B72C /* Pods-SpitOTime.release.xcconfig */,
-				D50EDCBEBBC26BD46A8BD1B2 /* Pods-SpitOTime-SpitOTimeUITests.debug.xcconfig */,
-				740D71D01C8F5A43C20F6D73 /* Pods-SpitOTime-SpitOTimeUITests.release.xcconfig */,
-				E539211A3C46BBA5171DDDAC /* Pods-SpitOTimeTests.debug.xcconfig */,
-				97F28F4F383A0CDBE3C67901 /* Pods-SpitOTimeTests.release.xcconfig */,
+				A3EE4EAFED577E27E0025DC9 /* Pods-SpitOTime.debug.xcconfig */,
+				01D8776BBE338CB2886F01BE /* Pods-SpitOTime.release.xcconfig */,
+				11C87D3E91721896699C8B15 /* Pods-SpitOTime-SpitOTimeUITests.debug.xcconfig */,
+				8625CC2CB8EAEADCA9D967F1 /* Pods-SpitOTime-SpitOTimeUITests.release.xcconfig */,
+				5F331CDABA4A86DBACACC057 /* Pods-SpitOTimeTests.debug.xcconfig */,
+				935A58A0FE245296F3948646 /* Pods-SpitOTimeTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -193,9 +193,9 @@
 			isa = PBXGroup;
 			children = (
 				5B760CAF260A1876007BF4BF /* GameKit.framework */,
-				F9879446DFD8D0FB1D7C1AC9 /* Pods_SpitOTime.framework */,
-				97026431F7C7CBFE1B5E444F /* Pods_SpitOTime_SpitOTimeUITests.framework */,
-				E7B2F8E6ABD72C8A6E63F0CE /* Pods_SpitOTimeTests.framework */,
+				BE8153D792C7891A1FF1E7F6 /* Pods_SpitOTime.framework */,
+				0A6CA53D669D71AFD17062FB /* Pods_SpitOTime_SpitOTimeUITests.framework */,
+				32FA9B32D8CFF5C2021BC600 /* Pods_SpitOTimeTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -446,11 +446,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5B8AD0BB25F2717B00B64371 /* Build configuration list for PBXNativeTarget "SpitOTime" */;
 			buildPhases = (
-				DAA6D8F248E304289B93A954 /* [CP] Check Pods Manifest.lock */,
+				B9F6786D100DBA7490800E1E /* [CP] Check Pods Manifest.lock */,
 				5B8AD08C25F2717800B64371 /* Sources */,
 				5B8AD08D25F2717800B64371 /* Frameworks */,
 				5B8AD08E25F2717800B64371 /* Resources */,
-				D21294093280EAEF0B112824 /* [CP] Embed Pods Frameworks */,
+				33705E1BBFFDBF88F750464C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -465,7 +465,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5B8AD0BE25F2717B00B64371 /* Build configuration list for PBXNativeTarget "SpitOTimeTests" */;
 			buildPhases = (
-				E08563A2515348FE46E61710 /* [CP] Check Pods Manifest.lock */,
+				BCB8085DC6FA4ACD161AFB16 /* [CP] Check Pods Manifest.lock */,
 				5B8AD0A325F2717B00B64371 /* Sources */,
 				5B8AD0A425F2717B00B64371 /* Frameworks */,
 				5B8AD0A525F2717B00B64371 /* Resources */,
@@ -484,11 +484,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5B8AD0C125F2717B00B64371 /* Build configuration list for PBXNativeTarget "SpitOTimeUITests" */;
 			buildPhases = (
-				BB2E77ACAC80FAFDDBD8396C /* [CP] Check Pods Manifest.lock */,
+				2F345B32337B5351BDB9BD52 /* [CP] Check Pods Manifest.lock */,
 				5B8AD0AE25F2717B00B64371 /* Sources */,
 				5B8AD0AF25F2717B00B64371 /* Frameworks */,
 				5B8AD0B025F2717B00B64371 /* Resources */,
-				2EB848888EBF2C89CC5089C8 /* [CP] Embed Pods Frameworks */,
+				F923738534027A188BC8E56F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -581,24 +581,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2EB848888EBF2C89CC5089C8 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SpitOTime-SpitOTimeUITests/Pods-SpitOTime-SpitOTimeUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SpitOTime-SpitOTimeUITests/Pods-SpitOTime-SpitOTimeUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SpitOTime-SpitOTimeUITests/Pods-SpitOTime-SpitOTimeUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BB2E77ACAC80FAFDDBD8396C /* [CP] Check Pods Manifest.lock */ = {
+		2F345B32337B5351BDB9BD52 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -620,7 +603,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D21294093280EAEF0B112824 /* [CP] Embed Pods Frameworks */ = {
+		33705E1BBFFDBF88F750464C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -637,7 +620,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SpitOTime/Pods-SpitOTime-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		DAA6D8F248E304289B93A954 /* [CP] Check Pods Manifest.lock */ = {
+		B9F6786D100DBA7490800E1E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -659,7 +642,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E08563A2515348FE46E61710 /* [CP] Check Pods Manifest.lock */ = {
+		BCB8085DC6FA4ACD161AFB16 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -679,6 +662,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F923738534027A188BC8E56F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SpitOTime-SpitOTimeUITests/Pods-SpitOTime-SpitOTimeUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SpitOTime-SpitOTimeUITests/Pods-SpitOTime-SpitOTimeUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SpitOTime-SpitOTimeUITests/Pods-SpitOTime-SpitOTimeUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -874,17 +874,18 @@
 		};
 		5B8AD0BC25F2717B00B64371 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 191D0B8297BB219FBBE52D37 /* Pods-SpitOTime.debug.xcconfig */;
+			baseConfigurationReference = A3EE4EAFED577E27E0025DC9 /* Pods-SpitOTime.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3A46XCK2VP;
+				DEVELOPMENT_TEAM = 795A25396T;
 				INFOPLIST_FILE = SpitOTime/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = academy.SpitOTime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -894,17 +895,18 @@
 		};
 		5B8AD0BD25F2717B00B64371 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D1D7541504511FE8BC65B72C /* Pods-SpitOTime.release.xcconfig */;
+			baseConfigurationReference = 01D8776BBE338CB2886F01BE /* Pods-SpitOTime.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3A46XCK2VP;
+				DEVELOPMENT_TEAM = 795A25396T;
 				INFOPLIST_FILE = SpitOTime/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = academy.SpitOTime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -914,7 +916,7 @@
 		};
 		5B8AD0BF25F2717B00B64371 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E539211A3C46BBA5171DDDAC /* Pods-SpitOTimeTests.debug.xcconfig */;
+			baseConfigurationReference = 5F331CDABA4A86DBACACC057 /* Pods-SpitOTimeTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -937,7 +939,7 @@
 		};
 		5B8AD0C025F2717B00B64371 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 97F28F4F383A0CDBE3C67901 /* Pods-SpitOTimeTests.release.xcconfig */;
+			baseConfigurationReference = 935A58A0FE245296F3948646 /* Pods-SpitOTimeTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -960,7 +962,7 @@
 		};
 		5B8AD0C225F2717B00B64371 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D50EDCBEBBC26BD46A8BD1B2 /* Pods-SpitOTime-SpitOTimeUITests.debug.xcconfig */;
+			baseConfigurationReference = 11C87D3E91721896699C8B15 /* Pods-SpitOTime-SpitOTimeUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -981,7 +983,7 @@
 		};
 		5B8AD0C325F2717B00B64371 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 740D71D01C8F5A43C20F6D73 /* Pods-SpitOTime-SpitOTimeUITests.release.xcconfig */;
+			baseConfigurationReference = 8625CC2CB8EAEADCA9D967F1 /* Pods-SpitOTime-SpitOTimeUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

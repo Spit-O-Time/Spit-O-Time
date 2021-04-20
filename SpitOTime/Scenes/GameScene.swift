@@ -8,6 +8,7 @@
 import SpriteKit
 import GameplayKit
 import CoreMotion
+import GameKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
@@ -186,7 +187,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func addSpit() {
         guard let spitSpriteNode = spit
                 .component(ofType: AnimateSpriteComponent.self)?
-                .spriteNode else { return }
+                .spriteNode,
+              let shooterSpriteNode = background
+                .component(ofType: AnimateBackgroundComponent.self)?
+                .shooterCharacter
+              else { return }
+        spitSpriteNode.position = CGPoint(x: ScreenSize.width/2, y: shooterSpriteNode.position.y)
         
         if let spitTail = SKEmitterNode(fileNamed: "SpitParticle.sks") {
             self.spitTail = spitTail
@@ -235,6 +241,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let collision = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
         
         if collision == CategoryMask.spit.rawValue | CategoryMask.obstacle.rawValue {
+            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
             gameOver()
             contact.bodyA.node?.removeFromParent()
         }
@@ -243,6 +250,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // MARK: Game Over
     func gameOver() {
+        report(score: self.score)
         self.view?.isPaused = true
         self.isPlaying = false
         stateMachine?.enter(GameOverState.self)
@@ -257,6 +265,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         removeObstacles()
         for obstacle in obstacles {
             obstacle.position.y -= difficulty
+        }
+    }
+    
+    func report(score: Int) {
+        GKLeaderboard.submitScore(score, context: .zero, player: GKLocalPlayer.local, leaderboardIDs: ["Leaderboard"]){ erro in
+            print(erro)
         }
     }
     
