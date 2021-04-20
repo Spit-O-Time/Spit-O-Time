@@ -112,27 +112,35 @@ class GameOverViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        audioManager.playSound(named: .gameOver, volume: 3.0)
+        try? audioManager.playSound(named: .gameOver, volume: 3.0)
         setupViewHierarchy()
         setupConstraints()
     }
     
     private func loadRewardedAd() {
         let request = GADRequest()
-        self.rewardedAd = GADRewardedAd(adUnitID: "ca-app-pub-9249585883419480/2345481567")
         
-        #if DEBUG
-            self.rewardedAd = GADRewardedAd(adUnitID: "ca-app-pub-3940256099942544/1712485313")
-        #endif
-   
+        self.rewardedAd = GADRewardedAd(adUnitID: "ca-app-pub-9249585883419480/2345481567")
+//        #if DEBUG
+//            self.rewardedAd = GADRewardedAd(adUnitID: "ca-app-pub-3940256099942544/1712485313")
+//        #endif
+
         self.rewardedAd?.load(request) { (error) in
             if let error = error {
                 print(error.localizedDescription)
+                self.activityIndicator.stopAnimating()
+                self.presentModal(title: "Oops", message: "Sorry, can`t show you an ad right now")
             } else {
                 self.activityIndicator.stopAnimating()
                 self.openRewardedAd()
             }
         }
+    }
+    
+    private func presentModal(title: String, message: String) {
+        let modal = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        modal.addAction(.init(title: "Ok", style: .default, handler: nil))
+        self.present(modal, animated: true, completion: nil)
     }
     
     private func openRewardedAd() {
@@ -238,5 +246,10 @@ extension GameOverViewController: GADRewardedAdDelegate {
                 }
             }
         }
+    }
+    
+    func rewardedAd(_ rewardedAd: GADRewardedAd, didFailToPresentWithError error: Error) {
+        activityIndicator.stopAnimating()
+        self.presentModal(title: "Oops", message: "Sorry, can`t show you an ad right now")
     }
 }

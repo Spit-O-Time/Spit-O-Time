@@ -21,7 +21,7 @@ class SpawnComponent: GKComponent {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func spawn() -> SKSpriteNode? {
+    func spawn() -> SKSpriteNode {
         let random = SKSpriteNode(imageNamed: sprites.randomElement() ?? "")
         random.zPosition = 0
         random.size = CGSize(width: 83.8, height: 100)

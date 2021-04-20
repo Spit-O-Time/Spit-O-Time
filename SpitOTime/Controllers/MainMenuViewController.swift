@@ -47,7 +47,7 @@ class MainMenuViewController: UIViewController, GKGameCenterControllerDelegate {
         super.viewWillAppear(animated)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.audioManager.playSound(named: .menuBackground, numberOfLoop: -1, volume: 0.5)
+            try? self.audioManager.playSound(named: .menuBackground, numberOfLoop: -1, volume: 0.5)
         }
         
     }
@@ -82,18 +82,30 @@ class MainMenuViewController: UIViewController, GKGameCenterControllerDelegate {
         changeValueUserDefaults(forKey: .isSoundEffectMuted, button: sound)
     }
 
-    func changeValueUserDefaults(forKey: AudioConfig, button: UIButton) {
-        if UserDefaults.standard.bool(forKey: forKey.rawValue) {
-            UserDefaults.standard.setValue(false, forKey: forKey.rawValue)
-            button.setImage(UIImage(named: forKey.rawValue+"_deactive"), for: .normal)
-            self.audioManager.stopSound()
-        } else {
-            UserDefaults.standard.setValue(true, forKey: forKey.rawValue)
-            button.setImage(UIImage(named: forKey.rawValue+"_active"), for: .normal)
-            self.audioManager.playSound(named: .menuBackground, numberOfLoop: -1, volume: 0.5)
+    func changeValueUserDefaults(forKey key: AudioConfig, button: UIButton) {
+        switch key {
+        case .isSoundtrackMuted:
+            if UserDefaults.standard.bool(forKey: key.rawValue) {
+                UserDefaults.standard.setValue(false, forKey: key.rawValue)
+                button.setImage(UIImage(named: key.rawValue+"_deactive"), for: .normal)
+                self.audioManager.stopSound()
+            } else {
+                UserDefaults.standard.setValue(true, forKey: key.rawValue)
+                button.setImage(UIImage(named: key.rawValue+"_active"), for: .normal)
+                self.audioManager.playSound(named: .menuBackground, numberOfLoop: -1, volume: 0.5)
+            }
+            
+        case .isSoundEffectMuted:
+            if UserDefaults.standard.bool(forKey: key.rawValue) {
+                UserDefaults.standard.setValue(false, forKey: key.rawValue)
+                button.setImage(UIImage(named: key.rawValue+"_deactive"), for: .normal)
+            } else {
+                UserDefaults.standard.setValue(true, forKey: key.rawValue)
+                button.setImage(UIImage(named: key.rawValue+"_active"), for: .normal)
+            }
         }
         UserDefaults.standard.synchronize()
-        print(UserDefaults.standard.bool(forKey: forKey.rawValue))
+        print(UserDefaults.standard.bool(forKey: key.rawValue))
     }
 
     func setButtonImage(forKey: AudioConfig, button: UIButton) {

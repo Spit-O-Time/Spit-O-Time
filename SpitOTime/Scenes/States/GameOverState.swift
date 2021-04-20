@@ -17,12 +17,15 @@ class GameOverState: GKState {
         gameStateCoordinator?.route(to: .gameOver)
     }
     
-    func loadCoordinator() {
+    @discardableResult
+    func loadCoordinator() -> Bool {
         guard let gameStateMachine = stateMachine as? GameStateMachine else {
-            return
+            return false
         }
         
         gameStateCoordinator = GameStateCoordinator(stateMachine: gameStateMachine)
+        
+        return true
     }
     
 }
