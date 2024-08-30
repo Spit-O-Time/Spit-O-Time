@@ -8,71 +8,46 @@
 import SpriteKit
 import AVFoundation
 
-enum SoundName: String {
-    case spit = "LlamaSpit"
-    case background = "Background"
-    case backgroundLoop = "BackgroundLoop"
-    case gameOver = "GameOver"
-    case menuBackground = "MenuBackground"
-    case failedCase
-    static let soundExtension = "mp3"
-}
-
 enum AudioConfig: String {
-    case isSoundtrackMuted = "isSoundtrackMuted"
-    case isSoundEffectMuted = "isSoundEffectMuted"
+    case isSoundtrackMuted
+    case isSoundEffectMuted
 }
 
 class AudioManager {
     
     var audioPlayer: AVAudioPlayer?
-    var isSoundtrackMuted: Bool
-    var isSoundEffectMuted: Bool
+    var defaultVolume: Float = 1.0
     
-    init() {
-        isSoundtrackMuted = UserDefaults.standard.bool(forKey: AudioConfig.isSoundtrackMuted.rawValue)
-        isSoundEffectMuted = UserDefaults.standard.bool(forKey: AudioConfig.isSoundEffectMuted.rawValue)
+    func getSKAudioNode(_ name: Assets.Sound) -> SKAudioNode? {
+        return SKAudioNode(fileNamed: name.rawValue)
+    }
+
+    func stopSKAudioNode(_ audioNode: SKAudioNode?) {
+        audioNode?.run(SKAction.stop())
     }
     
-    func getSKAudioNode(_ name: SoundName) -> SKAudioNode? {
-        if !isSoundEffectMuted {
-            let audioNode = SKAudioNode(fileNamed: name.rawValue)
-            return audioNode
-        }
-        return nil
-    }
-    
-    func stopSKAudioNode(_ audioNode: SKAudioNode?) -> Bool {
-        if !isSoundEffectMuted {
-            audioNode?.run(SKAction.stop())
-            return true
-        }
-        return false
-    }
-    
-    func playSKAudioNode(_ name: SoundName) -> SKAction? {
-        if !isSoundEffectMuted {
+    func playSKAudioNode(_ name: Assets.Sound) -> SKAction? {
+        if !UserDefaultsManager.isSoundEffectMuted {
             SKAction.playSoundFileNamed(name.rawValue, waitForCompletion: false)
         }
         return nil
     }
     
+    @discardableResult
     func stopSound() -> Bool {
         guard let audioPlayer = audioPlayer else { return false }
         audioPlayer.stop()
         return true
     }
 
-    func playSound(named: SoundName, numberOfLoop: Int = 0, volume: Float = 1.0) {
-        if isSoundEffectMuted == false {
-            if let url: URL = Bundle.main.url(forResource: named.rawValue, withExtension: SoundName.soundExtension) {
-                do {
-                    audioPlayer = try AVAudioPlayer(contentsOf: url, fileTypeHint: nil)
-                    audioPlayer?.numberOfLoops = numberOfLoop
-                    audioPlayer?.volume = volume
-                    audioPlayer?.play()
-                } catch { }
-            }
+    func playSound(named: Assets.Sound, loop: Bool = false) {
+        if let url: URL = Bundle.main.url(forResource: named.rawValue, withExtension: Assets.Sound.fileExtension) {
+            do {
+                audioPlayer = try AVAudioPlayer(contentsOf: url, fileTypeHint: nil)
+                audioPlayer?.numberOfLoops = loop ? -1 : 1
+                audioPlayer?.volume = defaultVolume
+                audioPlayer?.play()
+            } catch { }
         }
     }
 }

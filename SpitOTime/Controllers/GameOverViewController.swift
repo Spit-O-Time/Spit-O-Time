@@ -10,11 +10,11 @@
 
 import UIKit
 import GameplayKit
-import GoogleMobileAds
+//import GoogleMobileAds
 
 class GameOverViewController: UIViewController {
 
-    var rewardedAd: GADRewardedAd?
+//    var rewardedAd: GADRewardedAd?
     
     weak var stateMachine: GKStateMachine?
     
@@ -111,35 +111,35 @@ class GameOverViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        try? audioManager.playSound(named: .gameOver, volume: 3.0)
+        audioManager.playSound(named: .gameOver)
         setupViewHierarchy()
         setupConstraints()
     }
     
-    private func loadRewardedAd() {
-        let request = GADRequest()
-        
-        self.rewardedAd = GADRewardedAd(adUnitID: "ca-app-pub-9249585883419480/2345481567")
-//        #if DEBUG
-//            self.rewardedAd = GADRewardedAd(adUnitID: "ca-app-pub-3940256099942544/1712485313")
-//        #endif
-
-        self.rewardedAd?.load(request) { (error) in
-            if let error = error {
-                print(error.localizedDescription)
-                self.activityIndicator.stopAnimating()
-            } else {
-                self.activityIndicator.stopAnimating()
-                self.openRewardedAd()
-            }
-        }
-    }
-    
-    private func openRewardedAd() {
-        self.rewardedAd?.present(fromRootViewController: self,
-                                 delegate: self)
-    }
-    
+//    private func loadRewardedAd() {
+//        let request = GADRequest()
+//        
+//        self.rewardedAd = GADRewardedAd(adUnitID: "ca-app-pub-9249585883419480/2345481567")
+////        #if DEBUG
+////            self.rewardedAd = GADRewardedAd(adUnitID: "ca-app-pub-3940256099942544/1712485313")
+////        #endif
+//
+//        self.rewardedAd?.load(request) { (error) in
+//            if let error = error {
+//                print(error.localizedDescription)
+//                self.activityIndicator.stopAnimating()
+//            } else {
+//                self.activityIndicator.stopAnimating()
+//                self.openRewardedAd()
+//            }
+//        }
+//    }
+//    
+//    private func openRewardedAd() {
+//        self.rewardedAd?.present(fromRootViewController: self,
+//                                 delegate: self)
+//    }
+//    
     private func setupViewHierarchy() {
         view.addSubview(blur)
         view.addSubview(backgroundView)
@@ -154,7 +154,7 @@ class GameOverViewController: UIViewController {
     
     @objc func resume() {
         activityIndicator.startAnimating()
-        loadRewardedAd()
+//        loadRewardedAd()
     }
     
     @objc func restart() {
@@ -220,27 +220,27 @@ class GameOverViewController: UIViewController {
     }
 
 }
-
-extension GameOverViewController: GADRewardedAdDelegate {
-    func rewardedAd(_ rewardedAd: GADRewardedAd, userDidEarn reward: GADAdReward) {
-        if let stateMachine = self.stateMachine?.currentState as? GameOverState {
-            stateMachine.restart = false
-            self.surviveState = true
-        }
-    }
-    
-    func rewardedAdDidDismiss(_ rewardedAd: GADRewardedAd) {
-        if let stateMachine = self.stateMachine?.currentState as? GameOverState {
-            if !stateMachine.restart {
-                self.dismiss(animated: true) {
-                    self.stateMachine?.enter(PlayingState.self)
-                    stateMachine.restart = true
-                }
-            }
-        }
-    }
-    
-    func rewardedAd(_ rewardedAd: GADRewardedAd, didFailToPresentWithError error: Error) {
-        activityIndicator.stopAnimating()
-    }
-}
+//
+//extension GameOverViewController: GADRewardedAdDelegate {
+//    func rewardedAd(_ rewardedAd: GADRewardedAd, userDidEarn reward: GADAdReward) {
+//        if let stateMachine = self.stateMachine?.currentState as? GameOverState {
+//            stateMachine.restart = false
+//            self.surviveState = true
+//        }
+//    }
+//    
+//    func rewardedAdDidDismiss(_ rewardedAd: GADRewardedAd) {
+//        if let stateMachine = self.stateMachine?.currentState as? GameOverState {
+//            if !stateMachine.restart {
+//                self.dismiss(animated: true) {
+//                    self.stateMachine?.enter(PlayingState.self)
+//                    stateMachine.restart = true
+//                }
+//            }
+//        }
+//    }
+//    
+//    func rewardedAd(_ rewardedAd: GADRewardedAd, didFailToPresentWithError error: Error) {
+//        activityIndicator.stopAnimating()
+//    }
+//}

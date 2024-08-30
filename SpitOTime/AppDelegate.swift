@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import GoogleMobileAds
+//import GoogleMobileAds
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navigation = UINavigationController(rootViewController: controller)
         window?.rootViewController = navigation
 
-        GADMobileAds.sharedInstance().start(completionHandler: nil)
+//        GADMobileAds.sharedInstance().start(completionHandler: nil)
         
         return true
     }

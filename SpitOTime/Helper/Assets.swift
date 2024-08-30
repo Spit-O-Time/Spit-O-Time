@@ -1,5 +1,5 @@
 //
-//  Asset.swift
+//  Assets.swift
 //  SpitOTime
 //
 //  Created by Vinicius Mesquita Coelho on 30/08/24.
@@ -16,13 +16,13 @@ struct Assets {
         static let backgroundSoundDeactive = "music_background_deactive"
     }
 
-    struct Sound {
-        static let spit = "LlamaSpit"
-        static let background = "Background"
-        static let backgroundLoop = "BackgroundLoop"
-        static let gameOver = "GameOver"
-        static let menuBackground = "MenuBackground"
-        static let failedCase = "failedCase"
+    enum Sound: String {
+        case spit = "LlamaSpit"
+        case background = "Background"
+        case backgroundLoop = "BackgroundLoop"
+        case gameOver = "GameOver"
+        case menuBackground = "MenuBackground"
+        case failedCase = "failedCase"
         static let fileExtension = "mp3"
     }
 }

@@ -89,7 +89,7 @@ class GameViewController: UIViewController {
     }
     
     func countAnimationIfNeeded() {
-        guard UserDefaults.standard.bool(forKey: UserDefaultsKey.notFirstTime.rawValue) else { return }
+        guard UserDefaultsManager.isFirstTimePlaying == false else { return }
         animationView = .init(name: "count")
         animationView.contentMode = .scaleAspectFit
         setupAnimationView(withSize: CGSize(width: 200, height: 200))
@@ -105,7 +105,7 @@ class GameViewController: UIViewController {
     }
     
     private func tutorialAnimationIfNeeded() {
-        guard !UserDefaults.standard.bool(forKey: UserDefaultsKey.notFirstTime.rawValue) else { return }
+        guard !UserDefaultsManager.isFirstTimePlaying else { return }
         animationView = .init(name: "tutorial_movement")
         animationView.animationSpeed = 0.5
         animationView.contentMode = .scaleToFill
@@ -117,7 +117,7 @@ class GameViewController: UIViewController {
                 self.animationView.isHidden = true
             }
         }
-        UserDefaults.standard.setValue(true, forKey: UserDefaultsKey.notFirstTime.rawValue)
+        UserDefaultsManager.setFirstTime()
     }
     
     private func setupPauseButton() {
