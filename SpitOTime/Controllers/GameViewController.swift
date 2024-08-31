@@ -108,7 +108,7 @@ class GameViewController: UIViewController {
     }
     
     private func tutorialAnimationIfNeeded() {
-        guard !UserDefaultsManager.isFirstTimePlaying else { return }
+        guard UserDefaultsManager.isFirstTimePlaying else { return }
         animationView = .init(name: "tutorial_movement")
         animationView.animationSpeed = 0.5
         animationView.contentMode = .scaleToFill
@@ -120,7 +120,7 @@ class GameViewController: UIViewController {
                 self.animationView.isHidden = true
             }
         }
-        UserDefaultsManager.setFirstTime()
+        UserDefaultsManager.setUserPlayedFirstTime()
     }
     
     private func setupPauseButton() {

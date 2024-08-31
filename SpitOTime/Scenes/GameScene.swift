@@ -8,6 +8,7 @@
 import SpriteKit
 import GameplayKit
 import CoreMotion
+import GameKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
@@ -48,7 +49,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var audioManager = AudioManager()
     
-    // MARK: DidMove
+
     override func didMove(to view: SKView) {
         scheduleTimer()
         difficultyTimer()
@@ -86,12 +87,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         )
     }
     
-    @objc func difficultyTrigger() {
-        if isPlaying {
-            velocity += 0.5
-        }
-    }
-    
     func scoreTimer() {
         Timer.scheduledTimer(
             timeInterval: 1,
@@ -112,7 +107,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         secondsOfPlaying += 1
     }
-    
+
+    @objc func difficultyTrigger() {
+        if isPlaying {
+            velocity += 0.5
+        }
+    }
+
     func spawnObstacles() {
         let wait = SKAction.wait(forDuration: 3, withRange: 2)
         let spawn = SKAction.run {

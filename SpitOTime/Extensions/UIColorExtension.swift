@@ -19,4 +19,9 @@ extension UIColor {
     static var titleLabel: UIColor {
         UIColor(red: 121/255, green: 0/255, blue: 27/255, alpha: 1)
     }
+
+    static var backgroundColor: UIColor {
+        UIColor(red: 255/255, green: 198/255, blue: 70/255, alpha: 1)
+
+    }
 }

@@ -21,7 +21,7 @@ struct UserDefaultsManager {
     static var isFirstTimePlaying: Bool {
         return UserDefaults.standard.bool(
             forKey: UserDefaultsKey.isFirstTimePlaying.rawValue
-        )
+        ) == false
     }
 
     static var isBackgroundSoundMuted: Bool {
@@ -39,14 +39,13 @@ struct UserDefaultsManager {
 
 extension UserDefaultsManager {
 
-    static func setFirstTime() {
+    static func setUserPlayedFirstTime() {
         UserDefaults.standard.set(
-            true,
+            false,
             forKey: UserDefaultsKey.isFirstTimePlaying.rawValue
         )
     }
-    
-    
+
     static func toggleMuteBackgroundSound() {
         UserDefaults.standard.set(
             !isBackgroundSoundMuted,

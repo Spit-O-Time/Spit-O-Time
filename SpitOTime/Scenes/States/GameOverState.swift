@@ -6,6 +6,7 @@
 //
 
 import GameplayKit
+import GameKit
 
 protocol GameOverDelegate: AnyObject {
     func didLose()
@@ -24,7 +25,15 @@ class GameOverState: GKState {
     override func didEnter(from previousState: GKState?) {
         if previousState is PlayingState {
             scene?.isPlaying = false
+            reportToLeaderboard(score: scene?.score ?? .zero)
             delegate?.didLose()
         }
     }
+
+    func reportToLeaderboard(score: Int) {
+        GKLeaderboard.submitScore(score, context: .zero, player: GKLocalPlayer.local, leaderboardIDs: ["Leaderboard"]) { err in
+            fatalError(err?.localizedDescription ?? String())
+        }
+    }
+    
 }
