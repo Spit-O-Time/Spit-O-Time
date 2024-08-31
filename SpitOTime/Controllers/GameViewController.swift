@@ -42,10 +42,10 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         
         scene = GameScene(size: CGSize(width: ScreenSize.width, height: ScreenSize.height))
-        scene?.stateMachine = GameStateMachine(states: [
+        scene?.stateMachine = GKStateMachine(states: [
             GameOverState(scene: scene, delegate: self),
             PausedState(scene: scene),
-            PlayingState(scene: scene)
+            PlayingState(scene: scene, delegate: self)
         ])
         
         let notificationCenter = NotificationCenter.default
@@ -97,12 +97,10 @@ class GameViewController: UIViewController {
         animationView.contentMode = .scaleAspectFit
         setupAnimationView(withSize: CGSize(width: 200, height: 200))
         animationView.play { _ in
-            self.scene?.isRunningAnimationCount = true
             UIView.animate(withDuration: 0.3) {
                 self.animationView.alpha = 0
             } completion: { _ in
                 self.animationView.isHidden = true
-                self.scene?.isRunningAnimationCount = false
             }
         }
     }
@@ -176,10 +174,33 @@ extension GameViewController {
         controller.modalTransitionStyle = .crossDissolve
         self.navigationController?.present(controller, animated: true)
     }
+    
+    func resetScene() {
+        
+    }
 
 }
 
-extension GameViewController: GameOverDelegate {
+extension GameViewController: GameOverDelegate, PlayingDelegate {
+
+    func didRestartGame() {
+        let sceneSize = CGSize(
+            width: ScreenSize.width,
+            height: ScreenSize.height
+        )
+        scene = GameScene(size: sceneSize)
+        scene?.scaleMode = .aspectFill
+        let stateMachine = GKStateMachine(
+            states: [
+                GameOverState(scene: scene, delegate: self),
+                PausedState(scene: scene),
+                PlayingState(scene: scene, delegate: self)
+            ]
+        )
+        scene?.stateMachine = stateMachine
+        skView.presentScene(scene)
+    }
+    
     
     func didLose() {
         goToGameOverViewController()

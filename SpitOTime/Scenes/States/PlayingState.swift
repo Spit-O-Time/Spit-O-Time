@@ -7,17 +7,24 @@
 
 import GameplayKit
 
+protocol PlayingDelegate: AnyObject {
+    func didRestartGame()
+}
+
 class PlayingState: GKState {
 
     weak var scene: GameScene?
+    weak var delegate: PlayingDelegate?
 
-    init(scene: GameScene?) {
+    init(scene: GameScene?, delegate: PlayingDelegate) {
         self.scene = scene
+        self.delegate = delegate
     }
 
     override func didEnter(from previousState: GKState?) {
         if previousState is GameOverState {
             scene?.isPlaying = true
+            delegate?.didRestartGame()
         }
         if previousState is PausedState {
             scene?.isPlaying = true

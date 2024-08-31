@@ -24,14 +24,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // MARK: - Variables
     var isPlaying = false
-    var isRunningAnimationCount = false
     var velocity: CGFloat = 8
     var score: Int = 0
     var secondsOfPlaying: Float = 0
 
-
     // MARK: Managers
-    var stateMachine: GameStateMachine?
+    var stateMachine: GKStateMachine?
     let motionManager = CMMotionManager()
     
     // MARK: Camera
@@ -142,23 +140,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func addBackgroundSound() {
-        
-        if let backgroundSound = audioManager.getSKAudioNode(.background) {
-            self.backgroundSound = backgroundSound
-            self.worldNode.addChild(backgroundSound)
-            let sequence = SKAction.sequence( [SKAction.play(), SKAction.wait(forDuration: 4.0 ) ])
-            backgroundSound.run(SKAction.changeVolume(to: Float(0.5), duration: 0))
-            run(sequence, completion: {
-                guard let backgroundLoop = self.audioManager.getSKAudioNode(.backgroundLoop) else { return }
-                backgroundSound.removeFromParent()
-                self.worldNode.addChild(backgroundLoop)
-                backgroundLoop.run(SKAction.changeVolume(to: Float(0.5), duration: 0))
-            })
+        guard let backgroundSound = audioManager.getSKAudioNode(.background) else {
+            return
         }
+        self.backgroundSound = backgroundSound
+        self.worldNode.addChild(backgroundSound)
+        let sequence = SKAction.sequence( [SKAction.play(), SKAction.wait(forDuration: 4.0 ) ])
+        backgroundSound.run(SKAction.changeVolume(to: Float(0.5), duration: 0))
+        run(sequence, completion: {
+            guard let backgroundLoop = self.audioManager.getSKAudioNode(.backgroundLoop) else { return }
+            backgroundSound.removeFromParent()
+            self.worldNode.addChild(backgroundLoop)
+            backgroundLoop.run(SKAction.changeVolume(to: Float(0.5), duration: 0))
+        })
+        
     }
     
     @objc func timerTrigger() {
-        isPlaying = true
         if let spitComponent = spit.component(ofType: AnimateSpriteComponent.self) {
             guard let sound = audioManager.playSKAudioNode(.spit) else { return }
             spitComponent.spriteNode.run(sound)
@@ -206,7 +204,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel.fontColor = .cardBackgroundColor
         scoreLabel.horizontalAlignmentMode = .center
         scoreLabel.zPosition = 5
-        scoreLabel.position = CGPoint(x: ScreenSize.width/2, y: ScreenSize.height - 70)
+        scoreLabel.position = CGPoint(x: ScreenSize.width/2, y: ScreenSize.height - 120)
         print(scoreLabel.position)
         self.worldNode.addChild(scoreLabel)
     }

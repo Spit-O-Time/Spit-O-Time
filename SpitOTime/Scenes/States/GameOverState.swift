@@ -32,7 +32,7 @@ class GameOverState: GKState {
 
     func reportToLeaderboard(score: Int) {
         GKLeaderboard.submitScore(score, context: .zero, player: GKLocalPlayer.local, leaderboardIDs: ["Leaderboard"]) { err in
-            fatalError(err?.localizedDescription ?? String())
+            print(err?.localizedDescription)
         }
     }
     
