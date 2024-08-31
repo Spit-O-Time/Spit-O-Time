@@ -8,21 +8,17 @@
 import GameplayKit
 
 class PausedState: GKState {
-    
-    var gameStateCoordinator: GameStateCoordinator?
+
+    weak var scene: GameScene?
+
+    init(scene: GameScene?) {
+        self.scene = scene
+    }
 
     override func didEnter(from previousState: GKState?) {
-        loadCoordinator()
-        gameStateCoordinator?.route(to: .paused)
-    }
-    
-    @discardableResult
-    func loadCoordinator() -> Bool {
-        guard let gameStateMachine = stateMachine as? GameStateMachine else {
-            return false
+        if previousState is PlayingState {
+            scene?.isPlaying = false
+            scene?.worldNode.isPaused = true
         }
-        
-        gameStateCoordinator = GameStateCoordinator(stateMachine: gameStateMachine)
-        return true
     }
 }

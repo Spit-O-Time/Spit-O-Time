@@ -25,7 +25,6 @@
 		815EFDB726039492008EEC0C /* SpitParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 815EFDB526039492008EEC0C /* SpitParticle.sks */; };
 		815EFDB826039492008EEC0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 815EFDB626039492008EEC0C /* Assets.xcassets */; };
 		815EFDD426039B3C008EEC0C /* PlayingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815EFD9426027D7D008EEC0C /* PlayingState.swift */; };
-		815EFDD826039B54008EEC0C /* GameCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815EFD9A26027DBB008EEC0C /* GameCoordinator.swift */; };
 		8170AEB7260B7A3D00CD0560 /* tutorial_movement.json in Resources */ = {isa = PBXBuildFile; fileRef = 8170AEB6260B7A3D00CD0560 /* tutorial_movement.json */; };
 		8170AEEB260B8C3D00CD0560 /* count.json in Resources */ = {isa = PBXBuildFile; fileRef = 8170AEEA260B8C3D00CD0560 /* count.json */; };
 		818A422825FF7E0F00454FAF /* AnimateBackgroundComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818A422725FF7E0F00454FAF /* AnimateBackgroundComponent.swift */; };
@@ -98,7 +97,6 @@
 		813A8BE6261DF40C00F2F13F /* Background.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Background.mp3; sourceTree = "<group>"; };
 		813A8BEB261DF42000F2F13F /* BackgroundLoop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BackgroundLoop.mp3; sourceTree = "<group>"; };
 		815EFD9426027D7D008EEC0C /* PlayingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayingState.swift; sourceTree = "<group>"; };
-		815EFD9A26027DBB008EEC0C /* GameCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCoordinator.swift; sourceTree = "<group>"; };
 		815EFDAD26038248008EEC0C /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		815EFDB526039492008EEC0C /* SpitParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SpitParticle.sks; sourceTree = "<group>"; };
 		815EFDB626039492008EEC0C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -263,14 +261,6 @@
 			path = Particles;
 			sourceTree = "<group>";
 		};
-		815EFD9926027DA9008EEC0C /* Coordinator */ = {
-			isa = PBXGroup;
-			children = (
-				815EFD9A26027DBB008EEC0C /* GameCoordinator.swift */,
-			);
-			path = Coordinator;
-			sourceTree = "<group>";
-		};
 		818ACC6C260241FA0033F65F /* States */ = {
 			isa = PBXGroup;
 			children = (
@@ -311,7 +301,6 @@
 		A4A0361D25F7C29F0036CCCB /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				815EFD9926027DA9008EEC0C /* Coordinator */,
 				818ACC6C260241FA0033F65F /* States */,
 				5B8AD09925F2717800B64371 /* GameScene.swift */,
 			);
@@ -670,7 +659,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				815EFDD826039B54008EEC0C /* GameCoordinator.swift in Sources */,
 				815EFDD426039B3C008EEC0C /* PlayingState.swift in Sources */,
 				8118BD7125FA4E19002015E7 /* Spit.swift in Sources */,
 				AEFE242B2608D80900278D50 /* PauseGameViewController.swift in Sources */,

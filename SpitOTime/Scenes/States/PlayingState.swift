@@ -8,30 +8,20 @@
 import GameplayKit
 
 class PlayingState: GKState {
-    
-    var gameStateCoordinator: GameStateCoordinator?
-    
+
+    weak var scene: GameScene?
+
+    init(scene: GameScene?) {
+        self.scene = scene
+    }
+
     override func didEnter(from previousState: GKState?) {
-        loadCoordinator()
-        if let previousState = previousState as? GameOverState {
-            if previousState.restart {
-                gameStateCoordinator?.route(to: .restart)
-            } else {
-                gameStateCoordinator?.route(to: .resume)
-            }
-        } else if previousState is PausedState {
-            gameStateCoordinator?.route(to: .resume)
+        if previousState is GameOverState {
+            scene?.isPlaying = true
+        }
+        if previousState is PausedState {
+            scene?.isPlaying = true
+            scene?.worldNode.isPaused = false
         }
     }
-    
-    func loadCoordinator() -> Bool {
-        guard let gameStateMachine = stateMachine as? GameStateMachine else {
-            return false
-        }
-        
-        gameStateCoordinator = GameStateCoordinator(stateMachine: gameStateMachine)
-        
-        return true
-    }
-    
 }

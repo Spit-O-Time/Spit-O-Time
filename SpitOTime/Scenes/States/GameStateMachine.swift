@@ -6,14 +6,7 @@
 //
 
 import GameplayKit
-import SpriteKit
 
 class GameStateMachine: GKStateMachine {
     
-    weak var present: UIViewController?
-    
-    init(present: UIViewController, states: [GKState]) {
-        self.present = present
-        super.init(states: states)
-    }
 }

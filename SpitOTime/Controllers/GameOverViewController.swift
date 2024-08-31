@@ -94,19 +94,7 @@ class GameOverViewController: UIViewController {
     }()
     
     var surviveState: Bool {
-        get {
-            guard let stateMachine = stateMachine as? GameStateMachine,
-            let gameViewController = stateMachine.present as? GameViewController,
-            let scene = gameViewController.skView.scene as? GameScene else { return false }
-            return scene.didSurvive
-        }
-        set {
-            if let stateMachine = stateMachine as? GameStateMachine,
-            let gameViewController = stateMachine.present as? GameViewController,
-            let scene = gameViewController.skView.scene as? GameScene {
-                scene.didSurvive = newValue
-            }
-        }
+        return true
     }
     
     override func viewDidLoad() {
@@ -163,16 +151,12 @@ class GameOverViewController: UIViewController {
     }
     
     @objc func goToMainMenu() {
-        dismiss(animated: true) {
-            if let stateMachine = self.stateMachine as? GameStateMachine {
-                let transition = CATransition()
-                transition.duration = 0.3
-                transition.type = .fade
-                transition.subtype = .none
-                stateMachine.present?.navigationController?.view.layer.add(transition, forKey: kCATransition)
-                stateMachine.present?.navigationController?.popViewController(animated: false)
-            }
+        guard let rootViewController = view.window?.rootViewController as? UINavigationController else {
+            return
         }
+        rootViewController.modalTransitionStyle = .crossDissolve
+        rootViewController.dismiss(animated: true)
+        rootViewController.popToRootViewController(animated: false)
     }
     
     private func setupConstraints() {

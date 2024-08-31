@@ -42,7 +42,11 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         
         scene = GameScene(size: CGSize(width: ScreenSize.width, height: ScreenSize.height))
-        scene?.stateMachine = GameStateMachine(present: self, states: [GameOverState(), PausedState(), PlayingState()])
+        scene?.stateMachine = GameStateMachine(states: [
+            GameOverState(scene: scene, delegate: self),
+            PausedState(scene: scene),
+            PlayingState(scene: scene)
+        ])
         
         let notificationCenter = NotificationCenter.default
             notificationCenter.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.willResignActiveNotification, object: nil)
@@ -82,9 +86,8 @@ class GameViewController: UIViewController {
     
     @objc func pause() {
         if let scene = skView.scene as? GameScene {
-            skView.isPaused = true
-            scene.isPlaying = false
             scene.stateMachine?.enter(PausedState.self)
+            goToPauseViewController()
         }
     }
     
@@ -154,3 +157,32 @@ class GameViewController: UIViewController {
     }
 }
 
+
+// MARK: Navigation
+extension GameViewController {
+    
+    func goToPauseViewController() {
+        let controller = PauseGameViewController()
+        controller.stateMachine = scene?.stateMachine
+        controller.modalPresentationStyle = .overFullScreen
+        controller.modalTransitionStyle = .crossDissolve
+        self.navigationController?.present(controller, animated: true)
+    }
+
+    func goToGameOverViewController() {
+        let controller = GameOverViewController()
+        controller.stateMachine = scene?.stateMachine
+        controller.modalPresentationStyle = .overFullScreen
+        controller.modalTransitionStyle = .crossDissolve
+        self.navigationController?.present(controller, animated: true)
+    }
+
+}
+
+extension GameViewController: GameOverDelegate {
+    
+    func didLose() {
+        goToGameOverViewController()
+    }
+    
+}

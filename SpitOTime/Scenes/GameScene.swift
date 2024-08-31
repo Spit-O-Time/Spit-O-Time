@@ -11,34 +11,29 @@ import CoreMotion
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
-    // MARK: Variables
+    // MARK: - Nodes
+    let worldNode = SKNode()
     let spit = Spit()
-    var spitTail: SKEmitterNode!
-    var didSurvive = false
-    
     let background = Background()
-    
     let obstacle = Obstacle()
     var obstacles = [SKSpriteNode]()
-    
-    var isPlaying = false
-    var isRunningAnimationCount = false
-    let motionManager = CMMotionManager()
-    
-    var stateMachine: GameStateMachine?
-    
-    var difficulty: CGFloat = 8
-    
+
+    var spitTail: SKEmitterNode!
     var scoreLabel: SKLabelNode!
     
-    var score: Int = 0 {
-        didSet {
-            scoreLabel.text = "Score: \(score)";
-        }
-    }
+    // MARK: - Variables
+    var isPlaying = false
+    var isRunningAnimationCount = false
+    var velocity: CGFloat = 8
+    var score: Int = 0
+    var secondsOfPlaying: Float = 0
+
+
+    // MARK: Managers
+    var stateMachine: GameStateMachine?
+    let motionManager = CMMotionManager()
     
-    var scoreCount: Float = 0
-    
+    // MARK: Camera
     lazy var sceneCamera: SKCameraNode = {
         let camera = SKCameraNode()
         camera.position = CGPoint(x: ScreenSize.width/2, y: ScreenSize.height/2)
@@ -66,49 +61,56 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.physicsWorld.contactDelegate = self
         motionManager.startAccelerometerUpdates()
         stateMachine?.enter(PlayingState.self)
-        self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
+        addChild(worldNode)
+        self.physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
     }
     
     // MARK: Time events
     func scheduleTimer() {
-        Timer.scheduledTimer(timeInterval: 4,
-                             target: self,
-                             selector: #selector(timerTrigger),
-                             userInfo: nil,
-                             repeats:  false)
+        Timer.scheduledTimer(
+            timeInterval: 4,
+            target: self,
+            selector: #selector(timerTrigger),
+            userInfo: nil,
+            repeats:  false
+        )
     }
     
     func difficultyTimer() {
-        Timer.scheduledTimer(timeInterval: 3,
-                             target: self,
-                             selector: #selector(difficultyTrigger),
-                             userInfo: nil,
-                             repeats: true)
-        
+        Timer.scheduledTimer(
+            timeInterval: 3,
+            target: self,
+            selector: #selector(difficultyTrigger),
+            userInfo: nil,
+            repeats: true
+        )
     }
     
     @objc func difficultyTrigger() {
         if isPlaying {
-            difficulty += 0.5
+            velocity += 0.5
         }
     }
     
     func scoreTimer() {
-        Timer.scheduledTimer(timeInterval: 1,
-                             target: self,
-                             selector: #selector(self.scorePoints),
-                             userInfo: nil,
-                             repeats:  true)
+        Timer.scheduledTimer(
+            timeInterval: 1,
+            target: self,
+            selector: #selector(updateScorePoints),
+            userInfo: nil,
+            repeats:  true
+        )
     }
     
-    @objc func scorePoints() {
+    @objc func updateScorePoints() {
         guard isPlaying else { return }
-        if scoreCount > 5 {
-            score += Int(difficulty)
+        
+        if secondsOfPlaying > 5 {
+            score += Int(secondsOfPlaying * 1.5)
         } else {
-            score = Int(powf(2, scoreCount))
+            score = Int(powf(2, secondsOfPlaying))
         }
-        scoreCount += 1
+        secondsOfPlaying += 1
     }
     
     func spawnObstacles() {
@@ -117,7 +119,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             guard let llama = self.obstacle
                     .component(ofType: SpawnComponent.self)?.spawn() else { return }
             if llama.parent == nil {
-                self.addChild(llama)
+                self.worldNode.addChild(llama)
                 self.obstacles.append(llama)
             }
         }
@@ -142,13 +144,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if let backgroundSound = audioManager.getSKAudioNode(.background) {
             self.backgroundSound = backgroundSound
-            addChild(backgroundSound)
+            self.worldNode.addChild(backgroundSound)
             let sequence = SKAction.sequence( [SKAction.play(), SKAction.wait(forDuration: 4.0 ) ])
             backgroundSound.run(SKAction.changeVolume(to: Float(0.5), duration: 0))
             run(sequence, completion: {
                 guard let backgroundLoop = self.audioManager.getSKAudioNode(.backgroundLoop) else { return }
                 backgroundSound.removeFromParent()
-                self.addChild(backgroundLoop)
+                self.worldNode.addChild(backgroundLoop)
                 backgroundLoop.run(SKAction.changeVolume(to: Float(0.5), duration: 0))
             })
         }
@@ -177,10 +179,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let rightWall = backgrounds.wallRight
         let llama = backgrounds.shooterCharacter
         
-        addChild(llama)
-        ground.forEach { addChild($0) }
-        leftWall.forEach { addChild($0) }
-        rightWall.forEach { addChild($0) }
+        self.worldNode.addChild(llama)
+        ground.forEach { self.worldNode.addChild($0) }
+        leftWall.forEach { self.worldNode.addChild($0) }
+        rightWall.forEach { self.worldNode.addChild($0) }
     }
     
     func addSpit() {
@@ -191,10 +193,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if let spitTail = SKEmitterNode(fileNamed: "SpitParticle.sks") {
             self.spitTail = spitTail
             self.spitTail.position = spitSpriteNode.position
-            addChild(self.spitTail)
+            self.worldNode.addChild(self.spitTail)
         }
         
-        addChild(spitSpriteNode)
+        self.worldNode.addChild(spitSpriteNode)
     }
     
     func setUpText() {
@@ -205,7 +207,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel.zPosition = 5
         scoreLabel.position = CGPoint(x: ScreenSize.width/2, y: ScreenSize.height - 70)
         print(scoreLabel.position)
-        self.addChild(scoreLabel)
+        self.worldNode.addChild(scoreLabel)
     }
     
     // MARK: Movimentation
@@ -214,7 +216,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         spitTail?.position = spitPosition
         
         if let accelerometerData = motionManager.accelerometerData {
-            spit.component(ofType: AnimateSpriteComponent.self)!.spriteNode.position.x += CGFloat(accelerometerData.acceleration.x) * (8 + difficulty)
+            spit.component(ofType: AnimateSpriteComponent.self)!.spriteNode.position.x += CGFloat(accelerometerData.acceleration.x) * (8 + velocity)
         }
         
         if spitPosition.y < sceneCamera.position.y/2 {
@@ -226,7 +228,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         guard let backgoundComponent = background
                 .component(ofType: AnimateBackgroundComponent.self) else { return }
         
-        backgoundComponent.updateBackground(cameraNode: sceneCamera, velocity: difficulty)
+        backgoundComponent.updateBackground(cameraNode: sceneCamera, velocity: velocity)
     }
     
     // MARK: Begin Contact
@@ -243,8 +245,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // MARK: Game Over
     func gameOver() {
-        self.view?.isPaused = true
-        self.isPlaying = false
         stateMachine?.enter(GameOverState.self)
         audioManager.stopSKAudioNode(backgroundSound)
     }
@@ -252,11 +252,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: Update
     override func update(_ currentTime: TimeInterval) {
         guard isPlaying else { return }
+        scoreLabel.text = "Score: \(score)"
         animateSpit()
         animateBackground()
         removeObstacles()
         for obstacle in obstacles {
-            obstacle.position.y -= difficulty
+            obstacle.position.y -= velocity
         }
     }
     

@@ -63,13 +63,13 @@ class PauseGameViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewHierarchy()
         setupConstraints()
     }
-    
+
     private func setupViewHierarchy() {
         view.addSubview(blur)
         view.addSubview(backgroundView)
@@ -84,24 +84,14 @@ class PauseGameViewController: UIViewController {
     }
     
     @objc func goToMainMenu() {
-        dismiss(animated: true) {
-            if let stateMachine = self.stateMachine as? GameStateMachine {
-                let transition = CATransition()
-                transition.duration = 0.3
-                transition.type = .fade
-                transition.subtype = .none
-                let gameViewController = stateMachine.present as? GameViewController
-                gameViewController?.skView.scene?.removeAllActions()
-                gameViewController?.skView.scene?.removeAllChildren()
-                gameViewController?.skView.scene?.removeFromParent()
-                gameViewController?.animationView.stop()
-                
-                stateMachine.present?.navigationController?.view.layer.add(transition, forKey: kCATransition)
-                stateMachine.present?.navigationController?.popViewController(animated: false)
-            }
+        guard let rootViewController = view.window?.rootViewController as? UINavigationController else {
+            return
         }
+        rootViewController.modalTransitionStyle = .crossDissolve
+        rootViewController.dismiss(animated: true)
+        rootViewController.popToRootViewController(animated: false)
     }
-    
+
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             backgroundView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -126,5 +116,4 @@ class PauseGameViewController: UIViewController {
             mainMenuButton.widthAnchor.constraint(equalToConstant: 200)
         ])
     }
-
 }

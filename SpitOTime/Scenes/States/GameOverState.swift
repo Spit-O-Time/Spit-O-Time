@@ -7,25 +7,24 @@
 
 import GameplayKit
 
+protocol GameOverDelegate: AnyObject {
+    func didLose()
+}
+
 class GameOverState: GKState {
-    
-    var gameStateCoordinator: GameStateCoordinator?
-    var restart = true
-    
+
+    weak var scene: GameScene?
+    weak var delegate: GameOverDelegate?
+
+    init(scene: GameScene?, delegate: GameOverDelegate) {
+        self.scene = scene
+        self.delegate = delegate
+    }
+
     override func didEnter(from previousState: GKState?) {
-        loadCoordinator()
-        gameStateCoordinator?.route(to: .gameOver)
-    }
-    
-    @discardableResult
-    func loadCoordinator() -> Bool {
-        guard let gameStateMachine = stateMachine as? GameStateMachine else {
-            return false
+        if previousState is PlayingState {
+            scene?.isPlaying = false
+            delegate?.didLose()
         }
-        
-        gameStateCoordinator = GameStateCoordinator(stateMachine: gameStateMachine)
-        
-        return true
     }
-    
 }
