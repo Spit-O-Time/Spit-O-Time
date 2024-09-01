@@ -59,7 +59,25 @@ class GameViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         self.view.layer.removeAllAnimations()
     }
-    
+
+    func startScene() {
+        let sceneSize = CGSize(
+            width: ScreenSize.width,
+            height: ScreenSize.height
+        )
+        scene = GameScene(size: sceneSize)
+        scene?.scaleMode = .aspectFill
+        let stateMachine = GKStateMachine(
+            states: [
+                GameOverState(scene: scene, delegate: self),
+                PausedState(scene: scene),
+                PlayingState(scene: scene, delegate: self)
+            ]
+        )
+        scene?.stateMachine = stateMachine
+        skView.presentScene(scene)
+    }
+
     @objc func appMovedToBackground() {
         if let scene = skView.scene as? GameScene {
             skView.isPaused = true
@@ -171,27 +189,10 @@ extension GameViewController {
         controller.modalTransitionStyle = .crossDissolve
         self.navigationController?.present(controller, animated: true)
     }
-    
-    func startScene() {
-        let sceneSize = CGSize(
-            width: ScreenSize.width,
-            height: ScreenSize.height
-        )
-        scene = GameScene(size: sceneSize)
-        scene?.scaleMode = .aspectFill
-        let stateMachine = GKStateMachine(
-            states: [
-                GameOverState(scene: scene, delegate: self),
-                PausedState(scene: scene),
-                PlayingState(scene: scene, delegate: self)
-            ]
-        )
-        scene?.stateMachine = stateMachine
-        skView.presentScene(scene)
-    }
 
 }
 
+// MARK: States Delegates
 extension GameViewController: GameOverDelegate, PlayingDelegate {
 
     func didRestartGame() {
