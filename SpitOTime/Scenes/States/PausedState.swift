@@ -7,18 +7,19 @@
 
 import GameplayKit
 
+protocol PauseDelegate: AnyObject {
+    func didPauseGame()
+}
+
 class PausedState: GKState {
 
-    weak var scene: GameScene?
+    weak var delegate: PauseDelegate?
 
-    init(scene: GameScene?) {
-        self.scene = scene
+    init(delegate: PauseDelegate?) {
+        self.delegate = delegate
     }
 
     override func didEnter(from previousState: GKState?) {
-        if previousState is PlayingState {
-            scene?.isPlaying = false
-            scene?.worldNode.isPaused = true
-        }
+        delegate?.didPauseGame()
     }
 }

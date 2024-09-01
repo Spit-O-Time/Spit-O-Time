@@ -17,9 +17,7 @@ class GameOverViewController: UIViewController {
 //    var rewardedAd: GADRewardedAd?
     
     weak var stateMachine: GKStateMachine?
-    
-    lazy var audioManager = AudioManager()
-    
+        
     lazy var blur: UIVisualEffectView = {
         let effect = UIBlurEffect(style: .dark)
         let blurView = UIVisualEffectView(effect: effect)
@@ -99,35 +97,10 @@ class GameOverViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        audioManager.playSound(named: .gameOver)
         setupViewHierarchy()
         setupConstraints()
     }
     
-//    private func loadRewardedAd() {
-//        let request = GADRequest()
-//        
-//        self.rewardedAd = GADRewardedAd(adUnitID: "ca-app-pub-9249585883419480/2345481567")
-////        #if DEBUG
-////            self.rewardedAd = GADRewardedAd(adUnitID: "ca-app-pub-3940256099942544/1712485313")
-////        #endif
-//
-//        self.rewardedAd?.load(request) { (error) in
-//            if let error = error {
-//                print(error.localizedDescription)
-//                self.activityIndicator.stopAnimating()
-//            } else {
-//                self.activityIndicator.stopAnimating()
-//                self.openRewardedAd()
-//            }
-//        }
-//    }
-//    
-//    private func openRewardedAd() {
-//        self.rewardedAd?.present(fromRootViewController: self,
-//                                 delegate: self)
-//    }
-//    
     private func setupViewHierarchy() {
         view.addSubview(blur)
         view.addSubview(backgroundView)
@@ -206,6 +179,32 @@ class GameOverViewController: UIViewController {
 }
 //
 //extension GameOverViewController: GADRewardedAdDelegate {
+//
+//
+//    private func loadRewardedAd() {
+//        let request = GADRequest()
+//
+//        self.rewardedAd = GADRewardedAd(adUnitID: "ca-app-pub-9249585883419480/2345481567")
+////        #if DEBUG
+////            self.rewardedAd = GADRewardedAd(adUnitID: "ca-app-pub-3940256099942544/1712485313")
+////        #endif
+//
+//        self.rewardedAd?.load(request) { (error) in
+//            if let error = error {
+//                print(error.localizedDescription)
+//                self.activityIndicator.stopAnimating()
+//            } else {
+//                self.activityIndicator.stopAnimating()
+//                self.openRewardedAd()
+//            }
+//        }
+//    }
+//
+//    private func openRewardedAd() {
+//        self.rewardedAd?.present(fromRootViewController: self,
+//                                 delegate: self)
+//    }
+//
 //    func rewardedAd(_ rewardedAd: GADRewardedAd, userDidEarn reward: GADAdReward) {
 //        if let stateMachine = self.stateMachine?.currentState as? GameOverState {
 //            stateMachine.restart = false

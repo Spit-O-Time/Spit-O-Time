@@ -15,22 +15,33 @@ enum AudioConfig: String {
 
 class AudioManager {
     
-    var audioPlayer: AVAudioPlayer?
-    var defaultVolume: Float = 1.0
+    static let shared = AudioManager()
     
-    @discardableResult
-    func stopSound() -> Bool {
-        guard let audioPlayer = audioPlayer else { return false }
+    private init() { }
+    
+    private var audioPlayer: AVAudioPlayer?
+    
+    func stop() {
+        guard let audioPlayer = audioPlayer else { return }
         audioPlayer.stop()
-        return true
     }
 
-    func playSound(named: Assets.Sound, loop: Bool = false) {
+    func pause() {
+        guard let audioPlayer = audioPlayer else { return }
+        audioPlayer.pause()
+    }
+
+    func resume() {
+        guard let audioPlayer = audioPlayer else { return }
+        audioPlayer.play()
+    }
+
+    func playSound(named: Assets.Sound, loop: Bool = false, volume: Float = 1.0) {
         if let url: URL = Bundle.main.url(forResource: named.rawValue, withExtension: Assets.Sound.fileExtension) {
             do {
                 audioPlayer = try AVAudioPlayer(contentsOf: url, fileTypeHint: nil)
                 audioPlayer?.numberOfLoops = loop ? -1 : 1
-                audioPlayer?.volume = defaultVolume
+                audioPlayer?.volume = volume
                 audioPlayer?.play()
             } catch { }
         }

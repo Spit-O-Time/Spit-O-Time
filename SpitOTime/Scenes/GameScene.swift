@@ -13,7 +13,6 @@ import GameKit
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // MARK: - Nodes
-    let worldNode = SKNode()
     let spit = Spit()
     let background = Background()
     let obstacle = Obstacle()
@@ -38,34 +37,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         camera.position = CGPoint(x: ScreenSize.width/2, y: ScreenSize.height/2)
         return camera
     }()
-    
-    // MARK: Sounds
-    var backgroundSound: SKAudioNode!
-    var backgroundLoop: SKAudioNode!
-    var llamaSpit: SKAudioNode!
 
     override func didMove(to view: SKView) {
-        scheduleTimer()
+        startGameTimer()
         difficultyTimer()
-        scoreTimer()
+        updateScoreTimer()
         spawnObstacles()
         setupNodes()
-        setUpText()
-        addBackgroundSound()
+
         self.camera = sceneCamera
         self.physicsWorld.contactDelegate = self
-        motionManager.startAccelerometerUpdates()
-        stateMachine?.enter(PlayingState.self)
-        addChild(worldNode)
+        self.motionManager.startAccelerometerUpdates()
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
     }
     
     // MARK: Time events
-    func scheduleTimer() {
+    func startGameTimer() {
         Timer.scheduledTimer(
-            timeInterval: 4,
+            timeInterval: 3,
             target: self,
-            selector: #selector(timerTrigger),
+            selector: #selector(startGameTrigger),
             userInfo: nil,
             repeats:  false
         )
@@ -81,7 +72,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         )
     }
     
-    func scoreTimer() {
+    func updateScoreTimer() {
         Timer.scheduledTimer(
             timeInterval: 1,
             target: self,
@@ -89,6 +80,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             userInfo: nil,
             repeats:  true
         )
+    }
+    
+    // MARK: Triggers
+    @objc func startGameTrigger() {
+        guard !isPaused else { return }
+        self.isPlaying = true
+        self.stateMachine?.enter(PlayingState.self)
+        let playSpitSound = SKAction.playSoundFileNamed(
+            Assets.Sound.spit.rawValue, waitForCompletion: false
+        )
+        let spitNode = spit.component(ofType: AnimateSpriteComponent.self)?.spriteNode
+        spitNode?.run(playSpitSound)
     }
     
     @objc func updateScorePoints() {
@@ -114,13 +117,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             guard let llama = self.obstacle
                     .component(ofType: SpawnComponent.self)?.spawn() else { return }
             if llama.parent == nil {
-                self.worldNode.addChild(llama)
+                self.addChild(llama)
                 self.obstacles.append(llama)
             }
         }
         
         let sequence = SKAction.sequence([wait, spawn])
-        self.run(SKAction.repeatForever(sequence))
+        run(SKAction.repeatForever(sequence))
         removeObstacles()
     }
     
@@ -128,51 +131,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         for (index, obstacle) in obstacles.enumerated() {
             if obstacle.position.y < -obstacle.frame.height {
                 guard obstacles.indices.contains(index) else { return }
-                print(obstacle.position.y)
                 obstacles.remove(at: index)
                 obstacle.removeFromParent()
             }
         }
     }
     
-    func addBackgroundSound() {
-        let backgroundSound = SKAudioNode(fileNamed: Assets.Sound.background.rawValue)
-        let backgroundLoop = SKAudioNode(fileNamed: Assets.Sound.backgroundLoop.rawValue)
-
-        let sequence = SKAction.sequence([
-            SKAction.play(),
-            SKAction.wait(forDuration: 4.0)
-        ])
-
-        self.backgroundSound = backgroundSound
-        self.backgroundLoop = backgroundLoop
-        worldNode.addChild(self.backgroundSound)
-        worldNode.addChild(self.backgroundLoop)
-
-        backgroundSound.run(SKAction.changeVolume(to: Float(0.5), duration: .zero))
-        run(sequence, completion: {
-            backgroundSound.removeFromParent()
-            backgroundLoop.run(SKAction.changeVolume(to: Float(0.5), duration: .zero))
-        })
-        
-    }
-    
-    @objc func timerTrigger() {
-        guard !worldNode.isPaused else { return }
-        isPlaying = true
-        let spitNode = spit.component(ofType: AnimateSpriteComponent.self)?.spriteNode
-        spitNode?.run(
-            SKAction.playSoundFileNamed(Assets.Sound.spit.rawValue, waitForCompletion:false)
-        )
-    }
-    
     // MARK: Setup Sprites
     func setupNodes() {
-        addSpit()
-        addBackgroundsAndWalls()
+        setupTextLabelNode()
+        setupBackgroundNode()
+        setupSpitNode()
     }
     
-    func addBackgroundsAndWalls() {
+    func setupBackgroundNode() {
         guard let backgrounds = background.component(ofType: AnimateBackgroundComponent.self) else {
             return
         }
@@ -182,13 +154,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let rightWall = backgrounds.wallRight
         let llama = backgrounds.shooterCharacter
         
-        self.worldNode.addChild(llama)
-        ground.forEach { self.worldNode.addChild($0) }
-        leftWall.forEach { self.worldNode.addChild($0) }
-        rightWall.forEach { self.worldNode.addChild($0) }
+        addChild(llama)
+        ground.forEach { addChild($0) }
+        leftWall.forEach { addChild($0) }
+        rightWall.forEach { addChild($0) }
     }
     
-    func addSpit() {
+    func setupSpitNode() {
         guard let spitSpriteNode = spit
                 .component(ofType: AnimateSpriteComponent.self)?
                 .spriteNode else { return }
@@ -196,21 +168,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if let spitTail = SKEmitterNode(fileNamed: "SpitParticle.sks") {
             self.spitTail = spitTail
             self.spitTail.position = spitSpriteNode.position
-            self.worldNode.addChild(self.spitTail)
+            addChild(self.spitTail)
         }
         
-        self.worldNode.addChild(spitSpriteNode)
+        addChild(spitSpriteNode)
     }
     
-    func setUpText() {
+    func setupTextLabelNode() {
         scoreLabel = SKLabelNode(fontNamed: "Orange Slices")
         scoreLabel.text = "Score: 0"
         scoreLabel.fontColor = .cardBackgroundColor
         scoreLabel.horizontalAlignmentMode = .center
         scoreLabel.zPosition = 5
         scoreLabel.position = CGPoint(x: ScreenSize.width/2, y: ScreenSize.height - 120)
-        print(scoreLabel.position)
-        self.worldNode.addChild(scoreLabel)
+        addChild(scoreLabel)
     }
     
     // MARK: Movimentation
@@ -245,12 +216,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
     }
-    
+        
     // MARK: Game Over
     func gameOver() {
         stateMachine?.enter(GameOverState.self)
-        backgroundSound?.run(SKAction.stop())
-        backgroundLoop?.run(SKAction.stop())
     }
     
     // MARK: Update

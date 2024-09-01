@@ -91,23 +91,23 @@ class MainMenuViewController: UIViewController {
         return button
     }()
 
-    private let audioManager = AudioManager()
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if UserDefaultsManager.isBackgroundSoundMuted == false {
-            self.audioManager.playSound(named: .menuBackground, loop: true)
-        }
-        
         setupViewHierarchy()
         setupConstraints()
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if UserDefaultsManager.isBackgroundSoundMuted == false {
+            AudioManager.shared.playSound(named: .menuBackground, loop: true)
+        }
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.audioManager.stopSound()
+        AudioManager.shared.stop()
     }
     
     func authenticateLocalPlayer() {
@@ -134,9 +134,9 @@ class MainMenuViewController: UIViewController {
         musicButton.setImage(imageIconBackgroundSoundMuted, for: .normal)
 
         if UserDefaultsManager.isBackgroundSoundMuted {
-            self.audioManager.stopSound()
+            AudioManager.shared.stop()
         } else {
-            self.audioManager.playSound(named: .menuBackground, loop: true)
+            AudioManager.shared.playSound(named: .menuBackground, loop: true)
         }
     }
 

@@ -5,35 +5,26 @@
 //  Created by Vinicius Mesquita on 17/03/21.
 //
 
-import GameplayKit
 import GameKit
 
 protocol GameOverDelegate: AnyObject {
-    func didLose()
+    func didLoseGame()
 }
 
 class GameOverState: GKState {
 
-    weak var scene: GameScene?
     weak var delegate: GameOverDelegate?
 
-    init(scene: GameScene?, delegate: GameOverDelegate) {
-        self.scene = scene
+    init(delegate: GameOverDelegate) {
         self.delegate = delegate
     }
 
     override func didEnter(from previousState: GKState?) {
         if previousState is PlayingState {
-            scene?.isPlaying = false
-            reportToLeaderboard(score: scene?.score ?? .zero)
-            delegate?.didLose()
+            delegate?.didLoseGame()
         }
     }
 
-    func reportToLeaderboard(score: Int) {
-        GKLeaderboard.submitScore(score, context: .zero, player: GKLocalPlayer.local, leaderboardIDs: ["Leaderboard"]) { err in
-            print(err?.localizedDescription)
-        }
-    }
+
     
 }

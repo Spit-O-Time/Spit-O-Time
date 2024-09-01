@@ -9,6 +9,7 @@ import UIKit
 import SpriteKit
 import GameplayKit
 import Lottie
+import GameKit
 
 class GameViewController: UIViewController {
 
@@ -56,6 +57,13 @@ class GameViewController: UIViewController {
         animateColorAmbience()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if UserDefaultsManager.isBackgroundSoundMuted == false {
+            AudioManager.shared.playSound(named: .background, loop: true)
+        }
+    }
+    
     override func viewDidDisappear(_ animated: Bool) {
         self.view.layer.removeAllAnimations()
     }
@@ -69,9 +77,9 @@ class GameViewController: UIViewController {
         scene?.scaleMode = .aspectFill
         let stateMachine = GKStateMachine(
             states: [
-                GameOverState(scene: scene, delegate: self),
-                PausedState(scene: scene),
-                PlayingState(scene: scene, delegate: self)
+                GameOverState(delegate: self),
+                PausedState(delegate: self),
+                PlayingState(delegate: self)
             ]
         )
         scene?.stateMachine = stateMachine
@@ -113,26 +121,26 @@ class GameViewController: UIViewController {
         animationView.contentMode = .scaleAspectFit
         setupAnimationView(withSize: CGSize(width: 200, height: 200))
         animationView.play { _ in
-            UIView.animate(withDuration: 0.3) {
-                self.animationView.alpha = 0
-            } completion: { _ in
-                self.animationView.isHidden = true
-            }
+            self.fadeOutAnimation()
         }
     }
     
     private func tutorialAnimationIfNeeded() {
         guard UserDefaultsManager.isFirstTimePlaying else { return }
         animationView = .init(name: "tutorial_movement")
-        animationView.animationSpeed = 0.5
+        animationView.animationSpeed = 0.7
         animationView.contentMode = .scaleToFill
         setupAnimationView(withSize: CGSize(width: 500, height: 500))
         animationView.play { _ in
-            UIView.animate(withDuration: 0.3) {
-                self.animationView.alpha = 0
-            } completion: { _ in
-                self.animationView.isHidden = true
-            }
+            self.fadeOutAnimation()
+        }
+    }
+    
+    private func fadeOutAnimation() {
+        UIView.animate(withDuration: 0.3) {
+            self.animationView.alpha = 0
+        } completion: { _ in
+            self.animationView.isHidden = true
         }
     }
     
@@ -192,16 +200,43 @@ extension GameViewController {
 
 }
 
-// MARK: States Delegates
-extension GameViewController: GameOverDelegate, PlayingDelegate {
+// MARK: State Delegates
+extension GameViewController: GameOverDelegate, PlayingDelegate, PauseDelegate {
+    func didPauseGame() {
+        scene?.isPlaying = false
+        scene?.isPaused = true
+        animationView.pause()
+        AudioManager.shared.pause()
+    }
+
+    func didResumeGame() {
+        scene?.isPaused = false
+        scene?.isPlaying = true
+        animationView.play()
+        if UserDefaultsManager.isBackgroundSoundMuted == false {
+            AudioManager.shared.resume()
+        }
+    }
 
     func didRestartGame() {
         startScene()
     }
 
-    func didLose() {
-        goToGameOverViewController()
+    func didLoseGame() {
+        scene?.isPlaying = false
+        AudioManager.shared.stop()
         UserDefaultsManager.setUserPlayedFirstTime()
+        goToGameOverViewController()
+        AudioManager.shared.playSound(named: .gameOver, loop: false, volume: 10.0)
     }
     
+}
+
+// MARK: Leaderboard
+extension GameViewController {
+    func reportToLeaderboard(score: Int) {
+        GKLeaderboard.submitScore(score, context: .zero, player: GKLocalPlayer.local, leaderboardIDs: ["Leaderboard"]) { err in
+            print(err?.localizedDescription ?? String())
+        }
+    }
 }
