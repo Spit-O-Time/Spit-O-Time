@@ -18,21 +18,6 @@ class AudioManager {
     var audioPlayer: AVAudioPlayer?
     var defaultVolume: Float = 1.0
     
-    func getSKAudioNode(_ name: Assets.Sound) -> SKAudioNode? {
-        return SKAudioNode(fileNamed: name.rawValue)
-    }
-
-    func stopSKAudioNode(_ audioNode: SKAudioNode?) {
-        audioNode?.run(SKAction.stop())
-    }
-    
-    func playSKAudioNode(_ name: Assets.Sound) -> SKAction? {
-        if !UserDefaultsManager.isSoundEffectMuted {
-            SKAction.playSoundFileNamed(name.rawValue, waitForCompletion: false)
-        }
-        return nil
-    }
-    
     @discardableResult
     func stopSound() -> Bool {
         guard let audioPlayer = audioPlayer else { return false }

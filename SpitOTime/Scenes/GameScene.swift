@@ -43,10 +43,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var backgroundSound: SKAudioNode!
     var backgroundLoop: SKAudioNode!
     var llamaSpit: SKAudioNode!
-    var gameOverSound: SKAudioNode!
-    
-    var audioManager = AudioManager()
-    
 
     override func didMove(to view: SKView) {
         scheduleTimer()
@@ -140,27 +136,34 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func addBackgroundSound() {
-        guard let backgroundSound = audioManager.getSKAudioNode(.background) else {
-            return
-        }
+        let backgroundSound = SKAudioNode(fileNamed: Assets.Sound.background.rawValue)
+        let backgroundLoop = SKAudioNode(fileNamed: Assets.Sound.backgroundLoop.rawValue)
+
+        let sequence = SKAction.sequence([
+            SKAction.play(),
+            SKAction.wait(forDuration: 4.0)
+        ])
+
         self.backgroundSound = backgroundSound
-        self.worldNode.addChild(backgroundSound)
-        let sequence = SKAction.sequence( [SKAction.play(), SKAction.wait(forDuration: 4.0 ) ])
-        backgroundSound.run(SKAction.changeVolume(to: Float(0.5), duration: 0))
+        self.backgroundLoop = backgroundLoop
+        worldNode.addChild(self.backgroundSound)
+        worldNode.addChild(self.backgroundLoop)
+
+        backgroundSound.run(SKAction.changeVolume(to: Float(0.5), duration: .zero))
         run(sequence, completion: {
-            guard let backgroundLoop = self.audioManager.getSKAudioNode(.backgroundLoop) else { return }
             backgroundSound.removeFromParent()
-            self.worldNode.addChild(backgroundLoop)
-            backgroundLoop.run(SKAction.changeVolume(to: Float(0.5), duration: 0))
+            backgroundLoop.run(SKAction.changeVolume(to: Float(0.5), duration: .zero))
         })
         
     }
     
     @objc func timerTrigger() {
-        if let spitComponent = spit.component(ofType: AnimateSpriteComponent.self) {
-            guard let sound = audioManager.playSKAudioNode(.spit) else { return }
-            spitComponent.spriteNode.run(sound)
-        }
+        guard !worldNode.isPaused else { return }
+        isPlaying = true
+        let spitNode = spit.component(ofType: AnimateSpriteComponent.self)?.spriteNode
+        spitNode?.run(
+            SKAction.playSoundFileNamed(Assets.Sound.spit.rawValue, waitForCompletion:false)
+        )
     }
     
     // MARK: Setup Sprites
@@ -170,8 +173,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func addBackgroundsAndWalls() {
-        guard let backgrounds = background
-                .component(ofType: AnimateBackgroundComponent.self) else { return }
+        guard let backgrounds = background.component(ofType: AnimateBackgroundComponent.self) else {
+            return
+        }
         
         let ground = backgrounds.grounds
         let leftWall = backgrounds.wallLeft
@@ -211,7 +215,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // MARK: Movimentation
     func animateSpit() {
-        let spitPosition =  spit.component(ofType: AnimateSpriteComponent.self)!.spriteNode.position
+        let spitPosition = spit.component(ofType: AnimateSpriteComponent.self)!.spriteNode.position
         spitTail?.position = spitPosition
         
         if let accelerometerData = motionManager.accelerometerData {
@@ -245,7 +249,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: Game Over
     func gameOver() {
         stateMachine?.enter(GameOverState.self)
-        audioManager.stopSKAudioNode(backgroundSound)
+        backgroundSound?.run(SKAction.stop())
+        backgroundLoop?.run(SKAction.stop())
     }
     
     // MARK: Update

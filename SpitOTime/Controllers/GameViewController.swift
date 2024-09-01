@@ -41,18 +41,14 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        scene = GameScene(size: CGSize(width: ScreenSize.width, height: ScreenSize.height))
-        scene?.stateMachine = GKStateMachine(states: [
-            GameOverState(scene: scene, delegate: self),
-            PausedState(scene: scene),
-            PlayingState(scene: scene, delegate: self)
-        ])
-        
         let notificationCenter = NotificationCenter.default
-            notificationCenter.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.willResignActiveNotification, object: nil)
-        
-        scene?.scaleMode = .aspectFill
-        skView.presentScene(scene!)
+        notificationCenter.addObserver(self,
+            selector: #selector(appMovedToBackground),
+            name: UIApplication.willResignActiveNotification,
+            object: nil
+        )
+
+        startScene()
         setupColorAmbience()
         setupPauseButton()
         countAnimationIfNeeded()
@@ -79,16 +75,18 @@ class GameViewController: UIViewController {
     
     private func animateColorAmbience() {
         setAmbienceColor(.orange, with: 0.04)
-        UIView.animate(withDuration: 40, delay: 0, options: [.repeat, .autoreverse]) {
+        UIView.animate(
+            withDuration: 40,
+            delay: 0,
+            options: [.repeat, .autoreverse]
+        ) {
             self.setAmbienceColor(.black, with: 0.4)
         }
     }
     
     @objc func pause() {
-        if let scene = skView.scene as? GameScene {
-            scene.stateMachine?.enter(PausedState.self)
-            goToPauseViewController()
-        }
+        scene?.stateMachine?.enter(PausedState.self)
+        goToPauseViewController()
     }
     
     func countAnimationIfNeeded() {
@@ -118,7 +116,6 @@ class GameViewController: UIViewController {
                 self.animationView.isHidden = true
             }
         }
-        UserDefaultsManager.setUserPlayedFirstTime()
     }
     
     private func setupPauseButton() {
@@ -175,15 +172,7 @@ extension GameViewController {
         self.navigationController?.present(controller, animated: true)
     }
     
-    func resetScene() {
-        
-    }
-
-}
-
-extension GameViewController: GameOverDelegate, PlayingDelegate {
-
-    func didRestartGame() {
+    func startScene() {
         let sceneSize = CGSize(
             width: ScreenSize.width,
             height: ScreenSize.height
@@ -200,10 +189,18 @@ extension GameViewController: GameOverDelegate, PlayingDelegate {
         scene?.stateMachine = stateMachine
         skView.presentScene(scene)
     }
-    
-    
+
+}
+
+extension GameViewController: GameOverDelegate, PlayingDelegate {
+
+    func didRestartGame() {
+        startScene()
+    }
+
     func didLose() {
         goToGameOverViewController()
+        UserDefaultsManager.setUserPlayedFirstTime()
     }
     
 }
