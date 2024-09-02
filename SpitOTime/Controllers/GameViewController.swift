@@ -220,6 +220,9 @@ extension GameViewController: GameOverDelegate, PlayingDelegate, PauseDelegate {
 
     func didRestartGame() {
         startScene()
+        if UserDefaultsManager.isBackgroundSoundMuted == false {
+            AudioManager.shared.playSound(named: .background, loop: true)
+        }
     }
 
     func didLoseGame() {
