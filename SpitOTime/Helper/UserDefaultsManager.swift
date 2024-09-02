@@ -39,9 +39,9 @@ struct UserDefaultsManager {
 
 extension UserDefaultsManager {
 
-    static func setUserPlayedFirstTime() {
+    static func setUserPlayedTutorial() {
         UserDefaults.standard.set(
-            false,
+            true,
             forKey: UserDefaultsKey.isFirstTimePlaying.rawValue
         )
     }

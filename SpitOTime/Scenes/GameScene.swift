@@ -16,7 +16,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let spit = Spit()
     let background = Background()
     let obstacle = Obstacle()
-    var obstacles = [SKSpriteNode]()
+    var llamas = [SKSpriteNode]()
 
     var spitTail: SKEmitterNode!
     var scoreLabel: SKLabelNode!
@@ -42,7 +42,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         startGameTimer()
         difficultyTimer()
         updateScoreTimer()
-        spawnObstacles()
+        spawnLlamas()
         setupNodes()
 
         self.camera = sceneCamera
@@ -111,28 +111,28 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
 
-    func spawnObstacles() {
+    func spawnLlamas() {
         let wait = SKAction.wait(forDuration: 3, withRange: 2)
         let spawn = SKAction.run {
             guard let llama = self.obstacle
                     .component(ofType: SpawnComponent.self)?.spawn() else { return }
             if llama.parent == nil {
                 self.addChild(llama)
-                self.obstacles.append(llama)
+                self.llamas.append(llama)
             }
         }
         
         let sequence = SKAction.sequence([wait, spawn])
         run(SKAction.repeatForever(sequence))
-        removeObstacles()
+        removeLlamas()
     }
     
-    func removeObstacles() {
-        for (index, obstacle) in obstacles.enumerated() {
-            if obstacle.position.y < -obstacle.frame.height {
-                guard obstacles.indices.contains(index) else { return }
-                obstacles.remove(at: index)
-                obstacle.removeFromParent()
+    func removeLlamas() {
+        for (index, llama) in llamas.enumerated() {
+            if llama.position.y < -llama.frame.height {
+                guard llamas.indices.contains(index) else { return }
+                llamas.remove(at: index)
+                llama.removeFromParent()
             }
         }
     }
@@ -162,15 +162,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func setupSpitNode() {
         guard let spitSpriteNode = spit
-                .component(ofType: AnimateSpriteComponent.self)?
-                .spriteNode else { return }
-        
-        if let spitTail = SKEmitterNode(fileNamed: "SpitParticle.sks") {
-            self.spitTail = spitTail
-            self.spitTail.position = spitSpriteNode.position
-            addChild(self.spitTail)
-        }
-        
+            .component(ofType: AnimateSpriteComponent.self)?
+            .spriteNode else { return }
+
+        self.spitTail = SKEmitterNode(fileNamed: "SpitParticle.sks")
+        self.spitTail.position = spitSpriteNode.position
+        addChild(self.spitTail)
+
         addChild(spitSpriteNode)
     }
     
@@ -213,6 +211,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if collision == CategoryMask.spit.rawValue | CategoryMask.obstacle.rawValue {
             gameOver()
             contact.bodyA.node?.removeFromParent()
+            spitTail.removeFromParent()
         }
         
     }
@@ -228,9 +227,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel.text = "Score: \(score)"
         animateSpit()
         animateBackground()
-        removeObstacles()
-        for obstacle in obstacles {
-            obstacle.position.y -= velocity
+        removeLlamas()
+        for llama in llamas {
+            llama.position.y -= velocity
         }
     }
     

@@ -41,11 +41,18 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         let notificationCenter = NotificationCenter.default
+
         notificationCenter.addObserver(self,
             selector: #selector(appMovedToBackground),
             name: UIApplication.willResignActiveNotification,
+            object: nil
+        )
+
+        notificationCenter.addObserver(self,
+            selector: #selector(backgroundMusicDidFinishPlaying),
+            name: AudioManager.shared.didFinishPlaying,
             object: nil
         )
 
@@ -55,12 +62,18 @@ class GameViewController: UIViewController {
         countAnimationIfNeeded()
         tutorialAnimationIfNeeded()
         animateColorAmbience()
+        
+        #if DEBUG
+        skView.showsPhysics = true
+        skView.showsFPS = true
+        skView.showsNodeCount = true
+        #endif
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if UserDefaultsManager.isBackgroundSoundMuted == false {
-            AudioManager.shared.playSound(named: .background, loop: true)
+            AudioManager.shared.playSound(named: .background)
         }
     }
     
@@ -91,6 +104,13 @@ class GameViewController: UIViewController {
             skView.isPaused = true
             scene.isPlaying = false
             scene.stateMachine?.enter(PausedState.self)
+            goToPauseViewController()
+        }
+    }
+
+    @objc func backgroundMusicDidFinishPlaying(_ notification: Notification) {
+        if AudioManager.shared.latestPlayedSound == .background {
+            AudioManager.shared.playSound(named: .backgroundLoop, loop: true)
         }
     }
 
@@ -228,7 +248,6 @@ extension GameViewController: GameOverDelegate, PlayingDelegate, PauseDelegate {
     func didLoseGame() {
         scene?.isPlaying = false
         AudioManager.shared.stop()
-        UserDefaultsManager.setUserPlayedFirstTime()
         goToGameOverViewController()
         AudioManager.shared.playSound(named: .gameOver, loop: false, volume: 10.0)
     }
