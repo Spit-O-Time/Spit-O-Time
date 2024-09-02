@@ -24,6 +24,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: - Variables
     var isPlaying = false
     var velocity: CGFloat = 8
+    var maxVelocity: CGFloat = 15
     var score: Int = 0
     var secondsOfPlaying: Float = 0
 
@@ -97,8 +98,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     @objc func updateScorePoints() {
         guard isPlaying else { return }
         
-        if secondsOfPlaying > 5 {
-            score += Int(secondsOfPlaying * 1.5)
+        let scoreMultiplyer: Float = 1.5
+        let scoreCountingRule: Float = 5
+        
+        if secondsOfPlaying > scoreCountingRule {
+            score += Int(secondsOfPlaying * scoreMultiplyer)
         } else {
             score = Int(powf(2, secondsOfPlaying))
         }
@@ -106,7 +110,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
 
     @objc func difficultyTrigger() {
-        if isPlaying {
+        if isPlaying && velocity < maxVelocity {
             velocity += 0.5
         }
     }
@@ -188,11 +192,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         spitTail?.position = spitPosition
         
         if let accelerometerData = motionManager.accelerometerData {
-            spit.component(ofType: AnimateSpriteComponent.self)!.spriteNode.position.x += CGFloat(accelerometerData.acceleration.x) * (8 + velocity)
+            let accelerometerX = CGFloat(accelerometerData.acceleration.x)
+            spit.component(ofType: AnimateSpriteComponent.self)?.spriteNode.position.x += accelerometerX * velocity
         }
         
         if spitPosition.y < sceneCamera.position.y/2 {
-            spit.component(ofType: AnimateSpriteComponent.self)!.spriteNode.position.y += 10
+            spit.component(ofType: AnimateSpriteComponent.self)?.spriteNode.position.y += 10
         }
     }
     
