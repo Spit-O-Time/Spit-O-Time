@@ -9,6 +9,5 @@ import Foundation
 
 enum CategoryMask: UInt32 {
     case spit = 0b01
-    case enemy = 0b11
-    case obstacle = 0b10
+    case llama = 0b10
 }

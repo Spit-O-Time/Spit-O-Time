@@ -15,7 +15,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: - Nodes
     let spit = Spit()
     let background = Background()
-    let obstacle = Obstacle()
     var llamas = [SKSpriteNode]()
 
     var spitTail: SKEmitterNode!
@@ -118,8 +117,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func spawnLlamas() {
         let wait = SKAction.wait(forDuration: 3, withRange: 2)
         let spawn = SKAction.run {
-            guard let llama = self.obstacle
-                    .component(ofType: SpawnComponent.self)?.spawn() else { return }
+            guard let llama = Llama().component(ofType: SpawnComponent.self)?.spawn() else { return }
             if llama.parent == nil {
                 self.addChild(llama)
                 self.llamas.append(llama)
@@ -188,16 +186,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // MARK: Movimentation
     func animateSpit() {
-        let spitPosition = spit.component(ofType: AnimateSpriteComponent.self)!.spriteNode.position
-        spitTail?.position = spitPosition
-        
+        guard let spitNode = spit.component(ofType: AnimateSpriteComponent.self)?.spriteNode
+        else { return }
+        spitTail?.position = spitNode.position
+
         if let accelerometerData = motionManager.accelerometerData {
             let accelerometerX = CGFloat(accelerometerData.acceleration.x)
-            spit.component(ofType: AnimateSpriteComponent.self)?.spriteNode.position.x += accelerometerX * velocity
+            spitNode.position.x += accelerometerX * velocity
         }
-        
-        if spitPosition.y < sceneCamera.position.y/2 {
-            spit.component(ofType: AnimateSpriteComponent.self)?.spriteNode.position.y += 10
+
+        if spitNode.position.y < sceneCamera.position.y/2 {
+            spitNode.position.y += 10
         }
     }
     
@@ -213,7 +212,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         let collision = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
         
-        if collision == CategoryMask.spit.rawValue | CategoryMask.obstacle.rawValue {
+        if collision == CategoryMask.spit.rawValue | CategoryMask.llama.rawValue {
             gameOver()
             contact.bodyA.node?.removeFromParent()
             spitTail.removeFromParent()

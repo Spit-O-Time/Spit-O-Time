@@ -33,7 +33,7 @@ class AnimateSpriteComponent: GKComponent {
         self.spriteNode.physicsBody = SKPhysicsBody(circleOfRadius: self.spriteNode.size.width/2)
         self.spriteNode.anchorPoint = CGPoint(x: self.spriteNode.size.width/2, y: self.spriteNode.size.height)
         self.spriteNode.physicsBody?.categoryBitMask = CategoryMask.spit.rawValue
-        self.spriteNode.physicsBody?.collisionBitMask = CategoryMask.obstacle.rawValue | CategoryMask.spit.rawValue
+        self.spriteNode.physicsBody?.collisionBitMask = CategoryMask.llama.rawValue | CategoryMask.spit.rawValue
         self.spriteNode.physicsBody?.affectedByGravity = false
         self.spriteNode.physicsBody?.allowsRotation = false
         self.spriteNode.physicsBody?.restitution = 0

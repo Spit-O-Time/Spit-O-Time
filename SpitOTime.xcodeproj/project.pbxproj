@@ -16,7 +16,7 @@
 		5B8AD0A125F2717A00B64371 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B8AD0A025F2717A00B64371 /* Assets.xcassets */; };
 		5B8AD0B725F2717B00B64371 /* SpitOTimeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8AD0B625F2717B00B64371 /* SpitOTimeUITests.swift */; };
 		810BD58A2600D9D900853F6C /* SpawnComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810BD5892600D9D900853F6C /* SpawnComponent.swift */; };
-		810BD5942600DE5000853F6C /* Obstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810BD5932600DE5000853F6C /* Obstacle.swift */; };
+		810BD5942600DE5000853F6C /* Llama.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810BD5932600DE5000853F6C /* Llama.swift */; };
 		810D900E2C8282B6007F5A4B /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810D900D2C8282B6007F5A4B /* Assets.swift */; };
 		810D90102C864E09007F5A4B /* BackgroundLoop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 810D900F2C864E09007F5A4B /* BackgroundLoop.mp3 */; };
 		8118BD7125FA4E19002015E7 /* Spit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8118BD7025FA4E19002015E7 /* Spit.swift */; };
@@ -91,7 +91,7 @@
 		5B8AD0B825F2717B00B64371 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7B6DC042CEE9BABFACA430C3 /* Pods-SpitOTime-SpitOTimeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpitOTime-SpitOTimeUITests.debug.xcconfig"; path = "Target Support Files/Pods-SpitOTime-SpitOTimeUITests/Pods-SpitOTime-SpitOTimeUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		810BD5892600D9D900853F6C /* SpawnComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpawnComponent.swift; sourceTree = "<group>"; };
-		810BD5932600DE5000853F6C /* Obstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Obstacle.swift; sourceTree = "<group>"; };
+		810BD5932600DE5000853F6C /* Llama.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Llama.swift; sourceTree = "<group>"; };
 		810D900D2C8282B6007F5A4B /* Assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		810D900F2C864E09007F5A4B /* BackgroundLoop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BackgroundLoop.mp3; sourceTree = "<group>"; };
 		810D90112C864F29007F5A4B /* Lottie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Lottie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -217,6 +217,7 @@
 		5B8AD09225F2717800B64371 /* SpitOTime */ = {
 			isa = PBXGroup;
 			children = (
+				818ACC6C260241FA0033F65F /* States */,
 				A4A0361F25F7C29F0036CCCB /* Components */,
 				A4A0362725F7C29F0036CCCB /* Controllers */,
 				A4A0362125F7C29F0036CCCB /* Entities */,
@@ -300,7 +301,6 @@
 		A4A0361D25F7C29F0036CCCB /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				818ACC6C260241FA0033F65F /* States */,
 				5B8AD09925F2717800B64371 /* GameScene.swift */,
 			);
 			path = Scenes;
@@ -321,7 +321,7 @@
 			children = (
 				AEC2BAC025FA468100D4261A /* Background.swift */,
 				8118BD7025FA4E19002015E7 /* Spit.swift */,
-				810BD5932600DE5000853F6C /* Obstacle.swift */,
+				810BD5932600DE5000853F6C /* Llama.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -705,7 +705,7 @@
 				AED591C52603830C002D41AE /* GameOverViewController.swift in Sources */,
 				A4A0364525F7C3070036CCCB /* UIColorExtension.swift in Sources */,
 				810BD58A2600D9D900853F6C /* SpawnComponent.swift in Sources */,
-				810BD5942600DE5000853F6C /* Obstacle.swift in Sources */,
+				810BD5942600DE5000853F6C /* Llama.swift in Sources */,
 				818ACC5F260237040033F65F /* CategoryMask.swift in Sources */,
 				818A422825FF7E0F00454FAF /* AnimateBackgroundComponent.swift in Sources */,
 				A4A0364A25F7C31A0036CCCB /* ScreenSize.swift in Sources */,
