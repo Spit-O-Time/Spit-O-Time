@@ -21,8 +21,10 @@ class PlayingState: GKState {
     }
 
     override func didEnter(from previousState: GKState?) {
-        if previousState is GameOverState {
-            delegate?.didRestartGame()
+        if let gameOverState = previousState as? GameOverState {
+            if !gameOverState.survive {
+                delegate?.didRestartGame()
+            }
         }
         if previousState is PausedState {
             delegate?.didResumeGame()

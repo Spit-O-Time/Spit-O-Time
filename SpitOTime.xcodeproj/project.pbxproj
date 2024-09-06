@@ -422,6 +422,7 @@
 				5B8AD08D25F2717800B64371 /* Frameworks */,
 				5B8AD08E25F2717800B64371 /* Resources */,
 				846AE96B33B8345729D25F6F /* [CP] Embed Pods Frameworks */,
+				45BD7B8BBE86A40E3F01E811 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -460,6 +461,7 @@
 				5B8AD0AF25F2717B00B64371 /* Frameworks */,
 				5B8AD0B025F2717B00B64371 /* Resources */,
 				E251F3C0CADDE0A642AACECD /* [CP] Embed Pods Frameworks */,
+				30AD7985B3536A826F357699 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -477,8 +479,9 @@
 		5B8AD08825F2717800B64371 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1240;
-				LastUpgradeCheck = 1240;
+				LastUpgradeCheck = 1540;
 				TargetAttributes = {
 					5B8AD08F25F2717800B64371 = {
 						CreatedOnToolsVersion = 12.4;
@@ -571,6 +574,40 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		30AD7985B3536A826F357699 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SpitOTime-SpitOTimeUITests/Pods-SpitOTime-SpitOTimeUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SpitOTime-SpitOTimeUITests/Pods-SpitOTime-SpitOTimeUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SpitOTime-SpitOTimeUITests/Pods-SpitOTime-SpitOTimeUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		45BD7B8BBE86A40E3F01E811 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SpitOTime/Pods-SpitOTime-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SpitOTime/Pods-SpitOTime-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SpitOTime/Pods-SpitOTime-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		58E635C7657BCE939BE4C9D3 /* [CP] Check Pods Manifest.lock */ = {
@@ -759,6 +796,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -820,6 +858,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

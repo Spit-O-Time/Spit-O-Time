@@ -14,6 +14,7 @@ protocol GameOverDelegate: AnyObject {
 class GameOverState: GKState {
 
     weak var delegate: GameOverDelegate?
+    public var survive: Bool = false
 
     init(delegate: GameOverDelegate) {
         self.delegate = delegate

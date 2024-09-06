@@ -7,7 +7,7 @@ target 'SpitOTime' do
 
   # Pods for SpitOTime
   pod 'lottie-ios'
-  # pod 'Google-Mobile-Ads-SDK'
+  pod 'Google-Mobile-Ads-SDK'
   
   target 'SpitOTimeTests' do
     inherit! :search_paths
@@ -20,7 +20,7 @@ target 'SpitOTime' do
 
   post_install do |installer|
     installer.pods_project.build_configurations.each do |config|
-      config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64"
+      config.build_settings['ONLY_ACTIVE_ARCH'] = 'NO'
     end
   end
 

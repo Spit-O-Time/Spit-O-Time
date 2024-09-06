@@ -4,20 +4,17 @@
 //
 //  Created by Albert Rayneer on 18/03/21.
 //
-//  AdMob App Id: ca-app-pub-9249585883419480~8364095003
-//  AdMob Block Id: ca-app-pub-9249585883419480/2345481567
-//  AdMob Test Id: ca-app-pub-3940256099942544/1712485313
 
 import UIKit
 import GameplayKit
-//import GoogleMobileAds
+import GoogleMobileAds
 
 class GameOverViewController: UIViewController {
 
-//    var rewardedAd: GADRewardedAd?
-    
+    var rewardedAd: GADRewardedAd?
+    var canRequestAd: Bool = true
     weak var stateMachine: GKStateMachine?
-        
+
     lazy var blur: UIVisualEffectView = {
         let effect = UIBlurEffect(style: .dark)
         let blurView = UIVisualEffectView(effect: effect)
@@ -25,7 +22,7 @@ class GameOverViewController: UIViewController {
         blurView.frame = self.view.bounds
         return blurView
     }()
-    
+
     lazy var activityIndicator: UIActivityIndicatorView = {
         let view = UIActivityIndicatorView(style: .large)
         view.color = .white
@@ -33,7 +30,7 @@ class GameOverViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
+
     lazy var backgroundView: UIView = {
         let view = UIView()
         view.backgroundColor = .cardBackgroundColor
@@ -42,7 +39,7 @@ class GameOverViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
+
     lazy var gameOverLabel: UILabel = {
         let label = UILabel()
         label.text = "Game\nOver"
@@ -54,7 +51,7 @@ class GameOverViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+
     lazy var continueButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .buttonColor
@@ -67,7 +64,7 @@ class GameOverViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
+
     lazy var restartButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .buttonColor
@@ -80,7 +77,7 @@ class GameOverViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
+
     lazy var mainMenuButton: UIButton = {
         let button = UIButton()
         button.setTitle("Main Menu", for: .normal)
@@ -90,11 +87,7 @@ class GameOverViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
-    var surviveState: Bool {
-        return true
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewHierarchy()
@@ -105,7 +98,7 @@ class GameOverViewController: UIViewController {
         view.addSubview(blur)
         view.addSubview(backgroundView)
         view.addSubview(gameOverLabel)
-        if !surviveState {
+        if canRequestAd {
             view.addSubview(continueButton)
         }
         view.addSubview(restartButton)
@@ -114,8 +107,12 @@ class GameOverViewController: UIViewController {
     }
     
     @objc func resume() {
-        activityIndicator.startAnimating()
-//        loadRewardedAd()
+        if canRequestAd {
+            Task {
+                await loadRewardedAd()
+                openRewardedAd()
+            }
+        }
     }
     
     @objc func restart() {
@@ -146,7 +143,7 @@ class GameOverViewController: UIViewController {
             
         ])
         
-        if !surviveState {
+        if canRequestAd {
             NSLayoutConstraint.activate([
                 continueButton.topAnchor.constraint(equalTo: gameOverLabel.bottomAnchor, constant: 42),
                 continueButton.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor),
@@ -177,53 +174,49 @@ class GameOverViewController: UIViewController {
     }
 
 }
-//
-//extension GameOverViewController: GADRewardedAdDelegate {
-//
-//
-//    private func loadRewardedAd() {
-//        let request = GADRequest()
-//
-//        self.rewardedAd = GADRewardedAd(adUnitID: "ca-app-pub-9249585883419480/2345481567")
-////        #if DEBUG
-////            self.rewardedAd = GADRewardedAd(adUnitID: "ca-app-pub-3940256099942544/1712485313")
-////        #endif
-//
-//        self.rewardedAd?.load(request) { (error) in
-//            if let error = error {
-//                print(error.localizedDescription)
-//                self.activityIndicator.stopAnimating()
-//            } else {
-//                self.activityIndicator.stopAnimating()
-//                self.openRewardedAd()
-//            }
-//        }
-//    }
-//
-//    private func openRewardedAd() {
-//        self.rewardedAd?.present(fromRootViewController: self,
-//                                 delegate: self)
-//    }
-//
-//    func rewardedAd(_ rewardedAd: GADRewardedAd, userDidEarn reward: GADAdReward) {
-//        if let stateMachine = self.stateMachine?.currentState as? GameOverState {
-//            stateMachine.restart = false
-//            self.surviveState = true
-//        }
-//    }
-//    
-//    func rewardedAdDidDismiss(_ rewardedAd: GADRewardedAd) {
-//        if let stateMachine = self.stateMachine?.currentState as? GameOverState {
-//            if !stateMachine.restart {
-//                self.dismiss(animated: true) {
-//                    self.stateMachine?.enter(PlayingState.self)
-//                    stateMachine.restart = true
-//                }
-//            }
-//        }
-//    }
-//    
-//    func rewardedAd(_ rewardedAd: GADRewardedAd, didFailToPresentWithError error: Error) {
-//        activityIndicator.stopAnimating()
-//    }
-//}
+
+extension GameOverViewController: GADFullScreenContentDelegate {
+
+    private func loadRewardedAd() async {
+        do {
+            rewardedAd = try await GADRewardedAd.load(
+                withAdUnitID: "ca-app-pub-7538778908277058/7924882279",
+                request: GADRequest()
+            )
+            rewardedAd?.fullScreenContentDelegate = self
+        } catch {
+            presentAlert(
+                title: "Falha ao carregar, não é possivel continuar",
+                message: "Alguma llama mordeu o cabo de conexão com os nossos servidores"
+            )
+        }
+    }
+
+    private func openRewardedAd() {
+        guard let ad = rewardedAd else {
+            return
+        }
+        ad.present(fromRootViewController: self) {
+            let reward = ad.adReward
+        }
+    }
+
+    func ad(
+       _ ad: GADFullScreenPresentingAd,
+       didFailToPresentFullScreenContentWithError error: Error
+     ) {
+       print("Rewarded ad failed to present with error: \(error.localizedDescription).")
+     }
+
+    private func presentAlert(title: String, message: String) {
+        let alert = UIAlertController(
+          title: title,
+          message: message,
+          preferredStyle: .alert)
+        let alertAction = UIAlertAction(
+          title: "Ok!",
+          style: .cancel)
+        alert.addAction(alertAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+}

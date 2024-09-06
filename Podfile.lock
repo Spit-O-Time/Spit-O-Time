@@ -1,16 +1,24 @@
 PODS:
+  - Google-Mobile-Ads-SDK (11.8.0):
+    - GoogleUserMessagingPlatform (>= 1.1)
+  - GoogleUserMessagingPlatform (2.5.0)
   - lottie-ios (3.2.1)
 
 DEPENDENCIES:
+  - Google-Mobile-Ads-SDK
   - lottie-ios
 
 SPEC REPOS:
   trunk:
+    - Google-Mobile-Ads-SDK
+    - GoogleUserMessagingPlatform
     - lottie-ios
 
 SPEC CHECKSUMS:
+  Google-Mobile-Ads-SDK: c1c53687b572122c5b0bdaf354335bbf40fd81ef
+  GoogleUserMessagingPlatform: 6b4f48a370e77ce121d034c908cc6ee4fdafaf13
   lottie-ios: 106e92eaf11fbed0a76590b4cdb9b5ec26123ff7
 
-PODFILE CHECKSUM: af32912c0adafde80ced6fec1ed40f4b98256148
+PODFILE CHECKSUM: 4655138ff5e8a1958c35df0ef595953cc892651a
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.15.2
