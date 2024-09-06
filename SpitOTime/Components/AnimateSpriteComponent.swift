@@ -11,48 +11,51 @@ import SpriteKit
 
 class AnimateSpriteComponent: GKComponent {
 
-    var spriteNode: SKSpriteNode!
-    
+    public let spriteNode: SKSpriteNode
+    private let categoryBitMask: UInt32
+    private let collisionBitMask: UInt32
+    private let size: CGSize
+
     var animationAtlas: SKTextureAtlas?
-    var animationTextures: [SKTexture] {
-        animationAtlas?.textureNames.compactMap { textureName in animationAtlas?.textureNamed(textureName) } ?? []
-    }
+    var animationTextures: [SKTexture]?
 
-    init(textureName: String) {
-        super.init()
+    init(textureName: String, categoryBitMask: CategoryMask, collisionBitMask: UInt32, size: CGSize) {
+        self.categoryBitMask = categoryBitMask.rawValue
+        self.collisionBitMask = collisionBitMask
         self.spriteNode = SKSpriteNode(imageNamed: textureName)
-    }
-
-    init(atlasName: String) {
-        super.init()
-
-        self.animationAtlas = SKTextureAtlas(named: atlasName)
-        self.spriteNode = SKSpriteNode(imageNamed: animationAtlas!.textureNames.first!)
-        self.spriteNode.texture = animationTextures.first!
-        self.spriteNode.position = CGPoint(x: ScreenSize.width/2, y: 0)
-        self.spriteNode.physicsBody = SKPhysicsBody(circleOfRadius: self.spriteNode.size.width/2)
-        self.spriteNode.anchorPoint = CGPoint(x: self.spriteNode.size.width/2, y: self.spriteNode.size.height)
-        self.spriteNode.physicsBody?.categoryBitMask = CategoryMask.spit.rawValue
-        self.spriteNode.physicsBody?.collisionBitMask = CategoryMask.llama.rawValue | CategoryMask.spit.rawValue
+        self.size = size
+        
+        // setup
+        self.spriteNode.size = size
+        self.spriteNode.position = CGPoint(x: ScreenSize.width/2, y: .zero)
+        self.spriteNode.physicsBody = SKPhysicsBody(circleOfRadius: size.width/2)
+        self.spriteNode.anchorPoint = CGPoint(x: size.width/2, y: size.height)
+        self.spriteNode.physicsBody?.categoryBitMask = categoryBitMask.rawValue
+        self.spriteNode.physicsBody?.collisionBitMask = collisionBitMask
         self.spriteNode.physicsBody?.affectedByGravity = false
         self.spriteNode.physicsBody?.allowsRotation = false
         self.spriteNode.physicsBody?.restitution = 0
         self.spriteNode.physicsBody?.density = 12
+        
+        super.init()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
     func setAnimation(atlasName: String) {
-        spriteNode.removeAllActions()
+        guard let textures = animationTextures else {
+            return
+        }
 
+        self.spriteNode.removeAllActions()
         self.animationAtlas = SKTextureAtlas(named: atlasName)
-        self.spriteNode.texture = animationTextures.first!
+        self.spriteNode.texture = textures.first
 
-        spriteNode.run(
+        self.spriteNode.run(
                 SKAction.animate(
-                    with: animationTextures,
+                    with: textures,
                     timePerFrame: 0.1,
                     resize: false,
                     restore: true

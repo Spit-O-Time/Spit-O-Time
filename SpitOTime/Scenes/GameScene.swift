@@ -211,8 +211,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact) {
         
         let collision = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
-        
-        if collision == CategoryMask.spit.rawValue | CategoryMask.llama.rawValue {
+
+        if collision == CategoryMask.collides(bodyA: .spit, bodyB: .llama) {
             gameOver()
             contact.bodyA.node?.removeFromParent()
             spitTail.removeFromParent()
