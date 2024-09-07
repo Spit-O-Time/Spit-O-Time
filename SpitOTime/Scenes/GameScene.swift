@@ -90,8 +90,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let playSpitSound = SKAction.playSoundFileNamed(
             Assets.Sound.spit.rawValue, waitForCompletion: false
         )
-        let spitNode = spit.component(ofType: AnimateSpriteComponent.self)?.spriteNode
+        let spitNode = spit.component(ofType: SpitComponent.self)?.spriteNode
         spitNode?.run(playSpitSound)
+        self.spitTail.isHidden = false
     }
     
     @objc func updateScorePoints() {
@@ -164,13 +165,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func setupSpitNode() {
         guard let spitSpriteNode = spit
-            .component(ofType: AnimateSpriteComponent.self)?
+            .component(ofType: SpitComponent.self)?
             .spriteNode else { return }
 
         self.spitTail = SKEmitterNode(fileNamed: "SpitParticle.sks")
         self.spitTail.position = spitSpriteNode.position
+        self.spitTail.isHidden = true
         addChild(self.spitTail)
-
         addChild(spitSpriteNode)
     }
     
@@ -186,7 +187,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // MARK: Movimentation
     func animateSpit() {
-        guard let spitNode = spit.component(ofType: AnimateSpriteComponent.self)?.spriteNode
+        guard let spitNode = spit.component(ofType: SpitComponent.self)?.spriteNode
         else { return }
         spitTail?.position = spitNode.position
 
@@ -232,6 +233,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         animateSpit()
         animateBackground()
         removeLlamas()
+        animateLlamas()
+    }
+    
+    
+    func animateLlamas() {
         for llama in llamas {
             llama.position.y -= velocity
         }

@@ -12,16 +12,10 @@ class Spit: GKEntity {
 
     override init() {
         super.init()
-        self.addComponent(AnimateSpriteComponent(
-            textureName: String(),
-            categoryBitMask: .spit,
-            collisionBitMask: CategoryMask.collides(bodyA: .llama, bodyB: .spit),
-            size: CGSize(width: 25, height: 25))
-        )
+        self.addComponent(SpitComponent())
     }
 
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
+        fatalError("init(coder:) has not been implemented")
     }
-    
 }
