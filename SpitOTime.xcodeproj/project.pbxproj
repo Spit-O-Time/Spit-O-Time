@@ -36,6 +36,10 @@
 		818EEB3E26207DED000A8414 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818EEB3D26207DED000A8414 /* UserDefaultsManager.swift */; };
 		818EEB4626208100000A8414 /* AudioManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818EEB4526208100000A8414 /* AudioManagerTests.swift */; };
 		81909E312C8C9D8900AFED96 /* SpitComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81909E302C8C9D8900AFED96 /* SpitComponent.swift */; };
+		81909E352C8CABA000AFED96 /* ScoreHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81909E342C8CABA000AFED96 /* ScoreHandler.swift */; };
+		81909E372C8CAFAC00AFED96 /* DifficultHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81909E362C8CAFAC00AFED96 /* DifficultHandler.swift */; };
+		81909E392C8CB07A00AFED96 /* GameScene+SetupNodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81909E382C8CB07A00AFED96 /* GameScene+SetupNodes.swift */; };
+		81909E3B2C8CB0BF00AFED96 /* GameScene+TimeTriggers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81909E3A2C8CB0BF00AFED96 /* GameScene+TimeTriggers.swift */; };
 		81BB495C260B6D7800BDC688 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BB495B260B6D7800BDC688 /* UserDefaultsManager.swift */; };
 		A4A0363B25F7C2E10036CCCB /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A0363A25F7C2E10036CCCB /* GameViewController.swift */; };
 		A4A0364525F7C3070036CCCB /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A0364425F7C3070036CCCB /* UIColorExtension.swift */; };
@@ -112,6 +116,10 @@
 		818EEB3D26207DED000A8414 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		818EEB4526208100000A8414 /* AudioManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManagerTests.swift; sourceTree = "<group>"; };
 		81909E302C8C9D8900AFED96 /* SpitComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpitComponent.swift; sourceTree = "<group>"; };
+		81909E342C8CABA000AFED96 /* ScoreHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreHandler.swift; sourceTree = "<group>"; };
+		81909E362C8CAFAC00AFED96 /* DifficultHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifficultHandler.swift; sourceTree = "<group>"; };
+		81909E382C8CB07A00AFED96 /* GameScene+SetupNodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameScene+SetupNodes.swift"; sourceTree = "<group>"; };
+		81909E3A2C8CB0BF00AFED96 /* GameScene+TimeTriggers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameScene+TimeTriggers.swift"; sourceTree = "<group>"; };
 		81BB495B260B6D7800BDC688 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		A4A0363A25F7C2E10036CCCB /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		A4A0364425F7C3070036CCCB /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
@@ -289,6 +297,15 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		81909E332C8CAB8E00AFED96 /* Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				81909E342C8CABA000AFED96 /* ScoreHandler.swift */,
+				81909E362C8CAFAC00AFED96 /* DifficultHandler.swift */,
+			);
+			path = Handlers;
+			sourceTree = "<group>";
+		};
 		81BB4980260B729400BDC688 /* Animations */ = {
 			isa = PBXGroup;
 			children = (
@@ -301,7 +318,10 @@
 		A4A0361D25F7C29F0036CCCB /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				81909E332C8CAB8E00AFED96 /* Handlers */,
 				5B8AD09925F2717800B64371 /* GameScene.swift */,
+				81909E382C8CB07A00AFED96 /* GameScene+SetupNodes.swift */,
+				81909E3A2C8CB0BF00AFED96 /* GameScene+TimeTriggers.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -696,6 +716,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				815EFDD426039B3C008EEC0C /* PlayingState.swift in Sources */,
+				81909E372C8CAFAC00AFED96 /* DifficultHandler.swift in Sources */,
 				8118BD7125FA4E19002015E7 /* Spit.swift in Sources */,
 				AEFE242B2608D80900278D50 /* PauseGameViewController.swift in Sources */,
 				818ACC76260242C40033F65F /* GameOverState.swift in Sources */,
@@ -705,6 +726,7 @@
 				A4A0364525F7C3070036CCCB /* UIColorExtension.swift in Sources */,
 				810BD58A2600D9D900853F6C /* SpawnComponent.swift in Sources */,
 				810BD5942600DE5000853F6C /* Llama.swift in Sources */,
+				81909E352C8CABA000AFED96 /* ScoreHandler.swift in Sources */,
 				818ACC5F260237040033F65F /* CategoryMask.swift in Sources */,
 				818A422825FF7E0F00454FAF /* AnimateBackgroundComponent.swift in Sources */,
 				A4A0364A25F7C31A0036CCCB /* ScreenSize.swift in Sources */,
@@ -713,7 +735,9 @@
 				81909E312C8C9D8900AFED96 /* SpitComponent.swift in Sources */,
 				AEFE241F2608C8D700278D50 /* MainMenuViewController.swift in Sources */,
 				A4D6B5B626039FD3002639C4 /* UIFontExtension.swift in Sources */,
+				81909E392C8CB07A00AFED96 /* GameScene+SetupNodes.swift in Sources */,
 				818ACC6E260242BB0033F65F /* PausedState.swift in Sources */,
+				81909E3B2C8CB0BF00AFED96 /* GameScene+TimeTriggers.swift in Sources */,
 				81BB495C260B6D7800BDC688 /* UserDefaultsManager.swift in Sources */,
 				5B8AD09425F2717800B64371 /* AppDelegate.swift in Sources */,
 				AEC2BAC125FA468100D4261A /* Background.swift in Sources */,

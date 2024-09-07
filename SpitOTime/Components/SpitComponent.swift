@@ -14,7 +14,7 @@ class SpitComponent: GKComponent {
     // Constants
     private let size = CGSize(width: 25, height: 25)
     private let physicsBody = SKPhysicsBody(circleOfRadius: 12.5)
-    private let position = CGPoint(x: ScreenSize.width/2, y: .zero)
+    private let position = ScreenPosition.bottomCenter
     private let density = CGFloat(12)
     private let categoryBitMask = CategoryMask.spit.rawValue
     private let collisionBitMask = CategoryMask.collides(bodyA: .spit, bodyB: .llama)
