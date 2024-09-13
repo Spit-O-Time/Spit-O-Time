@@ -154,6 +154,7 @@ class GameViewController: UIViewController {
         animationView.play { _ in
             self.fadeOutAnimation()
         }
+        UserDefaultsManager.setUserPlayedTutorial()
     }
     
     private func fadeOutAnimation() {
@@ -240,15 +241,19 @@ extension GameViewController: GameOverDelegate, PlayingDelegate, PauseDelegate {
 
     func didRestartGame() {
         startScene()
+        countAnimationIfNeeded()
+        tutorialAnimationIfNeeded()
         if UserDefaultsManager.isBackgroundSoundMuted == false {
             AudioManager.shared.playSound(named: .background, loop: true)
         }
     }
 
     func didLoseGame() {
-        scene?.isPlaying = false
+        guard let scene = scene else { return }
+        scene.isPlaying = false
         AudioManager.shared.stop()
         goToGameOverViewController()
+        reportToLeaderboard(score: scene.score)
         AudioManager.shared.playSound(named: .gameOver, loop: false, volume: 10.0)
     }
     

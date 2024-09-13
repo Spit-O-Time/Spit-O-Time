@@ -186,8 +186,8 @@ extension GameOverViewController: GADFullScreenContentDelegate {
             rewardedAd?.fullScreenContentDelegate = self
         } catch {
             presentAlert(
-                title: "Falha ao carregar, não é possivel continuar",
-                message: "Alguma llama mordeu o cabo de conexão com os nossos servidores"
+                title: "Failed to load reward",
+                message: "Error to connect with ad server"
             )
         }
     }
