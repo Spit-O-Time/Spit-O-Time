@@ -9,6 +9,7 @@ import UIKit
 import SpriteKit
 import GameplayKit
 import Lottie
+import GameKit
 
 class GameViewController: UIViewController {
 
@@ -40,31 +41,76 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        scene = GameScene(size: CGSize(width: ScreenSize.width, height: ScreenSize.height))
-        scene?.stateMachine = GameStateMachine(present: self, states: [GameOverState(), PausedState(), PlayingState()])
-        
+
         let notificationCenter = NotificationCenter.default
-            notificationCenter.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.willResignActiveNotification, object: nil)
-        
-        scene?.scaleMode = .aspectFill
-        skView.presentScene(scene!)
+
+        notificationCenter.addObserver(self,
+            selector: #selector(appMovedToBackground),
+            name: UIApplication.willResignActiveNotification,
+            object: nil
+        )
+
+        notificationCenter.addObserver(self,
+            selector: #selector(backgroundMusicDidFinishPlaying),
+            name: AudioManager.shared.didFinishPlaying,
+            object: nil
+        )
+
+        startScene()
         setupColorAmbience()
         setupPauseButton()
         countAnimationIfNeeded()
         tutorialAnimationIfNeeded()
         animateColorAmbience()
+        
+        #if DEBUG
+        skView.showsPhysics = true
+        skView.showsFPS = true
+        skView.showsNodeCount = true
+        #endif
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if UserDefaultsManager.isBackgroundSoundMuted == false {
+            AudioManager.shared.playSound(named: .background)
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         self.view.layer.removeAllAnimations()
     }
-    
+
+    func startScene() {
+        let sceneSize = CGSize(
+            width: ScreenSize.width,
+            height: ScreenSize.height
+        )
+        scene = GameScene(size: sceneSize)
+        scene?.scaleMode = .aspectFill
+        let stateMachine = GKStateMachine(
+            states: [
+                GameOverState(delegate: self),
+                PausedState(delegate: self),
+                PlayingState(delegate: self)
+            ]
+        )
+        scene?.stateMachine = stateMachine
+        skView.presentScene(scene)
+    }
+
     @objc func appMovedToBackground() {
         if let scene = skView.scene as? GameScene {
             skView.isPaused = true
             scene.isPlaying = false
             scene.stateMachine?.enter(PausedState.self)
+            goToPauseViewController()
+        }
+    }
+
+    @objc func backgroundMusicDidFinishPlaying(_ notification: Notification) {
+        if AudioManager.shared.latestPlayedSound == .background {
+            AudioManager.shared.playSound(named: .backgroundLoop, loop: true)
         }
     }
 
@@ -75,49 +121,48 @@ class GameViewController: UIViewController {
     
     private func animateColorAmbience() {
         setAmbienceColor(.orange, with: 0.04)
-        UIView.animate(withDuration: 40, delay: 0, options: [.repeat, .autoreverse]) {
+        UIView.animate(
+            withDuration: 40,
+            delay: 0,
+            options: [.repeat, .autoreverse]
+        ) {
             self.setAmbienceColor(.black, with: 0.4)
         }
     }
     
     @objc func pause() {
-        if let scene = skView.scene as? GameScene {
-            skView.isPaused = true
-            scene.isPlaying = false
-            scene.stateMachine?.enter(PausedState.self)
-        }
+        scene?.stateMachine?.enter(PausedState.self)
+        goToPauseViewController()
     }
     
     func countAnimationIfNeeded() {
-        guard UserDefaults.standard.bool(forKey: UserDefaultsKey.notFirstTime.rawValue) else { return }
+        guard UserDefaultsManager.isFirstTimePlaying == false else { return }
         animationView = .init(name: "count")
         animationView.contentMode = .scaleAspectFit
         setupAnimationView(withSize: CGSize(width: 200, height: 200))
         animationView.play { _ in
-            self.scene?.isRunningAnimationCount = true
-            UIView.animate(withDuration: 0.3) {
-                self.animationView.alpha = 0
-            } completion: { _ in
-                self.animationView.isHidden = true
-                self.scene?.isRunningAnimationCount = false
-            }
+            self.fadeOutAnimation()
         }
     }
     
     private func tutorialAnimationIfNeeded() {
-        guard !UserDefaults.standard.bool(forKey: UserDefaultsKey.notFirstTime.rawValue) else { return }
+        guard UserDefaultsManager.isFirstTimePlaying else { return }
         animationView = .init(name: "tutorial_movement")
-        animationView.animationSpeed = 0.5
+        animationView.animationSpeed = 0.7
         animationView.contentMode = .scaleToFill
         setupAnimationView(withSize: CGSize(width: 500, height: 500))
         animationView.play { _ in
-            UIView.animate(withDuration: 0.3) {
-                self.animationView.alpha = 0
-            } completion: { _ in
-                self.animationView.isHidden = true
-            }
+            self.fadeOutAnimation()
         }
-        UserDefaults.standard.setValue(true, forKey: UserDefaultsKey.notFirstTime.rawValue)
+        UserDefaultsManager.setUserPlayedTutorial()
+    }
+    
+    private func fadeOutAnimation() {
+        UIView.animate(withDuration: 0.3) {
+            self.animationView.alpha = 0
+        } completion: { _ in
+            self.animationView.isHidden = true
+        }
     }
     
     private func setupPauseButton() {
@@ -154,3 +199,71 @@ class GameViewController: UIViewController {
     }
 }
 
+
+// MARK: Navigation
+extension GameViewController {
+    
+    func goToPauseViewController() {
+        let controller = PauseGameViewController()
+        controller.stateMachine = scene?.stateMachine
+        controller.modalPresentationStyle = .overFullScreen
+        controller.modalTransitionStyle = .crossDissolve
+        self.navigationController?.present(controller, animated: true)
+    }
+
+    func goToGameOverViewController() {
+        let controller = GameOverViewController()
+        controller.stateMachine = scene?.stateMachine
+        controller.modalPresentationStyle = .overFullScreen
+        controller.modalTransitionStyle = .crossDissolve
+        self.navigationController?.present(controller, animated: true)
+    }
+
+}
+
+// MARK: State Delegates
+extension GameViewController: GameOverDelegate, PlayingDelegate, PauseDelegate {
+    func didPauseGame() {
+        scene?.isPlaying = false
+        scene?.isPaused = true
+        animationView.pause()
+        AudioManager.shared.pause()
+    }
+
+    func didResumeGame() {
+        scene?.isPaused = false
+        scene?.isPlaying = true
+        animationView.play()
+        if UserDefaultsManager.isBackgroundSoundMuted == false {
+            AudioManager.shared.resume()
+        }
+    }
+
+    func didRestartGame() {
+        startScene()
+        countAnimationIfNeeded()
+        tutorialAnimationIfNeeded()
+        if UserDefaultsManager.isBackgroundSoundMuted == false {
+            AudioManager.shared.playSound(named: .background, loop: true)
+        }
+    }
+
+    func didLoseGame() {
+        guard let scene = scene else { return }
+        scene.isPlaying = false
+        AudioManager.shared.stop()
+        goToGameOverViewController()
+        reportToLeaderboard(score: scene.score)
+        AudioManager.shared.playSound(named: .gameOver, loop: false, volume: 10.0)
+    }
+    
+}
+
+// MARK: Leaderboard
+extension GameViewController {
+    func reportToLeaderboard(score: Int) {
+        GKLeaderboard.submitScore(score, context: .zero, player: GKLocalPlayer.local, leaderboardIDs: ["Leaderboard"]) { err in
+            print(err?.localizedDescription ?? String())
+        }
+    }
+}

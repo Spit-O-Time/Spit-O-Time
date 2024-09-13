@@ -12,11 +12,10 @@ class Spit: GKEntity {
 
     override init() {
         super.init()
-        self.addComponent(AnimateSpriteComponent(atlasName: "SpitAtlas"))
+        self.addComponent(SpitComponent())
     }
 
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
+        fatalError("init(coder:) has not been implemented")
     }
-    
 }

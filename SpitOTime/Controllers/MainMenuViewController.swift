@@ -6,53 +6,120 @@
 //
 
 import UIKit
+import GameKit
 
 class MainMenuViewController: UIViewController {
 
-    @IBOutlet weak var sound: UIButton! {
-        didSet {
-            sound.layer.masksToBounds = false
-            sound.layer.cornerRadius = 8
-        }
+    var imageIconSoundEffectMuted: UIImage {
+        let imageNamed = UserDefaultsManager.isSoundEffectMuted ? Assets.Icon.soundEffectDeactive : Assets.Icon.soundEffectActive
+        return UIImage(named: imageNamed) ?? UIImage()
     }
 
-    @IBOutlet weak var music: UIButton! {
-        didSet {
-            music.layer.masksToBounds = false
-            music.layer.cornerRadius = 8
-        }
+    var imageIconBackgroundSoundMuted: UIImage {
+        let imageNamed = UserDefaultsManager.isBackgroundSoundMuted ? Assets.Icon.backgroundSoundDeactive : Assets.Icon.backgroundSoundActive
+        return UIImage(named: imageNamed) ?? UIImage()
     }
+    
+    lazy var imageBackgound: UIImageView = {
+        let image = UIImage(named: "bigLlama")
+        let imageView = UIImageView(image: image)
+        imageView.layer.masksToBounds = false
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
+    
+    lazy var gameTitleLabel: UILabel = {
+        let label = UILabel()
+        label.font = .orange(size: 48)
+        label.text = "spit\n 'o time"
+        label.textColor = .titleLabel
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 2
+        label.textAlignment = .center
+        return label
+    }()
 
-    @IBOutlet weak var play: UIButton! {
-        didSet {
-            play.layer.masksToBounds = false
-            play.layer.cornerRadius = 16
-        }
-    }
+    lazy var soundButton: UIButton = {
+        let button = UIButton()
+        button.layer.masksToBounds = false
+        button.layer.cornerRadius = 8
+        button.backgroundColor = .buttonColor
+        button.setImage(imageIconSoundEffectMuted, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.sizeThatFits(CGSize(width: 48, height: 48))
+        button.addTarget(self, action: #selector(changeSoundEffectAction), for: .touchUpInside)
+        return button
+    }()
 
-    let audioManager = AudioManager()
+    lazy var musicButton: UIButton = {
+        let button = UIButton()
+        button.layer.masksToBounds = false
+        button.layer.cornerRadius = 8
+        button.setImage(imageIconBackgroundSoundMuted, for: .normal)
+        button.addTarget(self, action: #selector(changeBackgroundAction), for: .touchUpInside)
+        button.backgroundColor = .buttonColor
+        button.sizeThatFits(CGSize(width: 48, height: 48))
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    
+    lazy var leaderBoardButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .buttonColor
+        button.layer.masksToBounds = false
+        button.layer.cornerRadius = 8
+        button.setTitle("Leaderboard", for: .normal)
+        button.titleLabel?.font = .nunito(size: 48)
+        button.setTitleColor(.cardBackgroundColor, for: .normal)
+        button.addTarget(self, action: #selector(didTapLeaderboardButton), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            try? self.audioManager.playSound(named: .menuBackground, numberOfLoop: -1, volume: 0.5)
-        }
-        
-    }
+    lazy var playButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .buttonColor
+        button.layer.masksToBounds = false
+        button.layer.cornerRadius = 8
+        button.setTitle("PLAY", for: .normal)
+        button.titleLabel?.font = .nunito(size: 48)
+        button.setTitleColor(.cardBackgroundColor, for: .normal)
+        button.addTarget(self, action: #selector(playButtonAction), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        setButtonImage(forKey: .isSoundEffectMuted, button: sound)
-        setButtonImage(forKey: .isSoundtrackMuted, button: music)
+        setupViewHierarchy()
+        setupConstraints()
         navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if UserDefaultsManager.isBackgroundSoundMuted == false {
+            AudioManager.shared.playSound(named: .menuBackground, loop: true)
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.audioManager.stopSound()
+        AudioManager.shared.stop()
+    }
+    
+    func authenticateLocalPlayer() {
+      let localPlayer = GKLocalPlayer.local
+        localPlayer.authenticateHandler = { (viewController, error) -> Void in
+            if let controller = viewController {
+                self.navigationController?.present(controller, animated: true)
+            }
+        }
     }
 
-    @IBAction func playButtonAction(_ sender: Any) {
+    @objc func playButtonAction(_ sender: UIButton) {
         let controller = GameViewController()
         let transition = CATransition()
         transition.duration = 0.3
@@ -62,46 +129,116 @@ class MainMenuViewController: UIViewController {
         navigationController?.pushViewController(controller, animated: false)
     }
 
-    @IBAction func changeSoundtrackAction(_ sender: Any) {
-        changeValueUserDefaults(forKey: .isSoundtrackMuted, button: music)
-    }
+    @objc func changeBackgroundAction(_ sender: UIButton) {
+        UserDefaultsManager.toggleMuteBackgroundSound()
+        musicButton.setImage(imageIconBackgroundSoundMuted, for: .normal)
 
-    @IBAction func changeSoundEffectAction(_ sender: Any) {
-        changeValueUserDefaults(forKey: .isSoundEffectMuted, button: sound)
-    }
-
-    func changeValueUserDefaults(forKey key: AudioConfig, button: UIButton) {
-        switch key {
-        case .isSoundtrackMuted:
-            if UserDefaults.standard.bool(forKey: key.rawValue) {
-                UserDefaults.standard.setValue(false, forKey: key.rawValue)
-                button.setImage(UIImage(named: key.rawValue+"_deactive"), for: .normal)
-                self.audioManager.stopSound()
-            } else {
-                UserDefaults.standard.setValue(true, forKey: key.rawValue)
-                button.setImage(UIImage(named: key.rawValue+"_active"), for: .normal)
-                self.audioManager.playSound(named: .menuBackground, numberOfLoop: -1, volume: 0.5)
-            }
-            
-        case .isSoundEffectMuted:
-            if UserDefaults.standard.bool(forKey: key.rawValue) {
-                UserDefaults.standard.setValue(false, forKey: key.rawValue)
-                button.setImage(UIImage(named: key.rawValue+"_deactive"), for: .normal)
-            } else {
-                UserDefaults.standard.setValue(true, forKey: key.rawValue)
-                button.setImage(UIImage(named: key.rawValue+"_active"), for: .normal)
-            }
-        }
-        UserDefaults.standard.synchronize()
-        print(UserDefaults.standard.bool(forKey: key.rawValue))
-    }
-
-    func setButtonImage(forKey: AudioConfig, button: UIButton) {
-        if !UserDefaults.standard.bool(forKey: forKey.rawValue) {
-            button.setImage(UIImage(named: forKey.rawValue+"_deactive"), for: .normal)
+        if UserDefaultsManager.isBackgroundSoundMuted {
+            AudioManager.shared.stop()
         } else {
-            button.setImage(UIImage(named: forKey.rawValue+"_active"), for: .normal)
+            AudioManager.shared.playSound(named: .menuBackground, loop: true)
         }
-        
     }
+
+     @objc func changeSoundEffectAction(_ sender: UIButton) {
+        UserDefaultsManager.toggleSoundEffectSound()
+        soundButton.setImage(imageIconSoundEffectMuted, for: .normal)
+    }
+
+    @objc func didTapLeaderboardButton(_ sender: UIButton) {
+        let controller = GKGameCenterViewController(
+            leaderboardID: "Leaderboard",
+            playerScope: .global,
+            timeScope: .allTime
+        )
+        controller.gameCenterDelegate = self
+        self.navigationController?.present(controller, animated: true)
+    }
+}
+
+
+// MARK: - View
+extension MainMenuViewController {
+    
+    private func setupViewHierarchy() {
+        view.addSubview(imageBackgound)
+        view.addSubview(gameTitleLabel)
+        view.addSubview(soundButton)
+        view.addSubview(musicButton)
+        view.addSubview(leaderBoardButton)
+        view.addSubview(playButton)
+    }
+    
+    private func setupConstraints() {
+        setupImageBackground()
+        setupGameTitleLabel()
+        setupSoundEffectButton()
+        setupBackgroundSoundButton()
+        setupPlayButton()
+        setupBackgroundView()
+        setupLeaderboardButton()
+    }
+    
+    private func setupBackgroundView() {
+        view.backgroundColor = .backgroundColor
+    }
+    
+    private func setupSoundEffectButton() {
+        NSLayoutConstraint.activate([
+            soundButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32),
+            soundButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
+            soundButton.heightAnchor.constraint(equalToConstant: 42),
+            soundButton.widthAnchor.constraint(equalToConstant: 42)
+        ])
+    }
+    
+    private func setupBackgroundSoundButton() {
+        NSLayoutConstraint.activate([
+            musicButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32),
+            musicButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
+            musicButton.heightAnchor.constraint(equalToConstant: 42),
+            musicButton.widthAnchor.constraint(equalToConstant: 42)
+        ])
+    }
+
+    private func setupPlayButton() {
+        NSLayoutConstraint.activate([
+            playButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            playButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -64),
+            playButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
+            playButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32)
+        ])
+    }
+    
+    private func setupLeaderboardButton() {
+        NSLayoutConstraint.activate([
+            leaderBoardButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            leaderBoardButton.bottomAnchor.constraint(equalTo: playButton.topAnchor, constant: -24),
+            leaderBoardButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
+            leaderBoardButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32)
+        ])
+    }
+    
+    private func setupGameTitleLabel() {
+        NSLayoutConstraint.activate([
+            gameTitleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 64),
+            gameTitleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+    }
+
+    private func setupImageBackground() {
+        NSLayoutConstraint.activate([
+            imageBackgound.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: (UIScreen.main.bounds.width + 64) * -1),
+            imageBackgound.topAnchor.constraint(equalTo: view.topAnchor, constant: UIScreen.main.bounds.height / 4)
+        ])
+    }
+        
+}
+
+extension MainMenuViewController: GKGameCenterControllerDelegate {
+
+    func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
+        self.dismiss(animated: true)
+    }
+
 }

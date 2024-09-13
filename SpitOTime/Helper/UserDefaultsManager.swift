@@ -7,32 +7,56 @@
 
 import Foundation
 
-enum UserLoggedState {
-    case firstTimePlaying
-    case notFirstTimePlaying
+enum UserDefaultsKey: String {
+   case isFirstTimePlaying
 }
 
-enum UserDefaultsKey: String {
-   case notFirstTime
-    
-    // others atributes are added here
+enum AudioConfigKey: String {
+    case isBackgroundSoundMuted
+    case isSoundEffectMuted
 }
 
 struct UserDefaultsManager {
-    
-    
-    static func verifyState(completion: (UserLoggedState) -> ()) {
-        
-        let userDefaults = UserDefaults.standard
-        
-        if UserDefaults.standard.bool(forKey: UserDefaultsKey.notFirstTime.rawValue) != true {
-            
-            userDefaults.set(true, forKey: UserDefaultsKey.notFirstTime.rawValue)
-            completion(.firstTimePlaying)
-            
-        } else {
-            completion(.notFirstTimePlaying)
-        }
+
+    static var isFirstTimePlaying: Bool {
+        return UserDefaults.standard.bool(
+            forKey: UserDefaultsKey.isFirstTimePlaying.rawValue
+        ) == false
     }
-    
+
+    static var isBackgroundSoundMuted: Bool {
+        return UserDefaults.standard.bool(
+            forKey: AudioConfigKey.isBackgroundSoundMuted.rawValue
+        )
+    }
+
+    static var isSoundEffectMuted: Bool {
+        return UserDefaults.standard.bool(
+            forKey: AudioConfigKey.isSoundEffectMuted.rawValue
+        )
+    }
+}
+
+extension UserDefaultsManager {
+
+    static func setUserPlayedTutorial() {
+        UserDefaults.standard.set(
+            true,
+            forKey: UserDefaultsKey.isFirstTimePlaying.rawValue
+        )
+    }
+
+    static func toggleMuteBackgroundSound() {
+        UserDefaults.standard.set(
+            !isBackgroundSoundMuted,
+            forKey: AudioConfigKey.isBackgroundSoundMuted.rawValue
+        )
+    }
+
+    static func toggleSoundEffectSound() {
+        UserDefaults.standard.set(
+            !isSoundEffectMuted,
+            forKey: AudioConfigKey.isSoundEffectMuted.rawValue
+        )
+    }
 }

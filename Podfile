@@ -18,4 +18,10 @@ target 'SpitOTime' do
     # Pods for testing
   end
 
+  post_install do |installer|
+    installer.pods_project.build_configurations.each do |config|
+      config.build_settings['ONLY_ACTIVE_ARCH'] = 'NO'
+    end
+  end
+
 end
